@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Story Controller-->
+        <scene sceneID="ZTB-nL-Bsu">
+            <objects>
+                <viewController id="PLX-d9-w6m" customClass="StoryController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CPr-cd-F7Y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZm-YF-Pav">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNS-th-ZFL">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zJu-uv-9nE">
+                                                <rect key="frame" x="17" y="97" width="380" height="300"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-sX-KQh">
+                                                <rect key="frame" x="17" y="405" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWg-MO-ve3">
+                                                <rect key="frame" x="125" y="405" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kjs-In-bfZ">
+                                                <rect key="frame" x="233" y="405" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cNG-aM-evD">
+                                                <rect key="frame" x="17" y="605" width="380" height="353"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcK-DA-srw">
+                                                <rect key="frame" x="17" y="555" width="60" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1000" id="hTN-tG-HDI"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="KNS-th-ZFL" firstAttribute="top" secondItem="wZm-YF-Pav" secondAttribute="top" id="9eu-BT-Rtz"/>
+                                    <constraint firstItem="KNS-th-ZFL" firstAttribute="width" secondItem="wZm-YF-Pav" secondAttribute="width" id="E7Q-j4-6M8"/>
+                                    <constraint firstAttribute="trailing" secondItem="KNS-th-ZFL" secondAttribute="trailing" id="G0y-m1-yR6"/>
+                                    <constraint firstItem="KNS-th-ZFL" firstAttribute="leading" secondItem="wZm-YF-Pav" secondAttribute="leading" id="swi-7D-ZJb"/>
+                                    <constraint firstAttribute="bottom" secondItem="KNS-th-ZFL" secondAttribute="bottom" id="vHv-7j-NIu"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wZm-YF-Pav" firstAttribute="leading" secondItem="hkq-mR-CcI" secondAttribute="leading" id="R50-M1-fA4"/>
+                            <constraint firstItem="wZm-YF-Pav" firstAttribute="trailing" secondItem="hkq-mR-CcI" secondAttribute="trailing" id="lzS-8M-bZf"/>
+                            <constraint firstAttribute="bottom" secondItem="wZm-YF-Pav" secondAttribute="bottom" id="wlk-D2-I9W"/>
+                            <constraint firstItem="wZm-YF-Pav" firstAttribute="top" secondItem="CPr-cd-F7Y" secondAttribute="top" id="yXW-Fj-vpJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hkq-mR-CcI"/>
+                    </view>
+                    <size key="freeformSize" width="414" height="1000"/>
+                    <connections>
+                        <outlet property="Fourth_Images" destination="Kjs-In-bfZ" id="Syd-FM-1ly"/>
+                        <outlet property="Main_Images" destination="zJu-uv-9nE" id="xlG-Ca-ych"/>
+                        <outlet property="Second_Images" destination="Zzb-sX-KQh" id="QQl-8N-cn2"/>
+                        <outlet property="Text_View" destination="cNG-aM-evD" id="HbA-Ya-fFy"/>
+                        <outlet property="Third_Images" destination="uWg-MO-ve3" id="Iao-B2-cCY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cEw-py-1X6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134.78260869565219" y="136.60714285714286"/>
+        </scene>
+    </scenes>
+</document>
