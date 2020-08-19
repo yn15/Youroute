@@ -16,19 +16,11 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKTooltipView.h"
 
 #import <CoreText/CoreText.h>
 
-#ifdef FBSDKCOCOAPODS
-#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
-#else
 #import "FBSDKCoreKit+Internal.h"
-#endif
 
 static const CGFloat kTransitionDuration    = 0.3;
 static const CGFloat kZoomOutScale          = 0.001f;
@@ -90,7 +82,7 @@ static CGMutablePathRef _fbsdkCreateDownPointingBubbleWithRect(CGRect rect, CGFl
     _verticalCrossOffset = - 2.5f;
     _verticalTextOffset = 0;
     _displayDuration = 6.0;
-    self.colorStyle = colorStyle;
+    [self setColorStyle:colorStyle];
 
     _message = [message copy];
     _tagline = [tagline copy];
@@ -168,7 +160,7 @@ static CGMutablePathRef _fbsdkCreateDownPointingBubbleWithRect(CGRect rect, CGFl
 
   // Add to view, while invisible.
   self.hidden = YES;
-  if (self.superview) {
+  if ([self superview]) {
     [self removeFromSuperview];
   }
   [view addSubview:self];
@@ -192,7 +184,7 @@ static CGMutablePathRef _fbsdkCreateDownPointingBubbleWithRect(CGRect rect, CGFl
   [self animateFadeOutWithCompletion:^{
     [self removeFromSuperview];
     [self cancelAllScheduledFadeOutMethods];
-    self->_isFadingOut = NO;
+    _isFadingOut = NO;
   }];
 }
 
@@ -252,9 +244,9 @@ static CGMutablePathRef _fbsdkCreateDownPointingBubbleWithRect(CGRect rect, CGFl
   void (^zoomIn)(void) = ^{
     self.alpha = 1.0;
 
-    CGFloat newZoomOffsetX = (centerPos - self->_arrowMidpoint) * (kZoomInScale - 1.0f);
+    CGFloat newZoomOffsetX = (centerPos - _arrowMidpoint) * (kZoomInScale - 1.0f);
     CGFloat newZoomOffsetY = -0.5f * self.bounds.size.height * (kZoomInScale - 1.0f);
-    if (self->_pointingUp) {
+    if (_pointingUp) {
       newZoomOffsetY = -newZoomOffsetY;
     }
 
@@ -266,9 +258,9 @@ static CGMutablePathRef _fbsdkCreateDownPointingBubbleWithRect(CGRect rect, CGFl
   // 2nd Step.
   void (^bounceZoom)(void) = ^{
     CGFloat centerPos2 = self.bounds.size.width / 2.0;
-    CGFloat zoomOffsetX2 = (centerPos2 - self->_arrowMidpoint) * (kZoomBounceScale - 1.0f);
+    CGFloat zoomOffsetX2 = (centerPos2 - _arrowMidpoint) * (kZoomBounceScale - 1.0f);
     CGFloat zoomOffsetY2 = -0.5f * self.bounds.size.height * (kZoomBounceScale - 1.0f);
-    if (self->_pointingUp) {
+    if (_pointingUp) {
       zoomOffsetY2 = -zoomOffsetY2;
     }
     self.layer.transform = fbsdkdfl_CATransform3DConcat(fbsdkdfl_CATransform3DMakeScale(kZoomBounceScale, kZoomBounceScale, kZoomBounceScale),
@@ -373,7 +365,7 @@ static CGMutablePathRef _createCloseCrossGlyphWithRect(CGRect rect)
   CGPathAddLineToPoint(path1, NULL, CGRectGetMaxX(rect) - lineThickness, CGRectGetMaxY(rect));
   CGPathCloseSubpath(path1);
 
-  // 2nd rectangle - mirrored horizontally
+  // 2nd rectange - mirrored horizontally
   CGMutablePathRef path2 = CGPathCreateMutable();
   CGPathMoveToPoint(path2, NULL, CGRectGetMinX(rect), CGRectGetMaxY(rect) - lineThickness);
   CGPathAddLineToPoint(path2, NULL, CGRectGetMaxX(rect) - lineThickness, CGRectGetMinY(rect));
@@ -478,12 +470,10 @@ static CGMutablePathRef _createCloseCrossGlyphWithRect(CGRect rect)
   [self layoutSubviewsAndDetermineFrame];
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (CGRect)layoutSubviewsAndDetermineFrame
 {
   // Compute the positioning of the arrow.
-  CGRect screenBounds = [UIScreen mainScreen].bounds;
+  CGRect screenBounds = [[UIScreen mainScreen] bounds];
   UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
   if (!UIInterfaceOrientationIsPortrait(orientation)) {
     screenBounds = CGRectMake(0, 0, screenBounds.size.height, screenBounds.size.width);
@@ -544,7 +534,6 @@ static CGMutablePathRef _createCloseCrossGlyphWithRect(CGRect rect)
                     nuxWidth,
                     nuxHeight);
 }
-#pragma clang diagnostic pop
 
 #pragma mark Message & Tagline
 
@@ -553,7 +542,7 @@ static CGMutablePathRef _createCloseCrossGlyphWithRect(CGRect rect)
   message = message ?: @"";
   // Ensure tagline is empty string or ends with space
   tagline = tagline ?: @"";
-  if (tagline.length && ![tagline hasSuffix:@" "])
+  if ([tagline length] && ![tagline hasSuffix:@" "])
     tagline = [tagline stringByAppendingString:@" "];
 
   // Concatenate tagline & main message
@@ -565,8 +554,8 @@ static CGMutablePathRef _createCloseCrossGlyphWithRect(CGRect rect)
   UIFont *font=[UIFont boldSystemFontOfSize:kNUXFontSize];
   [attrString addAttribute:NSFontAttributeName value:font range:fullRange];
   [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:fullRange];
-  if (tagline.length) {
-    [attrString addAttribute:NSForegroundColorAttributeName value: FBSDKUIColorWithRGB(0x6D, 0x87, 0xC7) range:NSMakeRange(0, tagline.length)];
+  if ([tagline length]) {
+    [attrString addAttribute:NSForegroundColorAttributeName value: FBSDKUIColorWithRGB(0x6D, 0x87, 0xC7) range:NSMakeRange(0, [tagline length])];
   }
 
   _textLabel.attributedText = attrString;
@@ -583,7 +572,7 @@ static CGMutablePathRef _createCloseCrossGlyphWithRect(CGRect rect)
 {
   [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(scheduleFadeoutRespectingMinimumDisplayDuration) object:nil];
 
-  if (_displayDuration > 0.0 && self.superview) {
+  if (_displayDuration > 0.0 && [self superview]) {
     CFTimeInterval intervalAlreadyDisplaying = CFAbsoluteTimeGetCurrent() - _displayTime;
     CFTimeInterval timeRemainingBeforeAutomaticFadeout = _displayDuration - intervalAlreadyDisplaying;
     if (timeRemainingBeforeAutomaticFadeout > 0.0) {
@@ -612,5 +601,3 @@ static CGMutablePathRef _createCloseCrossGlyphWithRect(CGRect rect)
 }
 
 @end
-
-#endif

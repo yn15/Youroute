@@ -16,21 +16,17 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import <Foundation/Foundation.h>
+
+#import <FBSDKCoreKit/FBSDKMacros.h>
 
 typedef NS_ENUM(NSInteger, FBSDKTriStateBOOL)
 {
   FBSDKTriStateBOOLValueUnknown = -1,
   FBSDKTriStateBOOLValueNO = 0,
   FBSDKTriStateBOOLValueYES = 1,
-} NS_SWIFT_NAME(TriStateBool.Value);
+};
 
-FOUNDATION_EXPORT FBSDKTriStateBOOL FBSDKTriStateBOOLFromBOOL(BOOL value);
-FOUNDATION_EXPORT FBSDKTriStateBOOL FBSDKTriStateBOOLFromNSNumber(NSNumber *value);
-FOUNDATION_EXPORT BOOL BOOLFromFBSDKTriStateBOOL(FBSDKTriStateBOOL value, BOOL defaultValue);
-
-#endif
+FBSDK_EXTERN FBSDKTriStateBOOL FBSDKTriStateBOOLFromBOOL(BOOL value);
+FBSDK_EXTERN FBSDKTriStateBOOL FBSDKTriStateBOOLFromNSNumber(NSNumber *value);
+FBSDK_EXTERN BOOL BOOLFromFBSDKTriStateBOOL(FBSDKTriStateBOOL value, BOOL defaultValue);

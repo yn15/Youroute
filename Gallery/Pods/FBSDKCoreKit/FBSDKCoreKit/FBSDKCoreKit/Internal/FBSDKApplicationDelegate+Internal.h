@@ -18,33 +18,36 @@
 
 #import <Foundation/Foundation.h>
 
-#if SWIFT_PACKAGE
-#import "FBSDKApplicationDelegate.h"
-#else
 #import <FBSDKCoreKit/FBSDKApplicationDelegate.h>
-#endif
+#import <FBSDKCoreKit/FBSDKMacros.h>
 
 #import "FBSDKCoreKit+Internal.h"
 
-NS_ASSUME_NONNULL_BEGIN
+FBSDK_EXTERN NSString *const FBSDKApplicationDidBecomeActiveNotification;
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+@class FBSDKApplicationCall;
 
-FOUNDATION_EXPORT NSNotificationName const FBSDKApplicationDidBecomeActiveNotification;
-
-#else
-
-FOUNDATION_EXPORT NSString *const FBSDKApplicationDidBecomeActiveNotification;
-
+#if !TARGET_OS_TV
+typedef void(^FBSDKBridgeAPICallbackBlock)(FBSDKBridgeAPIResponse *response);
 #endif
 
 @interface FBSDKApplicationDelegate ()
+#if !TARGET_OS_TV
+<FBSDKContainerViewControllerDelegate>
 
-- (void)addObserver:(id<FBSDKApplicationObserving>)observer;
-- (void)removeObserver:(id<FBSDKApplicationObserving>)observer;
-+ (BOOL)isSDKInitialized;
-+ (UIApplicationState)applicationState;
+- (void)openBridgeAPIRequest:(FBSDKBridgeAPIRequest *)request
+     useSafariViewController:(BOOL)useSafariViewController
+          fromViewController:(UIViewController *)fromViewController
+             completionBlock:(FBSDKBridgeAPICallbackBlock)completionBlock;
+
+- (void)openURLWithSafariViewController:(NSURL *)url
+                                 sender:(id<FBSDKURLOpening>)sender
+                     fromViewController:(UIViewController *)fromViewController
+                                handler:(void(^)(BOOL))handler;
+
+- (void)openURL:(NSURL *)url sender:(id<FBSDKURLOpening>)sender handler:(void(^)(BOOL))handler;
+#endif
+
+@property (nonatomic, readonly, getter=isActive) BOOL active;
 
 @end
-
-NS_ASSUME_NONNULL_END

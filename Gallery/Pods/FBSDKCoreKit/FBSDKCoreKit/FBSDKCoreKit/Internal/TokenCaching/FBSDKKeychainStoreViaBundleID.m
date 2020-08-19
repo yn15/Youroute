@@ -25,7 +25,7 @@
 
 - (instancetype)init
 {
-  return [super initWithService:[NSBundle mainBundle].bundleIdentifier accessGroup:nil];
+  return [super initWithService:[[NSBundle mainBundle] bundleIdentifier] accessGroup:nil];
 }
 
 - (instancetype)initWithService:(NSString *)service accessGroup:(NSString *)accessGroup
@@ -36,12 +36,12 @@
 - (NSMutableDictionary*)queryForKey:(NSString *)key
 {
   NSMutableDictionary *query = [NSMutableDictionary dictionary];
-  [FBSDKTypeUtility dictionary:query setObject:(__bridge id)([FBSDKDynamicFrameworkLoader loadkSecClassGenericPassword]) forKey:(__bridge id)[FBSDKDynamicFrameworkLoader loadkSecClass]];
-  [FBSDKTypeUtility dictionary:query setObject:self.service forKey:(__bridge id)[FBSDKDynamicFrameworkLoader loadkSecAttrService]];
-  [FBSDKTypeUtility dictionary:query setObject:key forKey:(__bridge id)[FBSDKDynamicFrameworkLoader loadkSecAttrGeneric]];
+  query[(__bridge id)[FBSDKDynamicFrameworkLoader loadkSecClass]] = (__bridge id)([FBSDKDynamicFrameworkLoader loadkSecClassGenericPassword]);
+  query[(__bridge id)[FBSDKDynamicFrameworkLoader loadkSecAttrService]] = self.service;
+  query[(__bridge id)[FBSDKDynamicFrameworkLoader loadkSecAttrGeneric]] = key;
 
 #if !TARGET_IPHONE_SIMULATOR
-  [FBSDKTypeUtility dictionary:query setObject:self.accessGroup forKey:[FBSDKDynamicFrameworkLoader loadkSecAttrAccessGroup]];
+  [FBSDKInternalUtility dictionary:query setObject:self.accessGroup forKey:[FBSDKDynamicFrameworkLoader loadkSecAttrAccessGroup]];
 #endif
 
   return query;

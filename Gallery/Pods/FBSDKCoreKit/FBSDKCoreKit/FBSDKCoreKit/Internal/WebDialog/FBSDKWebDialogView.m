@@ -16,43 +16,35 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKWebDialogView.h"
-
-#import <WebKit/WebKit.h>
 
 #import "FBSDKCloseIcon.h"
 #import "FBSDKError.h"
-#import "FBSDKInternalUtility.h"
 #import "FBSDKTypeUtility.h"
+#import "FBSDKUtility.h"
 
 #define FBSDK_WEB_DIALOG_VIEW_BORDER_WIDTH 10.0
 
-@interface FBSDKWebDialogView () <WKNavigationDelegate>
+@interface FBSDKWebDialogView () <UIWebViewDelegate>
 @end
 
 @implementation FBSDKWebDialogView
 {
   UIButton *_closeButton;
   UIActivityIndicatorView *_loadingView;
-  WKWebView *_webView;
+  UIWebView *_webView;
 }
 
 #pragma mark - Object Lifecycle
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (instancetype)initWithFrame:(CGRect)frame
 {
   if ((self = [super initWithFrame:frame])) {
     self.backgroundColor = [UIColor clearColor];
     self.opaque = NO;
 
-    _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
-    _webView.navigationDelegate = self;
+    _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    _webView.delegate = self;
     [self addSubview:_webView];
 
     _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -74,11 +66,10 @@
   }
   return self;
 }
-#pragma clang diagnostic pop
 
 - (void)dealloc
 {
-  _webView.navigationDelegate = nil;
+  _webView.delegate = nil;
 }
 
 #pragma mark - Public Methods
@@ -109,8 +100,6 @@
   [super drawRect:rect];
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)layoutSubviews
 {
   [super layoutSubviews];
@@ -131,16 +120,10 @@
   CGRect webViewBounds = _webView.bounds;
   _loadingView.center = CGPointMake(CGRectGetMidX(webViewBounds), CGRectGetMidY(webViewBounds));
 
-  if (CGRectGetHeight(webViewBounds) == 0.0) {
-    _closeButton.alpha = 0.0;
-  } else {
-    _closeButton.alpha = 1.0;
-    CGRect closeButtonFrame = _closeButton.bounds;
-    closeButtonFrame.origin = bounds.origin;
-    _closeButton.frame = CGRectIntegral(closeButtonFrame);
-  }
+  CGRect closeButtonFrame = _closeButton.bounds;
+  closeButtonFrame.origin = bounds.origin;
+  _closeButton.frame = CGRectIntegral(closeButtonFrame);
 }
-#pragma clang diagnostic pop
 
 #pragma mark - Actions
 
@@ -149,9 +132,9 @@
   [_delegate webDialogViewDidCancel:self];
 }
 
-#pragma mark - WKNavigationDelegate
+#pragma mark - UIWebViewDelegate
 
-- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
   [_loadingView stopAnimating];
 
@@ -166,17 +149,15 @@
   }
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-- (void)webView:(WKWebView *)webView
-decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
-decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+- (BOOL)webView:(UIWebView *)webView
+shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType
 {
-  NSURL *URL = navigationAction.request.URL;
+  NSURL *URL = request.URL;
 
   if ([URL.scheme isEqualToString:@"fbconnect"]) {
-    NSMutableDictionary<NSString *, id> *parameters = [[FBSDKBasicUtility dictionaryWithQueryString:URL.query] mutableCopy];
-    [parameters addEntriesFromDictionary:[FBSDKBasicUtility dictionaryWithQueryString:URL.fragment]];
+    NSMutableDictionary *parameters = [[FBSDKUtility dictionaryWithQueryString:URL.query] mutableCopy];
+    [parameters addEntriesFromDictionary:[FBSDKUtility dictionaryWithQueryString:URL.fragment]];
     if ([URL.resourceSpecifier hasPrefix:@"//cancel"]) {
       NSInteger errorCode = [FBSDKTypeUtility integerValue:parameters[@"error_code"]];
       if (errorCode) {
@@ -189,22 +170,19 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
     } else {
       [_delegate webDialogView:self didCompleteWithResults:parameters];
     }
-    decisionHandler(WKNavigationActionPolicyCancel);
-  } else if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
-    [[UIApplication sharedApplication] openURL:URL];
-    decisionHandler(WKNavigationActionPolicyCancel);
+    return NO;
+  } else if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+    [[UIApplication sharedApplication] openURL:request.URL];
+    return NO;
   } else {
-    decisionHandler(WKNavigationActionPolicyAllow);
+    return YES;
   }
 }
-#pragma clang diagnostic pop
 
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+- (void)webViewDidFinishLoad:(UIWebView *)webView
 {
   [_loadingView stopAnimating];
   [_delegate webDialogViewDidFinishLoad:self];
 }
 
 @end
-
-#endif

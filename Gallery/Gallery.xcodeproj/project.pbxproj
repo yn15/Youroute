@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -252,6 +252,9 @@
 				Base,
 			);
 			mainGroup = 013BA3A5246C810D00E99C24;
+			packageReferences = (
+				0448F76F24ED653A00A1BC0E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 013BA3AF246C810D00E99C24 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -548,6 +551,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0448F76F24ED653A00A1BC0E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 013BA3A6246C810D00E99C24 /* Project object */;
 }

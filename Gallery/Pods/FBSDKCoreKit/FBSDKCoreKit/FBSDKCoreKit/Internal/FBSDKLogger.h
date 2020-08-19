@@ -18,16 +18,15 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+/*!
+ @class FBSDKLogger
 
-/**
-
-  Simple logging utility for conditionally logging strings and then emitting them
+ @abstract
+ Simple logging utility for conditionally logging strings and then emitting them
  via NSLog().
 
  @unsorted
  */
-NS_SWIFT_NAME(Logger)
 @interface FBSDKLogger : NSObject
 
 // Access current accumulated contents of the logger.
@@ -40,7 +39,7 @@ NS_SWIFT_NAME(Logger)
 @property (copy, nonatomic, readonly) NSString *loggingBehavior;
 
 // Is the current logger instance active, based on its loggingBehavior?
-@property (nonatomic, readonly, getter=isActive) BOOL active;
+@property (nonatomic, readonly) BOOL isActive;
 
 //
 // Instance methods
@@ -87,5 +86,3 @@ NS_SWIFT_NAME(Logger)
                     replaceWith:(NSString *)replaceWith;
 
 @end
-
-NS_ASSUME_NONNULL_END

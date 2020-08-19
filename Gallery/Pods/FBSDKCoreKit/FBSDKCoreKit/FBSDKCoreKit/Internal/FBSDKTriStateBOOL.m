@@ -16,10 +16,6 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKTriStateBOOL.h"
 
 FBSDKTriStateBOOL FBSDKTriStateBOOLFromBOOL(BOOL value)
@@ -30,7 +26,7 @@ FBSDKTriStateBOOL FBSDKTriStateBOOLFromBOOL(BOOL value)
 FBSDKTriStateBOOL FBSDKTriStateBOOLFromNSNumber(NSNumber *value)
 {
   return ([value isKindOfClass:[NSNumber class]] ?
-          FBSDKTriStateBOOLFromBOOL(value.boolValue) :
+          FBSDKTriStateBOOLFromBOOL([value boolValue]) :
           FBSDKTriStateBOOLValueUnknown);
 }
 
@@ -45,5 +41,3 @@ BOOL BOOLFromFBSDKTriStateBOOL(FBSDKTriStateBOOL value, BOOL defaultValue)
       return defaultValue;
   }
 }
-
-#endif

@@ -16,18 +16,17 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKBridgeAPIRequest.h"
 #import "FBSDKBridgeAPIRequest+Private.h"
 
+#import "FBSDKBridgeAPICrypto.h"
 #import "FBSDKBridgeAPIProtocolNativeV1.h"
 #import "FBSDKBridgeAPIProtocolWebV1.h"
 #import "FBSDKBridgeAPIProtocolWebV2.h"
 #import "FBSDKInternalUtility.h"
+#import "FBSDKMacros.h"
 #import "FBSDKSettings.h"
+#import "FBSDKUtility.h"
 
 NSString *const FBSDKBridgeAPIAppIDKey = @"app_id";
 NSString *const FBSDKBridgeAPISchemeSuffixKey = @"scheme_suffix";
@@ -61,8 +60,7 @@ NSString *const FBSDKBridgeAPIVersionKey = @"version";
     _protocolMap = @{
                      @(FBSDKBridgeAPIProtocolTypeNative): @{
                          FBSDK_CANOPENURL_FACEBOOK:[[FBSDKBridgeAPIProtocolNativeV1 alloc] initWithAppScheme:@"fbapi20130214"],
-                         FBSDK_CANOPENURL_MESSENGER:[[FBSDKBridgeAPIProtocolNativeV1 alloc] initWithAppScheme:@"fb-messenger-share-api"],
-                         FBSDK_CANOPENURL_MSQRD_PLAYER:[[FBSDKBridgeAPIProtocolNativeV1 alloc] initWithAppScheme:@"msqrdplayer-api20170208"]
+                         FBSDK_CANOPENURL_MESSENGER:[[FBSDKBridgeAPIProtocolNativeV1 alloc] initWithAppScheme:@"fb-messenger-api20140430"]
                          },
                      @(FBSDKBridgeAPIProtocolTypeWeb): @{
                          @"https": [[FBSDKBridgeAPIProtocolWebV1 alloc] init],
@@ -95,9 +93,21 @@ NSString *const FBSDKBridgeAPIVersionKey = @"version";
     _parameters = [parameters copy];
     _userInfo = [userInfo copy];
 
-    _actionID = [NSUUID UUID].UUIDString;
+    _actionID = [[NSUUID UUID] UUIDString];
   }
   return self;
+}
+
+- (instancetype)init
+{
+  FBSDK_NOT_DESIGNATED_INITIALIZER(initWithProtocol:protocolType:scheme:methodName:methodVersion:parameters:userInfo:);
+  return [self initWithProtocol:nil
+                   protocolType:FBSDKBridgeAPIProtocolTypeWeb
+                         scheme:nil
+                     methodName:nil
+                  methodVersion:nil
+                     parameters:nil
+                       userInfo:nil];
 }
 
 #pragma mark - Public Methods
@@ -116,12 +126,13 @@ NSString *const FBSDKBridgeAPIVersionKey = @"version";
 
   [FBSDKInternalUtility validateURLSchemes];
 
-  NSDictionary<NSString *, NSString *> *requestQueryParameters = [FBSDKBasicUtility dictionaryWithQueryString:requestURL.query];
+  NSDictionary *requestQueryParameters = [FBSDKUtility dictionaryWithQueryString:requestURL.query];
   NSMutableDictionary *queryParameters = [[NSMutableDictionary alloc] initWithDictionary:requestQueryParameters];
-  [FBSDKTypeUtility dictionary:queryParameters setObject:[FBSDKSettings appID] forKey:FBSDKBridgeAPIAppIDKey];
-  [FBSDKTypeUtility dictionary:queryParameters
-                      setObject:[FBSDKSettings appURLSchemeSuffix]
-                         forKey:FBSDKBridgeAPISchemeSuffixKey];
+  [FBSDKBridgeAPICrypto addCipherKeyToQueryParameters:queryParameters];
+  [FBSDKInternalUtility dictionary:queryParameters setObject:[FBSDKSettings appID] forKey:FBSDKBridgeAPIAppIDKey];
+  [FBSDKInternalUtility dictionary:queryParameters
+                         setObject:[FBSDKSettings appURLSchemeSuffix]
+                            forKey:FBSDKBridgeAPISchemeSuffixKey];
   requestURL = [FBSDKInternalUtility URLWithScheme:requestURL.scheme
                                               host:requestURL.host
                                               path:requestURL.path
@@ -153,5 +164,3 @@ NSString *const FBSDKBridgeAPIVersionKey = @"version";
 }
 
 @end
-
-#endif

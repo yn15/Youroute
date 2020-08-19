@@ -16,23 +16,12 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKLoginUtility.h"
 
-#if SWIFT_PACKAGE
-@import FBSDKCoreKit;
-#else
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#endif
+#import <FBSDKCoreKit/FBSDKConstants.h>
+#import <FBSDKCoreKit/FBSDKSettings.h>
 
-#ifdef FBSDKCOCOAPODS
-#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
-#else
 #import "FBSDKCoreKit+Internal.h"
-#endif
 #import "FBSDKLoginConstants.h"
 
 @implementation FBSDKLoginUtility
@@ -51,12 +40,8 @@
 
 + (NSDictionary *)queryParamsFromLoginURL:(NSURL *)url
 {
-  NSString *expectedUrlPrefix = [FBSDKInternalUtility
-                                 appURLWithHost:@"authorize"
-                                 path:@""
-                                 queryParameters:@{}
-                                 error:NULL].absoluteString;
-  if (![url.absoluteString hasPrefix:expectedUrlPrefix]) {
+  NSString *expectedUrlPrefix = [FBSDKInternalUtility appURLWithHost:@"authorize" path:nil queryParameters:nil error:NULL].absoluteString;
+  if (![[url absoluteString] hasPrefix:expectedUrlPrefix]) {
     // Don't have an App ID, just verify path.
     NSString *host = url.host;
     if (![host isEqualToString:@"authorize"]) {
@@ -67,7 +52,7 @@
 
   NSString *userID = [[self class] userIDFromSignedRequest:params[@"signed_request"]];
   if (userID) {
-    [FBSDKTypeUtility dictionary:params setObject:userID forKey:@"user_id"];
+    params[@"user_id"] = userID;
   }
 
   return params;
@@ -83,15 +68,19 @@
   NSString *userID = nil;
 
   if (signatureAndPayload.count == 2) {
-    NSData *data = [FBSDKBase64 decodeAsData:[FBSDKTypeUtility array:signatureAndPayload objectAtIndex:1]];
+    NSData *data = [FBSDKBase64 decodeAsData:signatureAndPayload[1]];
     if (data) {
-      NSDictionary *dictionary = [FBSDKTypeUtility JSONObjectWithData:data options:0 error:nil];
+      NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
       userID = dictionary[@"user_id"];
     }
   }
   return userID;
 }
 
-@end
+- (instancetype)init
+{
+  FBSDK_NO_DESIGNATED_INITIALIZER();
+  return nil;
+}
 
-#endif
+@end

@@ -18,46 +18,36 @@
 
 #import "FBSDKGraphRequestBody.h"
 
-#import "FBSDKConstants.h"
-#import "FBSDKCrypto.h"
 #import "FBSDKGraphRequestDataAttachment.h"
-#import "FBSDKInternalUtility.h"
 #import "FBSDKLogger.h"
 #import "FBSDKSettings.h"
 
+#define kStringBoundary @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f"
 #define kNewline @"\r\n"
 
 @implementation FBSDKGraphRequestBody
 {
   NSMutableData *_data;
-  NSMutableDictionary *_json;
-  NSString *_stringBoundary;
 }
 
 - (instancetype)init
 {
   if ((self = [super init])) {
-    _stringBoundary = [FBSDKCrypto randomString:32];
     _data = [[NSMutableData alloc] init];
-    _json = [NSMutableDictionary dictionary];
   }
 
   return self;
 }
 
-- (NSString *)mimeContentType
++ (NSString *)mimeContentType
 {
-  if (_json) {
-    return @"application/json";
-  } else {
-    return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", _stringBoundary];
-  }
+  return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kStringBoundary];
 }
 
 - (void)appendUTF8:(NSString *)utf8
 {
-  if (!_data.length) {
-    NSString *headerUTF8 = [NSString stringWithFormat:@"--%@%@", _stringBoundary, kNewline];
+  if (![_data length]) {
+    NSString *headerUTF8 = [NSString stringWithFormat:@"--%@%@", kStringBoundary, kNewline];
     NSData *headerData = [headerUTF8 dataUsingEncoding:NSUTF8StringEncoding];
     [_data appendData:headerData];
   }
@@ -72,9 +62,6 @@
   [self _appendWithKey:key filename:nil contentType:nil contentBlock:^{
     [self appendUTF8:value];
   }];
-  if (key && value) {
-    [FBSDKTypeUtility dictionary:_json setObject:value forKey:key];
-  }
   [logger appendFormat:@"\n    %@:\t%@", key, (NSString *)value];
 }
 
@@ -84,10 +71,9 @@
 {
   NSData *data = UIImageJPEGRepresentation(image, [FBSDKSettings JPEGCompressionQuality]);
   [self _appendWithKey:key filename:key contentType:@"image/jpeg" contentBlock:^{
-    [self->_data appendData:data];
+    [_data appendData:data];
   }];
-  _json = nil;
-  [logger appendFormat:@"\n    %@:\t<Image - %lu kB>", key, (unsigned long)(data.length / 1024)];
+  [logger appendFormat:@"\n    %@:\t<Image - %lu kB>", key, (unsigned long)([data length] / 1024)];
 }
 
 - (void)appendWithKey:(NSString *)key
@@ -95,10 +81,9 @@
                logger:(FBSDKLogger *)logger
 {
   [self _appendWithKey:key filename:key contentType:@"content/unknown" contentBlock:^{
-    [self->_data appendData:data];
+    [_data appendData:data];
   }];
-  _json = nil;
-  [logger appendFormat:@"\n    %@:\t<Data - %lu kB>", key, (unsigned long)(data.length / 1024)];
+  [logger appendFormat:@"\n    %@:\t<Data - %lu kB>", key, (unsigned long)([data length] / 1024)];
 }
 
 - (void)appendWithKey:(NSString *)key
@@ -109,39 +94,28 @@
   NSString *contentType = dataAttachment.contentType ?: @"content/unknown";
   NSData *data = dataAttachment.data;
   [self _appendWithKey:key filename:filename contentType:contentType contentBlock:^{
-    [self->_data appendData:data];
+    [_data appendData:data];
   }];
-  _json = nil;
-  [logger appendFormat:@"\n    %@:\t<Data - %lu kB>", key, (unsigned long)(data.length / 1024)];
+  [logger appendFormat:@"\n    %@:\t<Data - %lu kB>", key, (unsigned long)([data length] / 1024)];
 }
 
 - (NSData *)data
 {
-  if (_json) {
-    NSData *jsonData;
-    if (_json.allKeys.count > 0) {
-      jsonData = [FBSDKTypeUtility dataWithJSONObject:_json options:0 error:nil];
-    } else {
-      jsonData = [NSData data];
-    }
-
-    return jsonData;
-  }
   return [_data copy];
 }
 
 - (void)_appendWithKey:(NSString *)key
               filename:(NSString *)filename
            contentType:(NSString *)contentType
-          contentBlock:(FBSDKCodeBlock)contentBlock
+          contentBlock:(void(^)(void))contentBlock
 {
   NSMutableArray *disposition = [[NSMutableArray alloc] init];
-  [FBSDKTypeUtility array:disposition addObject:@"Content-Disposition: form-data"];
+  [disposition addObject:@"Content-Disposition: form-data"];
   if (key) {
-    [FBSDKTypeUtility array:disposition addObject:[[NSString alloc] initWithFormat:@"name=\"%@\"", key]];
+    [disposition addObject:[[NSString alloc] initWithFormat:@"name=\"%@\"", key]];
   }
   if (filename) {
-    [FBSDKTypeUtility array:disposition addObject:[[NSString alloc] initWithFormat:@"filename=\"%@\"", filename]];
+    [disposition addObject:[[NSString alloc] initWithFormat:@"filename=\"%@\"", filename]];
   }
   [self appendUTF8:[[NSString alloc] initWithFormat:@"%@%@", [disposition componentsJoinedByString:@"; "], kNewline]];
   if (contentType) {
@@ -151,16 +125,7 @@
   if (contentBlock != NULL) {
     contentBlock();
   }
-  [self appendUTF8:[[NSString alloc] initWithFormat:@"%@--%@%@", kNewline, _stringBoundary, kNewline]];
-}
-
-- (NSData *)compressedData
-{
-  if (!self.data.length || ![[self mimeContentType] isEqualToString:@"application/json"]) {
-    return nil;
-  }
-
-  return [FBSDKBasicUtility gzip:self.data];
+  [self appendUTF8:[[NSString alloc] initWithFormat:@"%@--%@%@", kNewline, kStringBoundary, kNewline]];
 }
 
 @end

@@ -16,10 +16,6 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKBridgeAPIProtocolWebV1.h"
 
 #import <UIKit/UIKit.h>
@@ -28,6 +24,7 @@
 #import "FBSDKBridgeAPIRequest.h"
 #import "FBSDKError.h"
 #import "FBSDKInternalUtility.h"
+#import "FBSDKMacros.h"
 #import "FBSDKSettings.h"
 #import "FBSDKTypeUtility.h"
 
@@ -46,16 +43,16 @@
                             error:(NSError *__autoreleasing *)errorRef
 {
   NSMutableDictionary *queryParameters = [[NSMutableDictionary alloc] initWithDictionary:parameters];
-  [FBSDKTypeUtility dictionary:queryParameters setObject:@"touch" forKey:@"display"];
-  NSString *bridgeArgs = [FBSDKBasicUtility JSONStringForObject:@{ FBSDK_BRIDGE_API_PROTOCOL_WEB_V1_ACTION_ID_KEY: actionID }
-                                                          error:NULL
-                                           invalidObjectHandler:NULL];
+  queryParameters[@"display"] = @"touch";
+  NSString *bridgeArgs = [FBSDKInternalUtility JSONStringForObject:@{ FBSDK_BRIDGE_API_PROTOCOL_WEB_V1_ACTION_ID_KEY: actionID }
+                                                             error:NULL
+                                              invalidObjectHandler:NULL];
   NSDictionary *redirectQueryParameters = @{ FBSDK_BRIDGE_API_PROTOCOL_WEB_V1_BRIDGE_ARGS_KEY: bridgeArgs };
   NSURL *redirectURL = [FBSDKInternalUtility appURLWithHost:@"bridge"
                                                        path:methodName
                                             queryParameters:redirectQueryParameters
                                                       error:NULL];
-  [FBSDKTypeUtility dictionary:queryParameters setObject:redirectURL forKey:@"redirect_uri"];
+  [FBSDKInternalUtility dictionary:queryParameters setObject:redirectURL forKey:@"redirect_uri"];
   [queryParameters addEntriesFromDictionary:parameters];
   return [FBSDKInternalUtility facebookURLWithHostPrefix:@"m"
                                                     path:[@"/dialog/" stringByAppendingString:methodName]
@@ -95,7 +92,7 @@
 
   NSError *error;
   NSString *bridgeParametersJSON = [FBSDKTypeUtility stringValue:queryParameters[FBSDK_BRIDGE_API_PROTOCOL_WEB_V1_BRIDGE_ARGS_KEY]];
-  NSDictionary<id, id> *bridgeParameters = [FBSDKBasicUtility objectForJSONString:bridgeParametersJSON error:&error];
+  NSDictionary *bridgeParameters = [FBSDKInternalUtility objectForJSONString:bridgeParametersJSON error:&error];
   if (!bridgeParameters) {
     if (error && (errorRef != NULL)) {
       *errorRef = [FBSDKError invalidArgumentErrorWithName:FBSDK_BRIDGE_API_PROTOCOL_WEB_V1_BRIDGE_ARGS_KEY
@@ -117,5 +114,3 @@
 }
 
 @end
-
-#endif

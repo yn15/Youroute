@@ -16,10 +16,6 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "_FBSDKLoginRecoveryAttempter.h"
 
 #import "FBSDKLoginKit+Internal.h"
@@ -41,7 +37,11 @@
     [login logInWithPermissions:currentPermissions handler:^(FBSDKLoginManagerLoginResult *result, NSError *loginError) {
       // we can only consider a recovery successful if there are no declines
       // (note this could still set an updated currentAccessToken).
-      handler(!loginError && !result.isCancelled && result.declinedPermissions.count == 0);
+      if (!loginError && !result.isCancelled && result.declinedPermissions.count == 0) {
+        handler(YES);
+      } else {
+        handler(NO);
+      }
     }];
   } else {
     handler(NO);
@@ -49,5 +49,3 @@
 }
 
 @end
-
-#endif

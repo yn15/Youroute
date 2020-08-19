@@ -16,21 +16,18 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import <Foundation/Foundation.h>
+
+#import <FBSDKCoreKit/FBSDKMacros.h>
 
 #import "FBSDKBridgeAPIProtocolType.h"
 
 @class FBSDKBridgeAPIRequest;
 
-FOUNDATION_EXPORT NSString *const FBSDKBridgeAPIAppIDKey;
-FOUNDATION_EXPORT NSString *const FBSDKBridgeAPISchemeSuffixKey;
-FOUNDATION_EXPORT NSString *const FBSDKBridgeAPIVersionKey;
+FBSDK_EXTERN NSString *const FBSDKBridgeAPIAppIDKey;
+FBSDK_EXTERN NSString *const FBSDKBridgeAPISchemeSuffixKey;
+FBSDK_EXTERN NSString *const FBSDKBridgeAPIVersionKey;
 
-NS_SWIFT_NAME(BridgeAPIProtocol)
 @protocol FBSDKBridgeAPIProtocol <NSObject>
 
 - (NSURL *)requestURLWithActionID:(NSString *)actionID
@@ -45,5 +42,3 @@ NS_SWIFT_NAME(BridgeAPIProtocol)
                                           error:(NSError *__autoreleasing *)errorRef;
 
 @end
-
-#endif

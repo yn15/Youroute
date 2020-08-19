@@ -16,27 +16,12 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import "FBSDKLoginButton.h"
 
-#ifdef FBSDKCOCOAPODS
-#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
-#else
 #import "FBSDKCoreKit+Internal.h"
-#endif
-
 #import "FBSDKLoginTooltipView.h"
 
-static const CGFloat kFBLogoSize = 16.0;
-static const CGFloat kFBLogoLeftMargin = 6.0;
-static const CGFloat kButtonHeight = 28.0;
-static const CGFloat kRightMargin = 8.0;
-static const CGFloat kPaddingBetweenLogoTitle = 8.0;
-
-@interface FBSDKLoginButton() <FBSDKButtonImpressionTracking>
+@interface FBSDKLoginButton() <FBSDKButtonImpressionTracking, UIActionSheetDelegate>
 @end
 
 @implementation FBSDKLoginButton
@@ -66,15 +51,14 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
   _loginManager.defaultAudience = defaultAudience;
 }
 
-- (UIFont *)defaultFont
+- (FBSDKLoginBehavior)loginBehavior
 {
-  CGFloat size = 15;
+  return _loginManager.loginBehavior;
+}
 
-  if (@available(iOS 8.2, *)) {
-    return [UIFont systemFontOfSize:size weight:UIFontWeightSemibold];
-  } else {
-    return [UIFont boldSystemFontOfSize:size];
-  }
+- (void)setLoginBehavior:(FBSDKLoginBehavior)loginBehavior
+{
+  _loginManager.loginBehavior = loginBehavior;
 }
 
 #pragma mark - UIView
@@ -92,25 +76,6 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
 
 #pragma mark - Layout
 
-- (CGRect)imageRectForContentRect:(CGRect)contentRect
-{
-  CGFloat centerY = CGRectGetMidY(contentRect);
-  CGFloat y = centerY - (kFBLogoSize / 2.0);
-  return CGRectMake(kFBLogoLeftMargin, y, kFBLogoSize, kFBLogoSize);
-}
-
-- (CGRect)titleRectForContentRect:(CGRect)contentRect
-{
-  if (self.hidden || CGRectIsEmpty(self.bounds)) {
-    return CGRectZero;
-  }
-  CGRect imageRect = [self imageRectForContentRect:contentRect];
-  CGFloat titleX = CGRectGetMaxX(imageRect) + kPaddingBetweenLogoTitle;
-  CGRect titleRect = CGRectMake(titleX, 0, CGRectGetWidth(contentRect) - titleX - kRightMargin, CGRectGetHeight(contentRect));
-
-  return titleRect;
-}
-
 - (void)layoutSubviews
 {
   CGSize size = self.bounds.size;
@@ -127,21 +92,30 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-  if (self.hidden) {
+  if ([self isHidden]) {
     return CGSizeZero;
   }
-  UIFont *font = self.titleLabel.font;
-
-  CGSize selectedSize = FBSDKTextSize([self _logOutTitle], font, size, self.titleLabel.lineBreakMode);
-  CGSize normalSize = FBSDKTextSize([self _longLogInTitle], font, size, self.titleLabel.lineBreakMode);
+  CGSize selectedSize = [self sizeThatFits:size title:[self _logOutTitle]];
+  CGSize normalSize = [self sizeThatFits:CGSizeMake(CGFLOAT_MAX, size.height) title:[self _longLogInTitle]];
   if (normalSize.width > size.width) {
-    normalSize = FBSDKTextSize([self _shortLogInTitle], font, size, self.titleLabel.lineBreakMode);
+    return normalSize = [self sizeThatFits:size title:[self _shortLogInTitle]];
   }
-
-  CGFloat titleWidth = MAX(normalSize.width, selectedSize.width);
-  CGFloat buttonWidth = kFBLogoLeftMargin + kFBLogoSize + kPaddingBetweenLogoTitle + titleWidth + kRightMargin;
-  return CGSizeMake(buttonWidth, kButtonHeight);
+  return CGSizeMake(MAX(normalSize.width, selectedSize.width), MAX(normalSize.height, selectedSize.height));
 }
+
+#pragma mark - UIActionSheetDelegate
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+  if (buttonIndex == 0) {
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login logOut];
+    [self.delegate loginButtonDidLogOut:self];
+  }
+}
+#pragma clang diagnostic pop
 
 #pragma mark - FBSDKButtonImpressionTracking
 
@@ -171,42 +145,36 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
 
   [self configureWithIcon:nil
                     title:logInTitle
-          backgroundColor:self.backgroundColor
+          backgroundColor:[super defaultBackgroundColor]
          highlightedColor:nil
             selectedTitle:logOutTitle
              selectedIcon:nil
-            selectedColor:self.backgroundColor
+            selectedColor:[super defaultBackgroundColor]
  selectedHighlightedColor:nil];
   self.titleLabel.textAlignment = NSTextAlignmentCenter;
-  [self addConstraint:[NSLayoutConstraint constraintWithItem:self
-                                                   attribute:NSLayoutAttributeHeight
-                                                   relatedBy:NSLayoutRelationEqual
-                                                      toItem:nil
-                                                   attribute:NSLayoutAttributeNotAnAttribute
-                                                  multiplier:1
-                                                    constant:kButtonHeight]];
+
   [self _updateContent];
 
   [self addTarget:self action:@selector(_buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_accessTokenDidChangeNotification:)
+                                           selector:@selector(_acessTokenDidChangeNotification:)
                                                name:FBSDKAccessTokenDidChangeNotification
                                              object:nil];
 }
 
 #pragma mark - Helper Methods
 
-- (void)_accessTokenDidChangeNotification:(NSNotification *)notification
+- (void)_acessTokenDidChangeNotification:(NSNotification *)notification
 {
-  if (notification.userInfo[FBSDKAccessTokenDidChangeUserIDKey] || notification.userInfo[FBSDKAccessTokenDidExpireKey]) {
+  if (notification.userInfo[FBSDKAccessTokenDidChangeUserID]) {
     [self _updateContent];
   }
 }
 
 - (void)_buttonPressed:(id)sender
 {
-  [self logTapEventWithEventName:FBSDKAppEventNameFBSDKLoginButtonDidTap parameters:self.analyticsParameters];
-  if (FBSDKAccessToken.isCurrentAccessTokenActive) {
+  [self logTapEventWithEventName:FBSDKAppEventNameFBSDKLoginButtonDidTap parameters:[self analyticsParameters]];
+  if ([FBSDKAccessToken currentAccessToken]) {
     NSString *title = nil;
 
     if (_userName) {
@@ -230,26 +198,15 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
     NSLocalizedStringWithDefaultValue(@"LoginButton.ConfirmLogOut", @"FacebookSDK", [FBSDKInternalUtility bundleForStrings],
                                       @"Log Out",
                                       @"The label for the FBSDKLoginButton action sheet to confirm logging out");
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
-                                                                             message:nil
-                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
-    alertController.popoverPresentationController.sourceView = self;
-    alertController.popoverPresentationController.sourceRect = self.bounds;
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:cancelTitle
-                                                     style:UIAlertActionStyleCancel
-                                                   handler:nil];
-    UIAlertAction *logout = [UIAlertAction actionWithTitle:logOutTitle
-                                                     style:UIAlertActionStyleDestructive
-                                                   handler:^(UIAlertAction * _Nonnull action) {
-                                                     [self->_loginManager logOut];
-                                                     [self.delegate loginButtonDidLogOut:self];
-                                                   }];
-    [alertController addAction:cancel];
-    [alertController addAction:logout];
-    UIViewController *topMostViewController = [FBSDKInternalUtility topMostViewController];
-    [topMostViewController presentViewController:alertController
-                                        animated:YES
-                                      completion:nil];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:title
+                                                       delegate:self
+                                              cancelButtonTitle:cancelTitle
+                                         destructiveButtonTitle:logOutTitle
+                                              otherButtonTitles:nil];
+    [sheet showInView:self];
+#pragma clang diagnostic pop
   } else {
     if ([self.delegate respondsToSelector:@selector(loginButtonWillLogin:)]) {
       if (![self.delegate loginButtonWillLogin:self]) {
@@ -257,16 +214,21 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
       }
     }
 
-    FBSDKLoginManagerLoginResultBlock handler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    FBSDKLoginManagerRequestTokenHandler handler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
       if ([self.delegate respondsToSelector:@selector(loginButton:didCompleteWithResult:error:)]) {
         [self.delegate loginButton:self didCompleteWithResult:result error:error];
       }
     };
 
-    [_loginManager logInWithPermissions:self.permissions
-                     fromViewController:[FBSDKInternalUtility viewControllerForView:self]
-                                handler:handler];
-
+    if (self.publishPermissions.count > 0) {
+      [_loginManager logInWithPublishPermissions:self.publishPermissions
+                              fromViewController:[FBSDKInternalUtility viewControllerforView:self]
+                                         handler:handler];
+    } else {
+      [_loginManager logInWithReadPermissions:self.readPermissions
+                           fromViewController:[FBSDKInternalUtility viewControllerforView:self]
+                                      handler:handler];
+    }
   }
 }
 
@@ -275,12 +237,13 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
   return NSLocalizedStringWithDefaultValue(@"LoginButton.LogOut", @"FacebookSDK", [FBSDKInternalUtility bundleForStrings],
                                            @"Log out",
                                            @"The label for the FBSDKLoginButton when the user is currently logged in");
+  ;
 }
 
 - (NSString *)_longLogInTitle
 {
-  return NSLocalizedStringWithDefaultValue(@"LoginButton.LogInContinue", @"FacebookSDK", [FBSDKInternalUtility bundleForStrings],
-                                           @"Continue with Facebook",
+  return NSLocalizedStringWithDefaultValue(@"LoginButton.LogInLong", @"FacebookSDK", [FBSDKInternalUtility bundleForStrings],
+                                           @"Log in with Facebook",
                                            @"The long label for the FBSDKLoginButton when the user is currently logged out");
 }
 
@@ -307,9 +270,8 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
 
 - (void)_updateContent
 {
-  BOOL accessTokenIsValid = FBSDKAccessToken.isCurrentAccessTokenActive;
-  self.selected = accessTokenIsValid;
-  if (accessTokenIsValid) {
+  self.selected = ([FBSDKAccessToken currentAccessToken] != nil);
+  if ([FBSDKAccessToken currentAccessToken]) {
     if (![[FBSDKAccessToken currentAccessToken].userID isEqualToString:_userID]) {
       FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=id,name"
                                                                      parameters:nil
@@ -317,8 +279,8 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
       [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         NSString *userID = [FBSDKTypeUtility stringValue:result[@"id"]];
         if (!error && [[FBSDKAccessToken currentAccessToken].userID isEqualToString:userID]) {
-          self->_userName = [FBSDKTypeUtility stringValue:result[@"name"]];
-          self->_userID = userID;
+          _userName = [FBSDKTypeUtility stringValue:result[@"name"]];
+          _userID = userID;
         }
       }];
     }
@@ -326,5 +288,3 @@ static const CGFloat kPaddingBetweenLogoTitle = 8.0;
 }
 
 @end
-
-#endif

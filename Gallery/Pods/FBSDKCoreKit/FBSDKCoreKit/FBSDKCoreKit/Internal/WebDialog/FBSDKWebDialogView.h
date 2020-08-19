@@ -16,25 +16,19 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
-
-#if !TARGET_OS_TV
-
 #import <UIKit/UIKit.h>
 
 @protocol FBSDKWebDialogViewDelegate;
 
-NS_SWIFT_NAME(FBWebDialogView)
 @interface FBSDKWebDialogView : UIView
 
-@property (nonatomic, weak) id<FBSDKWebDialogViewDelegate> delegate;
+@property (nonatomic, assign) id<FBSDKWebDialogViewDelegate> delegate;
 
 - (void)loadURL:(NSURL *)URL;
 - (void)stopLoading;
 
 @end
 
-NS_SWIFT_NAME(WebDialogViewDelegate)
 @protocol FBSDKWebDialogViewDelegate <NSObject>
 
 - (void)webDialogView:(FBSDKWebDialogView *)webDialogView didCompleteWithResults:(NSDictionary *)results;
@@ -43,5 +37,3 @@ NS_SWIFT_NAME(WebDialogViewDelegate)
 - (void)webDialogViewDidFinishLoad:(FBSDKWebDialogView *)webDialogView;
 
 @end
-
-#endif
