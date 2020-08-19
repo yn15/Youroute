@@ -14,6 +14,9 @@ class TravelController: UIViewController {
     
     var filtered : [String] = []
     var searchActive : Bool = false
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    private var didTapDeleteKey = false
     
     @IBOutlet weak var TravelSearchbar: UISearchBar!
     @IBOutlet weak var TravelCollectionView: UICollectionView!
@@ -23,6 +26,15 @@ class TravelController: UIViewController {
         
         TravelSearchbar.delegate = self
         TravelSearchbar.placeholder = "Search Country"
+        
+        automaticallyAdjustsScrollViewInsets = false
+        definesPresentationContext = true
+        
+        TravelSearchbar.showsCancelButton = true
+        
+        TravelCollectionView.delegate = self
+        TravelCollectionView.dataSource = self
+
 
 
 
@@ -46,6 +58,64 @@ class TravelController: UIViewController {
 
 extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchString = TravelSearchbar.text
+        filtered = images.filter({ (image) -> Bool in
+            let countryText: NSString = image as NSString
+            
+            return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+        })
+        
+        TravelCollectionView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+        self.dismiss(animated: true, completion: nil)
+        print("11111")
+               let searchString = TravelSearchbar.text
+               filtered = images.filter({ (image) -> Bool in
+                   let countryText: NSString = image as NSString
+                   
+                   return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+               })
+               
+               TravelCollectionView.reloadData()
+
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true
+        TravelCollectionView.reloadData()
+        
+    }
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+        print("11111")
+        let searchString = TravelSearchbar.text
+        filtered = images.filter({ (image) -> Bool in
+            let countryText: NSString = image as NSString
+            
+            return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+        })
+        
+        TravelCollectionView.reloadData()
+
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        if !searchActive {
+            searchActive = true
+            TravelCollectionView.reloadData()
+        }
+        
+        searchController.searchBar.resignFirstResponder()
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if searchActive {
@@ -55,49 +125,8 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
         {
         return images.count
         }
-        
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func updateSearchResults(for searchController: UISearchController)
-    {
-        let searchString = TravelSearchbar.text
-        print(11111111)
-        
-        filtered = images.filter({ (images) -> Bool in
-            let countryText: NSString = images as NSString
-            
-            return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
-        })
-        
-        TravelCollectionView.reloadData()
 
     }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-        TravelCollectionView.reloadData()
-    }
-    
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-        TravelCollectionView.reloadData()
-    }
-    
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        if !searchActive {
-            searchActive = true
-            TravelCollectionView.reloadData()
-        }
-        
-        TravelSearchbar.resignFirstResponder()
-    }
-    
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -107,16 +136,23 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = TravelCollectionView.dequeueReusableCell(withReuseIdentifier: "Travelcheck", for: indexPath) as? TravelSubCell
+    
         
-        
-        
-        cell?.Travelimage.image = UIImage(named: images[indexPath.row])
-        cell?.Travellabel.text = images[indexPath.row]
-        cell?.Travelimage.alpha = 0.5
-        
-        cell?.Travelimage.layer.cornerRadius = 30
-        
-        return cell!
+        if searchActive {
+            cell?.Travelimage.image = UIImage(named: filtered[indexPath.row])
+            cell?.Travellabel.text = filtered[indexPath.row]
+            cell?.Travelimage.alpha = 0.5
+            cell?.Travelimage.layer.cornerRadius = 30
+            return cell!
+
+
+        } else {
+            cell?.Travelimage.image = UIImage(named: images[indexPath.row])
+            cell?.Travellabel.text = images[indexPath.row]
+            cell?.Travelimage.alpha = 0.5
+            cell?.Travelimage.layer.cornerRadius = 30
+            return cell!
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

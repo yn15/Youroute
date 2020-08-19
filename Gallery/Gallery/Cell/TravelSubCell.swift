@@ -12,4 +12,5 @@ class TravelSubCell: UICollectionViewCell {
     
     @IBOutlet weak var Travelimage: UIImageView!
     @IBOutlet weak var Travellabel: UILabel!
+    
 }
