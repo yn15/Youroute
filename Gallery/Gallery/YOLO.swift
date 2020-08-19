@@ -52,8 +52,8 @@ class YOLO {
     // NOTE: It turns out that accessing the elements in the multi-array as
     // `features[[channel, cy, cx] as [NSNumber]].floatValue` is kinda slow.
     // It's much faster to use direct memory access to the features.
-    var gridHeight = [13, 26, 52]
-    var gridWidth = [13, 26, 52]
+    let gridHeight = [13, 26, 52]
+    let gridWidth = [13, 26, 52]
     
     var featurePointer = UnsafeMutablePointer<Double>(OpaquePointer(features[0].dataPointer))
     var channelStride = features[0].strides[0].intValue
