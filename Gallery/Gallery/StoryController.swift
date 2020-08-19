@@ -19,7 +19,7 @@ class StoryController: UIViewController {
     
     
     let yolo = YOLO()
-    var labelArray = Array<String>();
+    var labelArray = Set<String>();
     var tag = ""
     var videoCapture: VideoCapture!
 
@@ -184,8 +184,8 @@ class StoryController: UIViewController {
             // Show the bounding box.
             //let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
             let label = String(format:labels[prediction.classIndex])
-            tag = tag + " #" + label
-            //labelArray.append(label)
+            //tag = tag + " #" + label
+            labelArray.insert(label)
             //let color = colors[prediction.classIndex]
             
             //boundingBoxes[i].show(frame: rect, label: label, color: color)
@@ -193,6 +193,10 @@ class StoryController: UIViewController {
             boundingBoxes[i].hide()
           }
         }
+        for t in labelArray {
+            tag = tag + "#" + t + " "
+        }
+        //print(labelArray)
         label1.text = "\(tag)"
       }
     
