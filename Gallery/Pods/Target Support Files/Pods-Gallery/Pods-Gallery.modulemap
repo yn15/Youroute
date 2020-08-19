@@ -1,4 +1,4 @@
-framework module Pods_Gallery {
+module Pods_Gallery {
   umbrella header "Pods-Gallery-umbrella.h"
 
   export *

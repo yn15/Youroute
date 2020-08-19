@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,7 @@
 		01F92D6A24C67B5D0048755D /* TravelSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6924C67B5D0048755D /* TravelSubCell.swift */; };
 		01F92D6C24C6821A0048755D /* DetailSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6B24C6821A0048755D /* DetailSubCell.swift */; };
 		01F92D6E24C683DA0048755D /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6D24C683DA0048755D /* MapController.swift */; };
+		0448F76E24ED600600A1BC0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0448F76D24ED600600A1BC0E /* ViewController.swift */; };
 		044AF70A24ED50D80055FA8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044AF70924ED50D80055FA8A /* GoogleService-Info.plist */; };
 		353155FC24DAD1D000D7B659 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353155FB24DAD1D000D7B659 /* BoundingBox.swift */; };
 		353155FE24DAD1D700D7B659 /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353155FD24DAD1D700D7B659 /* CVPixelBuffer+Helpers.swift */; };
@@ -76,6 +77,7 @@
 		01F92D6924C67B5D0048755D /* TravelSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelSubCell.swift; sourceTree = "<group>"; };
 		01F92D6B24C6821A0048755D /* DetailSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSubCell.swift; sourceTree = "<group>"; };
 		01F92D6D24C683DA0048755D /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		0448F76D24ED600600A1BC0E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		044AF70924ED50D80055FA8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24BEDC2D95EA28E6F0BBA85E /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
 		353155FB24DAD1D000D7B659 /* BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				01A297F5248734A0000B8571 /* images */,
 				013BA3B1246C810D00E99C24 /* AppDelegate.swift */,
 				013BA3B3246C810D00E99C24 /* SceneDelegate.swift */,
+				0448F76D24ED600600A1BC0E /* ViewController.swift */,
 				013BA3B5246C810D00E99C24 /* GalleryController.swift */,
 				013BA3B7246C810D00E99C24 /* Main.storyboard */,
 				353155FB24DAD1D000D7B659 /* BoundingBox.swift */,
@@ -200,7 +203,6 @@
 				F4A65E67FD2EDD49040679F4 /* Pods-Gallery.debug.xcconfig */,
 				24BEDC2D95EA28E6F0BBA85E /* Pods-Gallery.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -339,6 +341,7 @@
 				012DE2952473648D000C3BDE /* SearchController.swift in Sources */,
 				0177B3C724B5768600BD614F /* DetailController.swift in Sources */,
 				3531560424DAD1ED00D7B659 /* UIImage+CVPixelBuffer.swift in Sources */,
+				0448F76E24ED600600A1BC0E /* ViewController.swift in Sources */,
 				013BA3EB246CAE6600E99C24 /* StoryController.swift in Sources */,
 				3531560824DAD1F500D7B659 /* YOLO.swift in Sources */,
 				3531560924DAD1F500D7B659 /* YOLOv3.mlmodel in Sources */,
