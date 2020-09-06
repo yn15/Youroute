@@ -9,8 +9,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-import FBSDKCoreKit
-import FBSDKLoginKit
+
 
 
 class ViewController: UIViewController, GIDSignInDelegate {
@@ -33,12 +32,12 @@ class ViewController: UIViewController, GIDSignInDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    // 페이스북 로긴 버튼
-    class ViewController: UIViewController { override func viewDidLoad() { super.viewDidLoad(); let loginButton = FBLoginButton(); loginButton.center = view.center; view.addSubview(loginButton)
-        loginButton.permissions = ["public_profile", "email"]
-        }
-        
-    }
+//    // 페이스북 로긴 버튼
+//    class ViewController: UIViewController { override func viewDidLoad() { super.viewDidLoad(); let loginButton = FBLoginButton(); loginButton.center = view.center; view.addSubview(loginButton)
+//        loginButton.permissions = ["public_profile", "email"]
+//        }
+//
+//    }
 
     
 }

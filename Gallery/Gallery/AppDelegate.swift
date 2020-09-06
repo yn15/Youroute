@@ -10,19 +10,20 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        GIDSignIn.sharedInstance().clientID = "936286010895-vqkmqr183ekitsbag1gg684j5bg7rjqa.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance().delegate = self
+//        GIDSignIn.sharedInstance().clientID = "936286010895-vqkmqr183ekitsbag1gg684j5bg7rjqa.apps.googleusercontent.com"
+//        GIDSignIn.sharedInstance().delegate = self
         
         //facebook
-        ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
+//        ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
         return true
     }
     
@@ -35,11 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
     }
 
     //facebook
-    func application( _ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool {
-        ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] ) } }
-
-    
-    
+//    func application( _ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool {
+//        ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] ) } }
+//
+//
+//
     
     
     
@@ -78,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
       // [END disconnect_handler]
     }
 
-
+}
 
 
 

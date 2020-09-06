@@ -46,7 +46,7 @@
 		3531561024DAD9ED00D7B659 /* image2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3531560C24DAD9ED00D7B659 /* image2.jpeg */; };
 		3531561124DAD9ED00D7B659 /* image3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3531560D24DAD9ED00D7B659 /* image3.jpeg */; };
 		3531561224DAD9ED00D7B659 /* image4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3531560E24DAD9ED00D7B659 /* image4.jpeg */; };
-		797376135C4A2D4FC62ACE36 /* libPods-Gallery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE3E9CA6B925C6AB46BA07E8 /* libPods-Gallery.a */; };
+		B1B40FF2227D9E2D3520F37A /* libPods-Gallery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDD928963CE10DDAAC57850 /* libPods-Gallery.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,7 +79,6 @@
 		01F92D6D24C683DA0048755D /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		0448F76D24ED600600A1BC0E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		044AF70924ED50D80055FA8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		24BEDC2D95EA28E6F0BBA85E /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
 		353155FB24DAD1D000D7B659 /* BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
 		353155FD24DAD1D700D7B659 /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Helpers.swift"; sourceTree = "<group>"; };
 		353155FF24DAD1DB00D7B659 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -92,8 +91,9 @@
 		3531560C24DAD9ED00D7B659 /* image2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpeg; sourceTree = "<group>"; };
 		3531560D24DAD9ED00D7B659 /* image3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpeg; sourceTree = "<group>"; };
 		3531560E24DAD9ED00D7B659 /* image4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image4.jpeg; sourceTree = "<group>"; };
-		F4A65E67FD2EDD49040679F4 /* Pods-Gallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.debug.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.debug.xcconfig"; sourceTree = "<group>"; };
-		FE3E9CA6B925C6AB46BA07E8 /* libPods-Gallery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gallery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D5C4F86F833FD2443DCD09B /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
+		3DDD928963CE10DDAAC57850 /* libPods-Gallery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gallery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B87057348BDA5AB37B7CF5F7 /* Pods-Gallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.debug.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				797376135C4A2D4FC62ACE36 /* libPods-Gallery.a in Frameworks */,
+				B1B40FF2227D9E2D3520F37A /* libPods-Gallery.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +114,7 @@
 				013BA3B0246C810D00E99C24 /* Gallery */,
 				013BA3AF246C810D00E99C24 /* Products */,
 				711DD38CD3DDD23F95C48A2E /* Pods */,
-				48A0E951EDA6CC29822101BC /* Frameworks */,
+				C1DFB2F8EE90F393444EC6E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -189,21 +189,21 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		48A0E951EDA6CC29822101BC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FE3E9CA6B925C6AB46BA07E8 /* libPods-Gallery.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		711DD38CD3DDD23F95C48A2E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F4A65E67FD2EDD49040679F4 /* Pods-Gallery.debug.xcconfig */,
-				24BEDC2D95EA28E6F0BBA85E /* Pods-Gallery.release.xcconfig */,
+				B87057348BDA5AB37B7CF5F7 /* Pods-Gallery.debug.xcconfig */,
+				3D5C4F86F833FD2443DCD09B /* Pods-Gallery.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C1DFB2F8EE90F393444EC6E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DDD928963CE10DDAAC57850 /* libPods-Gallery.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,11 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 013BA3C2246C810E00E99C24 /* Build configuration list for PBXNativeTarget "Gallery" */;
 			buildPhases = (
-				AF855654BC5F7B38412F972C /* [CP] Check Pods Manifest.lock */,
+				A5B0778E440E62CFD325A928 /* [CP] Check Pods Manifest.lock */,
 				013BA3AA246C810D00E99C24 /* Sources */,
 				013BA3AB246C810D00E99C24 /* Frameworks */,
 				013BA3AC246C810D00E99C24 /* Resources */,
-				AD0C0AF2D97522C34B39A238 /* [CP] Copy Pods Resources */,
+				81E4DE7308B8EEEA69E0EEE7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,7 +253,7 @@
 			);
 			mainGroup = 013BA3A5246C810D00E99C24;
 			packageReferences = (
-				0448F76F24ED653A00A1BC0E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				0448F76F24ED653A00A1BC0E /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 013BA3AF246C810D00E99C24 /* Products */;
 			projectDirPath = "";
@@ -291,7 +291,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AD0C0AF2D97522C34B39A238 /* [CP] Copy Pods Resources */ = {
+		81E4DE7308B8EEEA69E0EEE7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -308,7 +308,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gallery/Pods-Gallery-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF855654BC5F7B38412F972C /* [CP] Check Pods Manifest.lock */ = {
+		A5B0778E440E62CFD325A928 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,7 +493,7 @@
 		};
 		013BA3C3246C810E00E99C24 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4A65E67FD2EDD49040679F4 /* Pods-Gallery.debug.xcconfig */;
+			baseConfigurationReference = B87057348BDA5AB37B7CF5F7 /* Pods-Gallery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -512,7 +512,7 @@
 		};
 		013BA3C4246C810E00E99C24 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24BEDC2D95EA28E6F0BBA85E /* Pods-Gallery.release.xcconfig */;
+			baseConfigurationReference = 3D5C4F86F833FD2443DCD09B /* Pods-Gallery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -553,7 +553,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0448F76F24ED653A00A1BC0E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+		0448F76F24ED653A00A1BC0E /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
