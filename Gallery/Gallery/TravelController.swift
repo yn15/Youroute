@@ -18,31 +18,46 @@ class TravelController: UIViewController {
     
     private var didTapDeleteKey = false
     
-    //@IBOutlet weak var TravelSearchbar: UISearchBar!
+    @IBOutlet weak var TravelSearchbar: UISearchBar!
     @IBOutlet weak var TravelCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*TravelSearchbar.delegate = self
+        TravelSearchbar.delegate = self
         TravelSearchbar.placeholder = "Search Country"
         
         automaticallyAdjustsScrollViewInsets = false
         definesPresentationContext = true
         
         TravelSearchbar.showsCancelButton = true
-        */
+        
         TravelCollectionView.delegate = self
         TravelCollectionView.dataSource = self
 
+
+
+
+        // Do any additional setup after loading the view.
     }
     
+    
+    
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
 
-extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout /*,UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating*/ {
-    /*
+extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
         let searchString = TravelSearchbar.text
         filtered = images.filter({ (image) -> Bool in
@@ -53,9 +68,7 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
         
         TravelCollectionView.reloadData()
     }
- */
     
-    /*
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
         self.dismiss(animated: true, completion: nil)
@@ -71,16 +84,14 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
 
         
     }
- */
-    /*
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true
         TravelCollectionView.reloadData()
         
     }
-    */
     
-    /*
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
         print("11111")
@@ -94,9 +105,7 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
         TravelCollectionView.reloadData()
 
     }
- */
     
-    /*
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         if !searchActive {
             searchActive = true
@@ -105,12 +114,10 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
         
         searchController.searchBar.resignFirstResponder()
     }
-    */
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
         
-        /*
         if searchActive {
             return filtered.count
         }
@@ -118,7 +125,6 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
         {
         return images.count
         }
- */
 
     }
     
@@ -131,12 +137,7 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
         
         let cell = TravelCollectionView.dequeueReusableCell(withReuseIdentifier: "Travelcheck", for: indexPath) as? TravelSubCell
     
-        cell?.Travelimage.image = UIImage(named: images[indexPath.row])
-        cell?.Travellabel.text = images[indexPath.row]
-        cell?.Travelimage.alpha = 0.5
-        cell?.Travelimage.layer.cornerRadius = 30
-        return cell!
-        /*
+        
         if searchActive {
             cell?.Travelimage.image = UIImage(named: filtered[indexPath.row])
             cell?.Travellabel.text = filtered[indexPath.row]
@@ -152,7 +153,6 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
             cell?.Travelimage.layer.cornerRadius = 30
             return cell!
         }
- */
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
