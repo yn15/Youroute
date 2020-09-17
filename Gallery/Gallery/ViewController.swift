@@ -8,11 +8,11 @@
 
 import UIKit
 import Firebase
-import GoogleSignIn
+//import GoogleSignIn
 
 
 
-class ViewController: UIViewController, GIDSignInDelegate {
+/*class ViewController: UIViewController, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
     }
@@ -40,4 +40,4 @@ class ViewController: UIViewController, GIDSignInDelegate {
 //    }
 
     
-}
+} */

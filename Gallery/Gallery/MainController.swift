@@ -11,10 +11,12 @@ import MapKit
 
 class MainController: UIViewController, CLLocationManagerDelegate {
     
-    let images = [ "test.jpeg", "1.jpg" , "2.jpg", "3.jpg", "4.jpg", "5.jpg", "test2.jpeg" ]
+    let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
     
     @IBOutlet weak var MainCollectionView: UICollectionView!
     @IBOutlet weak var Mymap: MKMapView!
+    
+    var string = ""
     
     let locationManager = CLLocationManager()
     
@@ -54,7 +56,7 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let images = [ "test.jpeg", "1.jpg" , "2.jpg", "3.jpg", "4.jpg", "5.jpg", "test2.jpeg" ]
+        let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
         
         return images.count
     }
@@ -68,7 +70,15 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
         let cell = MainCollectionView.dequeueReusableCell(withReuseIdentifier: "Maincheck", for: indexPath) as? MainSubCell
         
         cell?.MainImage.image = UIImage(named: images[indexPath.row])
-        cell?.MainLabel.text = images[indexPath.row]
+        
+        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
+            let substring = images[indexPath.row][..<index]
+            string = String(substring)
+        }//확장자 제거
+        
+        cell?.MainLabel.text = string
+        
+        
         
         cell?.MainImage.layer.cornerRadius = 70
         
@@ -80,7 +90,12 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
         let storyBoard = self.storyboard!
         let move = storyBoard.instantiateViewController(withIdentifier: "DetailController") as! DetailController
         
-        move.rcvlabel = images[indexPath.row]
+        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
+            let substring = images[indexPath.row][..<index]
+            string = String(substring)
+        }//확장자 제거
+        
+        move.rcvlabel = string
         self.navigationController?.pushViewController(move, animated: true)
         
     }

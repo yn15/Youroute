@@ -7,11 +7,47 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
+import FirebaseStorage
+import FirebaseFirestoreSwift
 
 class MapController: UIViewController {
 
+    @IBOutlet weak var imageview: UIImageView!
+    
+    func downloadimage(imageview:UIImageView){
+        
+        let storage = Storage.storage()
+        
+        storage.reference(forURL: "gs://youroutehknu.appspot.com/images/test3.jpeg").downloadURL { (url, error) in
+                           let data = NSData(contentsOf: url!)
+                           let image = UIImage(data: data! as Data)
+                            imageview.image = image
+            }
+    }
+    
+    func outputroute() -> String {
+        
+        let testref = Firestore.firestore().collection("test").document("aa")
+        
+        testref.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data()?["bb"] as! String
+                print(dataDescription)
+                //return dataDescription
+            } else {
+                print("Document does not exist")
+            }
+        }
+        return ""
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        downloadimage(imageview: imageview)
 
         // Do any additional setup after loading the view.
     }

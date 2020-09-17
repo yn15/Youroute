@@ -15,6 +15,8 @@ class DetailController: UIViewController {
     @IBOutlet weak var DetailMainLabel: UILabel!
     @IBOutlet weak var DetailCollectionView: UICollectionView!
     
+    var string = ""
+    
     let images = [ "test.jpeg", "1.jpg" , "2.jpg", "3.jpg", "4.jpg", "5.jpg", "test2.jpeg" ]
     
     override func viewDidLoad() {
@@ -56,7 +58,13 @@ extension DetailController:UICollectionViewDelegate, UICollectionViewDataSource,
         let cell = DetailCollectionView.dequeueReusableCell(withReuseIdentifier: "Detailcheck", for: indexPath) as? DetailSubCell
         
         cell?.DetailImage.image = UIImage(named: images[indexPath.row])
-        cell?.DetailLabel.text = images[indexPath.row]
+        
+        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
+            let substring = images[indexPath.row][..<index]
+            string = String(substring)
+        }//확장자 제거
+        
+        cell?.DetailLabel.text = string
         cell?.DetailImage.alpha = 0.5
         
         cell?.DetailImage.layer.cornerRadius = 30
