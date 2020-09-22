@@ -41,6 +41,7 @@
 		0448F76E24ED600600A1BC0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0448F76D24ED600600A1BC0E /* ViewController.swift */; };
 		044AF70A24ED50D80055FA8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044AF70924ED50D80055FA8A /* GoogleService-Info.plist */; };
 		04C6D1B1251A1A9800FA6A83 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 04C6D1B0251A1A9800FA6A83 /* YOLOv3.mlmodel */; };
+		04C6D1B3251A282500FA6A83 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 04C6D1B2251A282500FA6A83 /* YOLOv3.mlmodel */; };
 		04FFA813251A116000014B7F /* Pods_Gallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF02964E8D2453338C024AA /* Pods_Gallery.framework */; };
 		04FFA814251A116000014B7F /* Pods_Gallery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF02964E8D2453338C024AA /* Pods_Gallery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04FFA817251A12D200014B7F /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA816251A12D200014B7F /* YOLOv3.mlmodel */; };
@@ -109,6 +110,7 @@
 		0448F76D24ED600600A1BC0E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		044AF70924ED50D80055FA8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04C6D1B0251A1A9800FA6A83 /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
+		04C6D1B2251A282500FA6A83 /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
 		04FFA816251A12D200014B7F /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
 		0EF02964E8D2453338C024AA /* Pods_Gallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEBC040C15012BA79DBAB07 /* Pods-Gallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.debug.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				3531560324DAD1EC00D7B659 /* UIImage+CVPixelBuffer.swift */,
 				044AF70924ED50D80055FA8A /* GoogleService-Info.plist */,
 				04C6D1B0251A1A9800FA6A83 /* YOLOv3.mlmodel */,
+				04C6D1B2251A282500FA6A83 /* YOLOv3.mlmodel */,
 				3531560724DAD1F500D7B659 /* VideoCapture.swift */,
 				3531560524DAD1F500D7B659 /* YOLO.swift */,
 				3531560624DAD1F500D7B659 /* YOLOv3.mlmodel */,
@@ -294,7 +297,7 @@
 			);
 			mainGroup = 013BA3A5246C810D00E99C24;
 			packageReferences = (
-				0448F76F24ED653A00A1BC0E /* RemoteSwiftPackageReference */,
+				0448F76F24ED653A00A1BC0E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 013BA3AF246C810D00E99C24 /* Products */;
 			projectDirPath = "";
@@ -401,6 +404,7 @@
 			files = (
 				353155FC24DAD1D000D7B659 /* BoundingBox.swift in Sources */,
 				013BA3B6246C810D00E99C24 /* GalleryController.swift in Sources */,
+				04C6D1B3251A282500FA6A83 /* YOLOv3.mlmodel in Sources */,
 				0177B3BB24B54F2A00BD614F /* GallerySubCell.swift in Sources */,
 				04C6D1B1251A1A9800FA6A83 /* YOLOv3.mlmodel in Sources */,
 				0177B3C524B5758800BD614F /* TravelController.swift in Sources */,
@@ -619,7 +623,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0448F76F24ED653A00A1BC0E /* RemoteSwiftPackageReference */ = {
+		0448F76F24ED653A00A1BC0E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
