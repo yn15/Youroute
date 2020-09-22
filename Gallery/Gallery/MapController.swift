@@ -18,36 +18,39 @@ class MapController: UIViewController {
     
     func downloadimage(imageview:UIImageView){
         
-        let storage = Storage.storage()
-        
-        storage.reference(forURL: "gs://youroutehknu.appspot.com/images/test3.jpeg").downloadURL { (url, error) in
-                           let data = NSData(contentsOf: url!)
-                           let image = UIImage(data: data! as Data)
-                            imageview.image = image
-            }
+//        let storage = Storage.storage()
+//
+//        storage.reference(forURL: "gs://youroutehknu.appspot.com/images/test3.jpeg").downloadURL { (url, error) in
+//                           let data = NSData(contentsOf: url!)
+//                           let image = UIImage(data: data! as Data)
+//                            imageview.image = image
+//            }
     }
     
-    func outputroute() -> String {
+    func outputroute(imageview:UIImageView){
         
         let testref = Firestore.firestore().collection("test").document("aa")
         
         testref.getDocument { (document, error) in
             if let document = document, document.exists {
                 let dataDescription = document.data()?["bb"] as! String
-                print(dataDescription)
-                //return dataDescription
+                let storage = Storage.storage()
+                storage.reference(forURL: dataDescription).downloadURL { (url, error) in
+                        let data = NSData(contentsOf: url!)
+                        let image = UIImage(data: data! as Data)
+                        imageview.image = image
+                            }
             } else {
                 print("Document does not exist")
             }
         }
-        return ""
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadimage(imageview: imageview)
+        outputroute(imageview: imageview)
 
         // Do any additional setup after loading the view.
     }

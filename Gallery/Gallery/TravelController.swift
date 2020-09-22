@@ -7,10 +7,18 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
+import FirebaseStorage
+import FirebaseFirestoreSwift
+
 
 class TravelController: UIViewController {
     let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
-    let imagesn = [ "test", "괌" , "독일", "부산", "제주도", "test2" ]
+    
+    
+    let fireref = Firestore.firestore()
+    
     var string = ""
     var filtered : [String] = []
     var searchActive : Bool = false
@@ -18,14 +26,19 @@ class TravelController: UIViewController {
     
     private var didTapDeleteKey = false
     
+    //var country : [String] = []
+    var country1 : [String] = []
+    var country2 : [String] = []
+    
+    
     @IBOutlet weak var TravelSearchbar: UISearchBar!
     @IBOutlet weak var TravelCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         TravelCollectionView.delegate = self
         TravelCollectionView.dataSource = self
-        
         
         TravelSearchbar.delegate = self
         TravelSearchbar.placeholder = "Search Country"
@@ -35,8 +48,33 @@ class TravelController: UIViewController {
         
         TravelSearchbar.showsCancelButton = true
         
-
+        
+        test(){ value in
+            self.country1 = value
+        }
+        
+        print(country2)
+        
     }
+    
+    
+    func test(completionHandler: @escaping ([String]) -> Void) {
+        fireref.collection("travel").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var country : [String] = []
+                for document in querySnapshot!.documents {
+                    //print(document.documentID)
+                    country.append(document.documentID)
+                }
+                completionHandler(country)
+            }
+        }
+    }
+    
+
+    
     
 
 
@@ -196,3 +234,5 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
 
 
 }
+
+
