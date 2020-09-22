@@ -29,12 +29,12 @@
 		0177B3C724B5768600BD614F /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177B3C624B5768600BD614F /* DetailController.swift */; };
 		0177B3C924B5770F00BD614F /* MainSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177B3C824B5770F00BD614F /* MainSubCell.swift */; };
 		018206E9249AC5370083C835 /* StorySubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018206E8249AC5370083C835 /* StorySubCell.swift */; };
+		01CC83A2251A957B006C3F0A /* 부산.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 01CC839E251A957A006C3F0A /* 부산.jpeg */; };
+		01CC83A3251A957B006C3F0A /* 괌.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 01CC839F251A957A006C3F0A /* 괌.jpeg */; };
+		01CC83A4251A957B006C3F0A /* 독일.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 01CC83A0251A957B006C3F0A /* 독일.jpeg */; };
+		01CC83A5251A957B006C3F0A /* 제주도.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 01CC83A1251A957B006C3F0A /* 제주도.jpeg */; };
 		01D1391B2512EBBC00CE6937 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D1391A2512EBBC00CE6937 /* LoginViewController.swift */; };
 		01D1391D2512ECCE00CE6937 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 01D1391C2512ECCE00CE6937 /* YOLOv3.mlmodel */; };
-		01D139222512EDD800CE6937 /* 괌.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 01D1391E2512EDD700CE6937 /* 괌.jpeg */; };
-		01D139232512EDD800CE6937 /* 제주도.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 01D1391F2512EDD700CE6937 /* 제주도.jpeg */; };
-		01D139242512EDD800CE6937 /* 부산.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 01D139202512EDD700CE6937 /* 부산.jpeg */; };
-		01D139252512EDD800CE6937 /* 독일.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 01D139212512EDD800CE6937 /* 독일.jpeg */; };
 		01F92D6A24C67B5D0048755D /* TravelSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6924C67B5D0048755D /* TravelSubCell.swift */; };
 		01F92D6C24C6821A0048755D /* DetailSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6B24C6821A0048755D /* DetailSubCell.swift */; };
 		01F92D6E24C683DA0048755D /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6D24C683DA0048755D /* MapController.swift */; };
@@ -96,12 +96,12 @@
 		0177B3C624B5768600BD614F /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		0177B3C824B5770F00BD614F /* MainSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSubCell.swift; sourceTree = "<group>"; };
 		018206E8249AC5370083C835 /* StorySubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorySubCell.swift; sourceTree = "<group>"; };
+		01CC839E251A957A006C3F0A /* 부산.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "부산.jpeg"; sourceTree = "<group>"; };
+		01CC839F251A957A006C3F0A /* 괌.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "괌.jpeg"; sourceTree = "<group>"; };
+		01CC83A0251A957B006C3F0A /* 독일.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "독일.jpeg"; sourceTree = "<group>"; };
+		01CC83A1251A957B006C3F0A /* 제주도.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "제주도.jpeg"; sourceTree = "<group>"; };
 		01D1391A2512EBBC00CE6937 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		01D1391C2512ECCE00CE6937 /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
-		01D1391E2512EDD700CE6937 /* 괌.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "괌.jpeg"; path = "../../../../../../Desktop/괌.jpeg"; sourceTree = "<group>"; };
-		01D1391F2512EDD700CE6937 /* 제주도.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "제주도.jpeg"; path = "../../../../../../Desktop/제주도.jpeg"; sourceTree = "<group>"; };
-		01D139202512EDD700CE6937 /* 부산.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "부산.jpeg"; path = "../../../../../../Desktop/부산.jpeg"; sourceTree = "<group>"; };
-		01D139212512EDD800CE6937 /* 독일.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "독일.jpeg"; path = "../../../../../../Desktop/독일.jpeg"; sourceTree = "<group>"; };
 		01F92D6924C67B5D0048755D /* TravelSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelSubCell.swift; sourceTree = "<group>"; };
 		01F92D6B24C6821A0048755D /* DetailSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSubCell.swift; sourceTree = "<group>"; };
 		01F92D6D24C683DA0048755D /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -205,12 +205,12 @@
 			isa = PBXGroup;
 			children = (
 				013BA3C6246C8DAF00E99C24 /* test.jpeg */,
-				01D1391E2512EDD700CE6937 /* 괌.jpeg */,
-				01D139212512EDD800CE6937 /* 독일.jpeg */,
-				01D139202512EDD700CE6937 /* 부산.jpeg */,
-				01D1391F2512EDD700CE6937 /* 제주도.jpeg */,
 				013BA3C8246C8DAF00E99C24 /* test2.jpeg */,
 				013BA3C5246C8DAF00E99C24 /* test3.jpeg */,
+				01CC839F251A957A006C3F0A /* 괌.jpeg */,
+				01CC83A0251A957B006C3F0A /* 독일.jpeg */,
+				01CC839E251A957A006C3F0A /* 부산.jpeg */,
+				01CC83A1251A957B006C3F0A /* 제주도.jpeg */,
 				013BA3C7246C8DAF00E99C24 /* test4.jpeg */,
 				3531560B24DAD9ED00D7B659 /* image1.jpg */,
 				3531560C24DAD9ED00D7B659 /* image2.jpeg */,
@@ -310,21 +310,21 @@
 				013BA3F3246CBAE800E99C24 /* 3.jpg in Resources */,
 				3531561224DAD9ED00D7B659 /* image4.jpeg in Resources */,
 				013BA3F4246CBAE800E99C24 /* 5.jpg in Resources */,
-				01D139242512EDD800CE6937 /* 부산.jpeg in Resources */,
 				013BA3CA246C8DAF00E99C24 /* test.jpeg in Resources */,
 				013BA3CB246C8DAF00E99C24 /* test4.jpeg in Resources */,
-				01D139222512EDD800CE6937 /* 괌.jpeg in Resources */,
 				3531560F24DAD9ED00D7B659 /* image1.jpg in Resources */,
+				01CC83A2251A957B006C3F0A /* 부산.jpeg in Resources */,
 				013BA3F1246CBAE800E99C24 /* 2.jpg in Resources */,
-				01D139252512EDD800CE6937 /* 독일.jpeg in Resources */,
-				01D139232512EDD800CE6937 /* 제주도.jpeg in Resources */,
 				013BA3C9246C8DAF00E99C24 /* test3.jpeg in Resources */,
 				044AF70A24ED50D80055FA8A /* GoogleService-Info.plist in Resources */,
+				01CC83A5251A957B006C3F0A /* 제주도.jpeg in Resources */,
 				3531561024DAD9ED00D7B659 /* image2.jpeg in Resources */,
 				3531561124DAD9ED00D7B659 /* image3.jpeg in Resources */,
 				013BA3BB246C810E00E99C24 /* Assets.xcassets in Resources */,
 				013BA3F2246CBAE800E99C24 /* 1.jpg in Resources */,
+				01CC83A3251A957B006C3F0A /* 괌.jpeg in Resources */,
 				013BA3CC246C8DAF00E99C24 /* test2.jpeg in Resources */,
+				01CC83A4251A957B006C3F0A /* 독일.jpeg in Resources */,
 				013BA3B9246C810D00E99C24 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
