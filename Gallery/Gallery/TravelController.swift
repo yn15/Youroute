@@ -48,31 +48,47 @@ class TravelController: UIViewController {
         
         TravelSearchbar.showsCancelButton = true
         
+        test()
+        print(country1)
         
-        test(){ value in
-            self.country1 = value
-        }
-        
-        print(country2)
+//        test(){ value in
+//            self.country1 = value
+//        }
+//
+//        print(country2)
         
     }
     
     
-    func test(completionHandler: @escaping ([String]) -> Void) {
+//    func test(completionHandler: @escaping ([String]) -> Void) {
+//        fireref.collection("travel").getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                var country : [String] = []
+//                for document in querySnapshot!.documents {
+//                    //print(document.documentID)
+//                    country.append(document.documentID)
+//
+//                }
+//                completionHandler(country)
+//            }
+//        }
+//    }
+    
+    func test() {
         fireref.collection("travel").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                var country : [String] = []
-                for document in querySnapshot!.documents {
-                    //print(document.documentID)
-                    country.append(document.documentID)
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        self.country1.append("\(document.documentID)")
+                        print("\(document.documentID)")
+                        print(self.country1)
+                    }
                 }
-                completionHandler(country)
-            }
         }
     }
-    
 
     
     

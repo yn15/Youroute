@@ -13,12 +13,17 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     
     let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
     
+    @IBAction func GoLogin(_ sender: Any) {
+        if let Logincontroller = self.storyboard?.instantiateViewController(identifier: "LoginViewController"){
+            self.navigationController?.pushViewController(Logincontroller, animated: true)
+        }
+    }
     @IBOutlet weak var MainCollectionView: UICollectionView!
-    @IBOutlet weak var Mymap: MKMapView!
+    @IBOutlet weak var Mymap: MKMapView! //map
     
     var string = ""
     
-    let locationManager = CLLocationManager()
+    let locationManager = CLLocationManager() // map
     
     @IBAction func GoTravel(_ sender: UIButton) {
         
@@ -40,15 +45,31 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        //map
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         Mymap.showsUserLocation = true
-        
-        
+    
         
     }
+    //업데이트 되는 위치정보 표시
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let lastLocation = locations.last //가장 최근의 위치정보 저장
+      myLocation(latitude: (lastLocation?.coordinate.latitude)!, longitude: (lastLocation?.coordinate.longitude)!, delta: 0.01) //delat값이 1보다 작을수록 확대됨. 0.01은 100배확대
+        
+    }
+    
+    func myLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, delta: Double){
+        let coordinateLocation = CLLocationCoordinate2DMake(latitude, longitude)
+        let spanValue = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
+        let locationRegion = MKCoordinateRegion(center: coordinateLocation, span: spanValue)
+        Mymap.setRegion(locationRegion, animated: true)
+        
+    }
+    
+
     
 }
 
