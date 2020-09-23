@@ -10,11 +10,17 @@
 #endif
 #endif
 
+#import "FirebaseStorageUI 2.h"
 #import "FirebaseStorageUI.h"
+#import "FIRStorageDownloadTask+SDWebImage 2.h"
 #import "FIRStorageDownloadTask+SDWebImage.h"
+#import "FUIStorageDefine 2.h"
 #import "FUIStorageDefine.h"
+#import "FUIStorageImageLoader 2.h"
 #import "FUIStorageImageLoader.h"
+#import "NSURL+FirebaseStorage 2.h"
 #import "NSURL+FirebaseStorage.h"
+#import "UIImageView+FirebaseStorage 2.h"
 #import "UIImageView+FirebaseStorage.h"
 
 FOUNDATION_EXPORT double FirebaseUIVersionNumber;
