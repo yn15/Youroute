@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		012DE2952473648D000C3BDE /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012DE2942473648D000C3BDE /* SearchController.swift */; };
 		012DE29724736DF0000C3BDE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012DE29624736DF0000C3BDE /* MainController.swift */; };
+		01351980251CC4B0000156B6 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0135197F251CC4B0000156B6 /* Country.swift */; };
 		013BA3B2246C810D00E99C24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BA3B1246C810D00E99C24 /* AppDelegate.swift */; };
 		013BA3B4246C810D00E99C24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BA3B3246C810D00E99C24 /* SceneDelegate.swift */; };
 		013BA3B6246C810D00E99C24 /* GalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BA3B5246C810D00E99C24 /* GalleryController.swift */; };
@@ -72,6 +73,7 @@
 /* Begin PBXFileReference section */
 		012DE2942473648D000C3BDE /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		012DE29624736DF0000C3BDE /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		0135197F251CC4B0000156B6 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		013BA3AE246C810D00E99C24 /* Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013BA3B1246C810D00E99C24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		013BA3B3246C810D00E99C24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				018206E7249AC4AD0083C835 /* Cell */,
 				01A297F5248734A0000B8571 /* images */,
 				013BA3B1246C810D00E99C24 /* AppDelegate.swift */,
+				0135197F251CC4B0000156B6 /* Country.swift */,
 				013BA3B3246C810D00E99C24 /* SceneDelegate.swift */,
 				0448F76D24ED600600A1BC0E /* ViewController.swift */,
 				013BA3B5246C810D00E99C24 /* GalleryController.swift */,
@@ -398,6 +401,7 @@
 				0177B3C724B5768600BD614F /* DetailController.swift in Sources */,
 				3531560424DAD1ED00D7B659 /* UIImage+CVPixelBuffer.swift in Sources */,
 				0448F76E24ED600600A1BC0E /* ViewController.swift in Sources */,
+				01351980251CC4B0000156B6 /* Country.swift in Sources */,
 				013BA3EB246CAE6600E99C24 /* StoryController.swift in Sources */,
 				3531560824DAD1F500D7B659 /* YOLO.swift in Sources */,
 				3531560224DAD1E000D7B659 /* ImageClassifier.mlmodel in Sources */,

@@ -12,6 +12,7 @@ class GalleryController: UIViewController {
     
     let images = [ "image1.jpg", "test.jpeg", "1.jpg" , "2.jpg", "3.jpg", "4.jpg", "5.jpg", "test2.jpeg" ]
     
+    
     @IBOutlet weak var GalleryCollectionView: UICollectionView!
     
     

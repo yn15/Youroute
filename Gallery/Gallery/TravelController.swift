@@ -12,21 +12,21 @@ import FirebaseUI
 import FirebaseStorage
 import FirebaseFirestoreSwift
 
-struct Country {
-    
-    var name : String
-    
-    init(snapshot: QueryDocumentSnapshot) {
-        
-        name = snapshot.documentID
-        
-    }
-    
-}
+//struct Country {
+//    
+//    var name : String
+//    
+//    init(snapshot: QueryDocumentSnapshot) {
+//        
+//        name = snapshot.documentID
+//        
+//    }
+//    
+//}
 
 class TravelController: UIViewController {
     //var images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
-    @Published var cc = [Country]()
+    private var country = [Country]()
     
     var images : [String] = []
     
@@ -71,10 +71,26 @@ class TravelController: UIViewController {
 //        }
 //        let a = red()
 //        print(a)
-        test()
+        //test()
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        fireref.collection("travel").getDocuments() { (snapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            guard let snap = snapshot else { return }
+                            for document in snap.documents {
+                                let name = document.documentID
+                                
+                                let newcou = Country(name: name)
+                                self.country.append(newcou)
+                            }
+                            self.TravelCollectionView.reloadData()
+                        }
+                }
+    }
     
     
 //    func test(completionHandler: @escaping ([String]) -> Void) {
@@ -114,20 +130,20 @@ class TravelController: UIViewController {
     
  
     
-    func test() {
-        fireref.collection("travel").getDocuments() { (snapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in snapshot!.documents {
-                        if let name = document.documentID as? String {
-                            self.images.append(name)
-                        }
-                    }
-                    
-                }
-        }
-    }
+//    func test() {
+//        fireref.collection("travel").getDocuments() { (snapshot, err) in
+//                if let err = err {
+//                    print("Error getting documents: \(err)")
+//                } else {
+//                    for document in snapshot!.documents {
+//                        if let name = document.documentID as? String {
+//                            self.images.append(name)
+//                        }
+//                    }
+//
+//                }
+//        }
+//    }
     
     
 }

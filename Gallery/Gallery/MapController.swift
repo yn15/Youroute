@@ -62,11 +62,14 @@ class MapController: UIViewController, MKMapViewDelegate {
     var count = 1
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Day-1 경주"
 
 
         self.initControls()
         self.doLayout()
         self.loadAnnotations()
+        mapView.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,7 +82,7 @@ class MapController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
 
         let center = CLLocationCoordinate2DMake(35.819393, 129.208035)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.04, longitudeDelta: 0.04))
         mapView.setRegion(region, animated: true)
     }
 
@@ -117,6 +120,20 @@ class MapController: UIViewController, MKMapViewDelegate {
 
         return view
     }
+    
+    var imagetitle = ""
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let gallerycontroller = self.storyboard?.instantiateViewController(identifier: "GalleryController") {
+            self.navigationController?.pushViewController(gallerycontroller, animated: true)
+            
+        }
+        //print((view.annotation?.coordinate)!)
+        if let optionalTitle = view.annotation?.title, let title = optionalTitle {
+            imagetitle = title
+        }
+        print(imagetitle)
+    }
 
 
     func loadAnnotations() {
@@ -138,13 +155,13 @@ class MapController: UIViewController, MKMapViewDelegate {
                 
         for location in locations {
                     let annotation = ImageAnnotation()
-                    annotation.title = location["title"] as? String
+                    annotation.title = "\(count).jpg"
                     annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! Double, longitude: location["longitude"] as! Double)
-            annotation.image = UIImage(named: "\(count).jpg")
+                    annotation.image = UIImage(named: "\(count).jpg")
                     self.mapView.addAnnotation(annotation)
                     count = count+1
-                    
                 }
+        
                 
 //                let annotation = ImageAnnotation()
 //                annotation.coordinate = CLLocationCoordinate2DMake(37.011901, 127.264280)
@@ -157,10 +174,25 @@ class MapController: UIViewController, MKMapViewDelegate {
 //                    self.mapView.addAnnotation(annotation)
 //                }
             }
+    
         //}
     
         //dataTask.resume()
     //}
+}
+
+class Islands: NSObject, MKAnnotation {
+
+    var title: String?
+    var coordinate: CLLocationCoordinate2D
+
+    init(title: String, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.coordinate = coordinate
+
+
+    }
+
 }
 
 
