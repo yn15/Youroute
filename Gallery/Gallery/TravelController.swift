@@ -12,10 +12,25 @@ import FirebaseUI
 import FirebaseStorage
 import FirebaseFirestoreSwift
 
+struct Country {
+    
+    var name : String
+    
+    init(snapshot: QueryDocumentSnapshot) {
+        
+        name = snapshot.documentID
+        
+    }
+    
+}
 
 class TravelController: UIViewController {
-    let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
+    //var images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
+    @Published var cc = [Country]()
     
+    var images : [String] = []
+    
+    var list:[Country] = []
     
     let fireref = Firestore.firestore()
     
@@ -27,8 +42,6 @@ class TravelController: UIViewController {
     private var didTapDeleteKey = false
     
     //var country : [String] = []
-    var country1 : [String] = []
-    var country2 : [String] = []
     
     
     @IBOutlet weak var TravelSearchbar: UISearchBar!
@@ -48,16 +61,20 @@ class TravelController: UIViewController {
         
         TravelSearchbar.showsCancelButton = true
         
-        test()
-        print(country1)
-        
 //        test(){ value in
-//            self.country1 = value
-//        }
 //
-//        print(country2)
+//            self.images = value
+//            print(self.images)
+//
+//        self.TravelCollectionView.reloadData()
+//
+//        }
+//        let a = red()
+//        print(a)
+        test()
         
     }
+    
     
     
 //    func test(completionHandler: @escaping ([String]) -> Void) {
@@ -65,35 +82,54 @@ class TravelController: UIViewController {
 //            if let err = err {
 //                print("Error getting documents: \(err)")
 //            } else {
-//                var country : [String] = []
+//                //var country : [String] = []
 //                for document in querySnapshot!.documents {
 //                    //print(document.documentID)
-//                    country.append(document.documentID)
+//                    self.images.append(document.documentID)
 //
 //                }
-//                completionHandler(country)
+//                completionHandler(self.images)
 //            }
 //        }
 //    }
     
+//    func red() -> ListenerRegistration {
+//        fireref.collection("travel").addSnapshotListener { (querySnapshot, error) in
+//            guard let documents = querySnapshot?.documents else {
+//                print("error")
+//                return
+//            }
+//
+//            self.cc = documents.compactMap({ (queryDocumentSnapshot) -> Country? in
+//                let data = queryDocumentSnapshot.documentID
+//                //print(data)
+//                //print(Country.init(snapshot: queryDocumentSnapshot))
+//                //print(type(of: Country.init(snapshot: queryDocumentSnapshot)))
+//                Country.init(snapshot: queryDocumentSnapshot)
+//
+//                return Country.init(snapshot: queryDocumentSnapshot)
+//            })
+//            }
+//    }
+    
+ 
+    
     func test() {
-        fireref.collection("travel").getDocuments() { (querySnapshot, err) in
+        fireref.collection("travel").getDocuments() { (snapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
-                    for document in querySnapshot!.documents {
-                        self.country1.append("\(document.documentID)")
-                        print("\(document.documentID)")
-                        print(self.country1)
+                    for document in snapshot!.documents {
+                        if let name = document.documentID as? String {
+                            self.images.append(name)
+                        }
                     }
+                    
                 }
         }
     }
-
     
     
-
-
 }
 
 extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
