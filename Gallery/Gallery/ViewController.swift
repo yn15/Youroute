@@ -7,25 +7,25 @@
 //
 
 import UIKit
-//import GoogleSignIn
+import GoogleSignIn
 
 
 
 class ViewController: UIViewController {
     
-//    @IBOutlet var signInButton : GIDSignInButton!
+@IBOutlet var signInButton : GIDSignInButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-//        if GIDSignIn.sharedInstance()?.currentUser != nil {
-//
-//        } else {
-//            GIDSignIn.sharedInstance()?.signIn()
-//        }
-//
-//
-//        GIDSignIn.sharedInstance()?.presentingViewController = self
-//
+
+        if GIDSignIn.sharedInstance()?.currentUser != nil {
+
+        } else {
+            GIDSignIn.sharedInstance()?.signIn()
+        }
+
+
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+
     }
 }
