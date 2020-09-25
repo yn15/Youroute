@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sFx-dI-wba">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JoI-XZ-Dyk">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -17,12 +17,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="9u6-jv-C5G" kind="relationship" relationship="rootViewController" id="ryY-OZ-Rwa"/>
+                        <segue destination="JoI-XZ-Dyk" kind="relationship" relationship="rootViewController" id="ePr-OX-tEZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zE4-bp-nqZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1329" y="137"/>
+            <point key="canvasLocation" x="-1435" y="856"/>
         </scene>
         <!--Main Controller-->
         <scene sceneID="jx3-1c-rha">
@@ -33,7 +33,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dDf-b2-MbA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Z33-cC-MLH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9k8-Jp-b5J">
@@ -142,7 +142,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlu-T3-ePt">
-                                <rect key="frame" x="293" y="805" width="78" height="66"/>
+                                <rect key="frame" x="296" y="783" width="78" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Login"/>
@@ -166,7 +166,7 @@
         <!--View Controller-->
         <scene sceneID="Ll1-zy-1jz">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="JoI-XZ-Dyk" customClass="ViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="JoI-XZ-Dyk" customClass="ViewController" customModule="Gallery" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hgw-L8-Bdx"/>
                         <viewControllerLayoutGuide type="bottom" id="UV0-YX-zxJ"/>
@@ -175,24 +175,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1IM-58-e1l" customClass="GIDSigninButton">
-                                <rect key="frame" x="40" y="144" width="334" height="1000"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAy-kf-0pd" customClass="GIDSignInButton">
+                                <rect key="frame" x="87" y="516" width="240" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1000" id="4S2-Cb-lPM"/>
+                                    <constraint firstAttribute="height" constant="48" id="4n9-re-Q6u"/>
+                                    <constraint firstAttribute="width" constant="230" id="Hy5-gH-Egc"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="1IM-58-e1l" firstAttribute="top" secondItem="Hgw-L8-Bdx" secondAttribute="bottom" constant="100" id="Sto-7g-sVz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="1IM-58-e1l" secondAttribute="trailing" constant="20" id="Zxe-1y-e1o"/>
-                            <constraint firstItem="1IM-58-e1l" firstAttribute="leading" secondItem="Q5F-Ly-Zi6" secondAttribute="leadingMargin" constant="20" id="dYS-s9-r10"/>
+                            <constraint firstItem="UV0-YX-zxJ" firstAttribute="top" secondItem="hAy-kf-0pd" secondAttribute="bottom" constant="402" id="Vee-LN-09m"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="HhT-YV-gDJ"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
-                        <outlet property="signInButton" destination="1IM-58-e1l" id="RQj-1y-58k"/>
+                        <outlet property="signInButton" destination="hAy-kf-0pd" id="zCB-aL-cAh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bC-wn-w7q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

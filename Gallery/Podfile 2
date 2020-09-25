@@ -1,4 +1,0 @@
-platform :ios, '11.0'
-target 'Gallery' do
-
-end
