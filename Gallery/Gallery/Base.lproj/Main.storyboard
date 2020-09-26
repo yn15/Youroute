@@ -33,7 +33,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dDf-b2-MbA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Z33-cC-MLH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9k8-Jp-b5J">
@@ -193,6 +193,7 @@
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="signInButton" destination="hAy-kf-0pd" id="zCB-aL-cAh"/>
+                        <segue destination="9u6-jv-C5G" kind="show" id="T3v-Dr-mWw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bC-wn-w7q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
