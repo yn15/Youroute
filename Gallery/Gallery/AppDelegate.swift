@@ -12,7 +12,7 @@ import Firebase
 import FirebaseUI
 import FirebaseStorage
 import FirebaseFirestoreSwift
-
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         FirebaseApp.configure()
         GIDSignIn.sharedInstance()?.clientID = "936286010895-vqkmqr183ekitsbag1gg684j5bg7rjqa.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
+        GMSServices.provideAPIKey("AIzaSyB_nErUVkzvyiKPAJS4TMGQKjVdUNmmv0M")
         let db = Firestore.firestore()
         return true
     }

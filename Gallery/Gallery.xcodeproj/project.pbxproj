@@ -39,9 +39,10 @@
 		01F92D6C24C6821A0048755D /* DetailSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6B24C6821A0048755D /* DetailSubCell.swift */; };
 		01F92D6E24C683DA0048755D /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6D24C683DA0048755D /* MapController.swift */; };
 		041A9D34251E47F100EA64F2 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 041A9D33251E47F000EA64F2 /* YOLOv3.mlmodel */; };
+		041A9DA52520AFB300EA64F2 /* GoogleMapsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041A9DA42520AFB300EA64F2 /* GoogleMapsController.swift */; };
 		0448F76E24ED600600A1BC0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0448F76D24ED600600A1BC0E /* ViewController.swift */; };
 		044AF70A24ED50D80055FA8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044AF70924ED50D80055FA8A /* GoogleService-Info.plist */; };
-		04FFA814251A116000014B7F /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		04FFA814251A116000014B7F /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A2597E44A8905598A922B27 /* Pods_Gallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EAC01115DB8B6CC32F4BD0 /* Pods_Gallery.framework */; };
 		353155FC24DAD1D000D7B659 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353155FB24DAD1D000D7B659 /* BoundingBox.swift */; };
 		353155FE24DAD1D700D7B659 /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353155FD24DAD1D700D7B659 /* CVPixelBuffer+Helpers.swift */; };
@@ -63,7 +64,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				04FFA814251A116000014B7F /* BuildFile in Embed Frameworks */,
+				04FFA814251A116000014B7F /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +106,7 @@
 		01F92D6B24C6821A0048755D /* DetailSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSubCell.swift; sourceTree = "<group>"; };
 		01F92D6D24C683DA0048755D /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		041A9D33251E47F000EA64F2 /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
+		041A9DA42520AFB300EA64F2 /* GoogleMapsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsController.swift; sourceTree = "<group>"; };
 		0448F76D24ED600600A1BC0E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		044AF70924ED50D80055FA8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		180534F8B3524AD0278E0401 /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				013BA3B3246C810D00E99C24 /* SceneDelegate.swift */,
 				0448F76D24ED600600A1BC0E /* ViewController.swift */,
 				013BA3B5246C810D00E99C24 /* GalleryController.swift */,
+				041A9DA42520AFB300EA64F2 /* GoogleMapsController.swift */,
 				013BA3B7246C810D00E99C24 /* Main.storyboard */,
 				01D1391A2512EBBC00CE6937 /* LoginViewController.swift */,
 				353155FB24DAD1D000D7B659 /* BoundingBox.swift */,
@@ -288,7 +291,7 @@
 			);
 			mainGroup = 013BA3A5246C810D00E99C24;
 			packageReferences = (
-				0448F76F24ED653A00A1BC0E /* RemoteSwiftPackageReference */,
+				0448F76F24ED653A00A1BC0E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 013BA3AF246C810D00E99C24 /* Products */;
 			projectDirPath = "";
@@ -409,6 +412,7 @@
 				041A9D34251E47F100EA64F2 /* YOLOv3.mlmodel in Sources */,
 				0177B3C924B5770F00BD614F /* MainSubCell.swift in Sources */,
 				353155FE24DAD1D700D7B659 /* CVPixelBuffer+Helpers.swift in Sources */,
+				041A9DA52520AFB300EA64F2 /* GoogleMapsController.swift in Sources */,
 				3531560024DAD1DB00D7B659 /* Helpers.swift in Sources */,
 				013BA3B2246C810D00E99C24 /* AppDelegate.swift in Sources */,
 				3531560A24DAD1F500D7B659 /* VideoCapture.swift in Sources */,
@@ -611,7 +615,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0448F76F24ED653A00A1BC0E /* RemoteSwiftPackageReference */ = {
+		0448F76F24ED653A00A1BC0E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {

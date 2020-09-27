@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JoI-XZ-Dyk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sFx-dI-wba">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -17,12 +17,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JoI-XZ-Dyk" kind="relationship" relationship="rootViewController" id="ePr-OX-tEZ"/>
+                        <segue destination="JoI-XZ-Dyk" kind="relationship" relationship="rootViewController" id="YTg-Td-wIX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zE4-bp-nqZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1435" y="856"/>
+            <point key="canvasLocation" x="-1294" y="856"/>
         </scene>
         <!--Main Controller-->
         <scene sceneID="jx3-1c-rha">
@@ -33,7 +33,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dDf-b2-MbA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Z33-cC-MLH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9k8-Jp-b5J">
@@ -183,22 +183,63 @@
                                     <constraint firstAttribute="width" constant="230" id="Hy5-gH-Egc"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2Y-DO-LNg">
+                                <rect key="frame" x="184" y="835" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="gqH-Bg-iYI" kind="show" id="mCi-KE-7Ef"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="UV0-YX-zxJ" firstAttribute="top" secondItem="hAy-kf-0pd" secondAttribute="bottom" constant="402" id="Vee-LN-09m"/>
+                            <constraint firstItem="UV0-YX-zxJ" firstAttribute="top" secondItem="f2Y-DO-LNg" secondAttribute="bottom" constant="101" id="sIt-Mq-bdD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HhT-YV-gDJ"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="signInButton" destination="hAy-kf-0pd" id="zCB-aL-cAh"/>
-                        <segue destination="9u6-jv-C5G" kind="show" id="T3v-Dr-mWw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bC-wn-w7q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-584.05797101449275" y="855.80357142857144"/>
+        </scene>
+        <!--Google Maps Controller-->
+        <scene sceneID="DTl-WL-kqc">
+            <objects>
+                <viewController id="gqH-Bg-iYI" customClass="GoogleMapsController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SeL-V1-kvh"/>
+                        <viewControllerLayoutGuide type="bottom" id="MlI-6V-43N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YQZ-y0-JTe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOU-wV-cnS" customClass="GMSMapView">
+                                <rect key="frame" x="20" y="88" width="374" height="878"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MlI-6V-43N" firstAttribute="top" secondItem="yOU-wV-cnS" secondAttribute="bottom" id="7M2-6F-dqf"/>
+                            <constraint firstItem="yOU-wV-cnS" firstAttribute="top" secondItem="SeL-V1-kvh" secondAttribute="bottom" id="g8V-BR-Z7d"/>
+                            <constraint firstItem="yOU-wV-cnS" firstAttribute="leading" secondItem="YQZ-y0-JTe" secondAttribute="leadingMargin" id="jpA-dB-uWt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yOU-wV-cnS" secondAttribute="trailing" id="tY8-WI-wD1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jed-G4-XVA"/>
+                    <connections>
+                        <outlet property="google_map" destination="yOU-wV-cnS" id="jyF-fv-39v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B3j-cL-BNl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133" y="856"/>
         </scene>
         <!--Travel Controller-->
         <scene sceneID="tWS-Yr-0iy">
