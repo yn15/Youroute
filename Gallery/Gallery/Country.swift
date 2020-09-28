@@ -17,5 +17,9 @@ struct Country {
             "name": name
         ]
     }
+    
+    mutating func setname(sname: String) {
+        self.name = sname
+    }
 }
 

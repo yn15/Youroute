@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sFx-dI-wba">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sFx-dI-wba">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -17,17 +17,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JoI-XZ-Dyk" kind="relationship" relationship="rootViewController" id="YTg-Td-wIX"/>
+                        <segue destination="JoI-XZ-Dyk" kind="relationship" relationship="rootViewController" id="cFm-hD-Fv5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zE4-bp-nqZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1294" y="856"/>
+            <point key="canvasLocation" x="-1417" y="856"/>
         </scene>
         <!--Main Controller-->
         <scene sceneID="jx3-1c-rha">
             <objects>
-                <viewController id="9u6-jv-C5G" customClass="MainController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9u6-jv-C5G" customClass="MainController" customModule="Gallery" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ao7-bT-1Ni"/>
                         <viewControllerLayoutGuide type="bottom" id="dDf-b2-MbA"/>
@@ -175,6 +175,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zLj-se-AGZ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAy-kf-0pd" customClass="GIDSignInButton">
                                 <rect key="frame" x="87" y="516" width="240" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -200,6 +204,7 @@
                     <navigationItem key="navigationItem" id="HhT-YV-gDJ"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
+                        <outlet property="backimage" destination="zLj-se-AGZ" id="YAn-zQ-e8B"/>
                         <outlet property="signInButton" destination="hAy-kf-0pd" id="zCB-aL-cAh"/>
                     </connections>
                 </viewController>

@@ -25,6 +25,7 @@
 		013BA3F4246CBAE800E99C24 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 013BA3EF246CBAE800E99C24 /* 5.jpg */; };
 		013BA3F5246CBAE800E99C24 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 013BA3F0246CBAE800E99C24 /* 4.jpg */; };
 		0153BECF251BB1120092738B /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0153BECE251BB1110092738B /* YOLOv3.mlmodel */; };
+		015AC5EA2522603800D7850C /* airplane-2588225_1280@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015AC5E92522603800D7850C /* airplane-2588225_1280@3x.png */; };
 		0177B3BB24B54F2A00BD614F /* GallerySubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177B3BA24B54F2A00BD614F /* GallerySubCell.swift */; };
 		0177B3C524B5758800BD614F /* TravelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177B3C424B5758800BD614F /* TravelController.swift */; };
 		0177B3C724B5768600BD614F /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177B3C624B5768600BD614F /* DetailController.swift */; };
@@ -92,6 +93,7 @@
 		013BA3EF246CBAE800E99C24 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
 		013BA3F0246CBAE800E99C24 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		0153BECE251BB1110092738B /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
+		015AC5E92522603800D7850C /* airplane-2588225_1280@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "airplane-2588225_1280@3x.png"; sourceTree = "<group>"; };
 		0177B3BA24B54F2A00BD614F /* GallerySubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySubCell.swift; sourceTree = "<group>"; };
 		0177B3C424B5758800BD614F /* TravelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelController.swift; sourceTree = "<group>"; };
 		0177B3C624B5768600BD614F /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
@@ -176,8 +178,8 @@
 				3531560124DAD1E000D7B659 /* ImageClassifier.mlmodel */,
 				0177B3C624B5768600BD614F /* DetailController.swift */,
 				0153BECE251BB1110092738B /* YOLOv3.mlmodel */,
-				353155FF24DAD1DB00D7B659 /* Helpers.swift */,
 				353155FD24DAD1D700D7B659 /* CVPixelBuffer+Helpers.swift */,
+				353155FF24DAD1DB00D7B659 /* Helpers.swift */,
 				0177B3C424B5758800BD614F /* TravelController.swift */,
 				041A9D33251E47F000EA64F2 /* YOLOv3.mlmodel */,
 				013BA3BF246C810E00E99C24 /* Info.plist */,
@@ -204,6 +206,7 @@
 		01A297F5248734A0000B8571 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				015AC5E92522603800D7850C /* airplane-2588225_1280@3x.png */,
 				013BA3C6246C8DAF00E99C24 /* test.jpeg */,
 				013BA3C8246C8DAF00E99C24 /* test2.jpeg */,
 				013BA3C5246C8DAF00E99C24 /* test3.jpeg */,
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				013BA3F5246CBAE800E99C24 /* 4.jpg in Resources */,
+				015AC5EA2522603800D7850C /* airplane-2588225_1280@3x.png in Resources */,
 				013BA3F3246CBAE800E99C24 /* 3.jpg in Resources */,
 				3531561224DAD9ED00D7B659 /* image4.jpeg in Resources */,
 				013BA3F4246CBAE800E99C24 /* 5.jpg in Resources */,

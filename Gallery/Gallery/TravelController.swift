@@ -30,7 +30,7 @@ class TravelController: UIViewController {
     
     var images : [String] = []
     
-    var list:[Country] = []
+    //var list:[Country] = []
     
     let fireref = Firestore.firestore()
     
@@ -75,22 +75,22 @@ class TravelController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        fireref.collection("travel").getDocuments() { (snapshot, err) in
-                        if let err = err {
-                            print("Error getting documents: \(err)")
-                        } else {
-                            guard let snap = snapshot else { return }
-                            for document in snap.documents {
-                                let name = document.documentID
-                                
-                                let newcou = Country(name: name)
-                                self.country.append(newcou)
-                            }
-                            self.TravelCollectionView.reloadData()
-                        }
-                }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        fireref.collection("travel").getDocuments() { (snapshot, err) in
+//                        if let err = err {
+//                            print("Error getting documents: \(err)")
+//                        } else {
+//                            guard let snap = snapshot else { return }
+//                            for document in snap.documents {
+//                                let name = document.documentID
+//                                Country.init(name: name)
+//                                let newcou = Country(name: name)
+//                                self.country.append(newcou)
+//                            }
+//                            self.TravelCollectionView.reloadData()
+//                        }
+//                }
+//    }
     
     
 //    func test(completionHandler: @escaping ([String]) -> Void) {
@@ -137,13 +137,13 @@ class TravelController: UIViewController {
 //                } else {
 //                    for document in snapshot!.documents {
 //                        if let name = document.documentID as? String {
-//                            self.images.append(name)
 //                        }
 //                    }
 //
 //                }
 //        }
 //    }
+    
     
     
 }

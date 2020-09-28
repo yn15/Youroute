@@ -14,7 +14,8 @@ import Firebase
 
 class ViewController: UIViewController {
     
-@IBOutlet var signInButton : GIDSignInButton!
+    @IBOutlet weak var backimage: UIImageView!
+    @IBOutlet var signInButton : GIDSignInButton!
 // email sign in1
     
     private let label: UILabel = {
@@ -59,12 +60,17 @@ class ViewController: UIViewController {
         
         // email sign in
         
-        view.addSubview(label)
-        view.addSubview(emailField)
-        view.addSubview(passField)
-        view.addSubview(button)
-        view.backgroundColor = .systemGray2
+        backimage.addSubview(label)
+        backimage.addSubview(emailField)
+        backimage.addSubview(passField)
+        backimage.addSubview(button)
+        //view.backgroundColor = .systemGray2
+        let naviBgImage = UIImage(named: "airplane-2588225_1280@3x.png")
+        backimage.image = naviBgImage
+        
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+
+        
         
     }
     override func viewDidLayoutSubviews() {
