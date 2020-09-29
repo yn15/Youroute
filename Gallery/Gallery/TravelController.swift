@@ -33,7 +33,7 @@ class TravelController: UIViewController {
     //var list:[Country] = []
     
     let fireref = Firestore.firestore()
-    
+    var wList = [Country]()
     var string = ""
     var filtered : [String] = []
     var searchActive : Bool = false
@@ -60,6 +60,10 @@ class TravelController: UIViewController {
         definesPresentationContext = true
         
         TravelSearchbar.showsCancelButton = true
+        
+        retrieveUserDataFromDB()
+        print(images)
+        print(wList)
         
 //        test(){ value in
 //
@@ -144,6 +148,42 @@ class TravelController: UIViewController {
 //        }
 //    }
     
+    func retrieveUserDataFromDB() -> Void {
+
+        let db = Firestore.firestore()
+        //let userID = Auth.auth().currentUser!.uid
+        db.collection("travel").getDocuments() { ( querySnapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }else {
+                for document in querySnapshot!.documents {
+
+                    //let documentData = document.data()
+                    let listName = document.documentID
+                    //let listImageIDX = documentData["imageIDX"]
+
+                    if listName as? String == nil {
+                        self.images.append(listName as! String)
+                        self.wList.append(contentsOf: self.country)
+                    }else {
+                        //self.images.append(listName as! String)
+                    }
+                    
+                    // create an empty wishlist, in case this is a new user
+                    self.wList = [Country]()
+                    self.TravelCollectionView.reloadData()
+                    //self.userWishListData.append(wList)
+
+                }
+            }
+        }
+
+        // un-hide the collection view
+        self.TravelCollectionView.isHidden = false
+
+        // reload the collection view
+        self.TravelCollectionView.reloadData()
+    }
     
     
 }
@@ -242,33 +282,41 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+//        let cell = TravelCollectionView.dequeueReusableCell(withReuseIdentifier: "Travelcheck", for: indexPath) as? TravelSubCell
+//
+//        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
+//            let substring = images[indexPath.row][..<index]
+//            string = String(substring)
+//        } // 확장자 제거
+//
+//
+//        if searchActive {
+//            cell?.Travelimage.image = UIImage(named: filtered[indexPath.row])
+//            if let index = filtered[indexPath.row].range(of: ".")?.lowerBound {
+//                let substring = filtered[indexPath.row][..<index]
+//                string = String(substring)
+//            }
+//            cell?.Travellabel.text = string
+//            cell?.Travelimage.alpha = 0.5
+//            cell?.Travelimage.layer.cornerRadius = 30
+//            return cell!
+//        } else {
+//            cell?.Travelimage.image = UIImage(named: images[indexPath.row])
+//            cell?.Travellabel.text = string
+//            cell?.Travelimage.alpha = 0.5
+//            cell?.Travelimage.layer.cornerRadius = 30
+//            return cell!
+//        }
         let cell = TravelCollectionView.dequeueReusableCell(withReuseIdentifier: "Travelcheck", for: indexPath) as? TravelSubCell
-        
-        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
-            let substring = images[indexPath.row][..<index]
-            string = String(substring)
-        } // 확장자 제거
-        
-        
-        if searchActive {
-            cell?.Travelimage.image = UIImage(named: filtered[indexPath.row])
-            if let index = filtered[indexPath.row].range(of: ".")?.lowerBound {
-                let substring = filtered[indexPath.row][..<index]
-                string = String(substring)
-            }
-            cell?.Travellabel.text = string
+        if indexPath.item < wList.count {
+            cell?.Travellabel.text = images[indexPath.item]
             cell?.Travelimage.alpha = 0.5
             cell?.Travelimage.layer.cornerRadius = 30
-            return cell!
-        } else {
-            cell?.Travelimage.image = UIImage(named: images[indexPath.row])
-            cell?.Travellabel.text = string
-            cell?.Travelimage.alpha = 0.5
-            cell?.Travelimage.layer.cornerRadius = 30
-            return cell!
+            
         }
-        
- 
+
+        //return cell
+        return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>710607173484-e9s7qmq6tld352fjevggbdkrvjjsr0b9.apps.googleusercontent.com</string>
+	<string>936286010895-vqkmqr183ekitsbag1gg684j5bg7rjqa.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.710607173484-e9s7qmq6tld352fjevggbdkrvjjsr0b9</string>
+	<string>com.googleusercontent.apps.936286010895-vqkmqr183ekitsbag1gg684j5bg7rjqa</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB_nErUVkzvyiKPAJS4TMGQKjVdUNmmv0M</string>
+	<string>AIzaSyAkm7i0mbanZjJJn4SLA2cZG9wjs1Tm1fA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>710607173484</string>
+	<string>936286010895</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>.Gallery</string>
+	<string>Minji-Lee.TEST-FIREBASE</string>
 	<key>PROJECT_ID</key>
-	<string>youroute-version2</string>
+	<string>youroutehknu</string>
 	<key>STORAGE_BUCKET</key>
-	<string>youroute-version2.appspot.com</string>
+	<string>youroutehknu.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:710607173484:ios:f54b6d5f35873e4f08e549</string>
+	<string>1:936286010895:ios:cd810ca81bfc2c28612d7a</string>
 	<key>DATABASE_URL</key>
-	<string>https://youroute-version2.firebaseio.com</string>
+	<string>https://youroutehknu.firebaseio.com</string>
 </dict>
 </plist>
