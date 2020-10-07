@@ -13,8 +13,4 @@ class TravelSubCell: UICollectionViewCell {
     @IBOutlet weak var Travelimage: UIImageView!
     @IBOutlet weak var Travellabel: UILabel!
     
-    
-    func configureCell(country: Country){
-        
-    }
 }

@@ -8,10 +8,18 @@
 
 import UIKit
 import MapKit
+import Firebase
+import FirebaseUI
+import FirebaseStorage
+import FirebaseFirestoreSwift
 
 class MainController: UIViewController, CLLocationManagerDelegate {
     
-    let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
+//    let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
+    
+    var images : [String] = []
+    let fireref = Firestore.firestore()
+    let storage = Storage.storage()
     
     @IBAction func GoLogin(_ sender: Any) {
         if let Logincontroller = self.storyboard?.instantiateViewController(identifier: "LoginViewController"){
@@ -45,6 +53,8 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        test()
+        
         //map
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -54,6 +64,29 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     
         
     }
+    
+    func test() {
+        
+        fireref.collection("travel").document("travel").addSnapshotListener { (documentSnapshot, error) in
+            guard let document = documentSnapshot else {
+                print("error")
+                return
+            }
+            //var Ary : Array = []
+            
+            let Ary = (document.get("Country") as! Array<Any>)
+            //self.images.append(document.get("cc") as! String)
+            //print(self.images)
+            for Arys in Ary {
+                self.images.append(Arys as! String)
+                //print(Arys)
+            }
+            //print(Ary)
+            self.MainCollectionView.reloadData()
+        }
+        
+    }
+    
     //업데이트 되는 위치정보 표시
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let lastLocation = locations.last //가장 최근의 위치정보 저장
@@ -77,7 +110,7 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
+//        let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
         
         return images.count
     }
@@ -90,14 +123,32 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
         
         let cell = MainCollectionView.dequeueReusableCell(withReuseIdentifier: "Maincheck", for: indexPath) as? MainSubCell
         
-        cell?.MainImage.image = UIImage(named: images[indexPath.row])
+        fireref.collection(images[indexPath.row]).document(images[indexPath.row]).addSnapshotListener { (documentSnapshot, error) in
+                        guard let document = documentSnapshot else {
+                            print("error")
+                            return
+                        }
+                        let Ary = (document.get("DAY-1") as! Array<Any>)
+        //                for Arys in Ary {
+        //                    self.imgg.append(Arys as! String)
+        //                }
+                        //print(Ary)
+                        //let storage = Storage.storage()
+                        self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
+                                let data = NSData(contentsOf: url!)
+                                let image = UIImage(data: data! as Data)
+                            cell?.MainImage.image = image
+                                    }
+                    }
         
-        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
-            let substring = images[indexPath.row][..<index]
-            string = String(substring)
-        }//확장자 제거
+        //cell?.MainImage.image = UIImage(named: images[indexPath.row])
         
-        cell?.MainLabel.text = string
+//        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
+//            let substring = images[indexPath.row][..<index]
+//            string = String(substring)
+//        }//확장자 제거
+        
+        cell?.MainLabel.text = images[indexPath.row]
         
         
         
@@ -111,12 +162,12 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
         let storyBoard = self.storyboard!
         let move = storyBoard.instantiateViewController(withIdentifier: "DetailController") as! DetailController
         
-        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
-            let substring = images[indexPath.row][..<index]
-            string = String(substring)
-        }//확장자 제거
+//        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
+//            let substring = images[indexPath.row][..<index]
+//            string = String(substring)
+//        }//확장자 제거
         
-        move.rcvlabel = string
+        move.rcvlabel = images[indexPath.row]
         self.navigationController?.pushViewController(move, animated: true)
         
     }

@@ -26,14 +26,16 @@ import FirebaseFirestoreSwift
 
 class TravelController: UIViewController {
     //var images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
-    private var country = [Country]()
+    //private var country = [Country]()
     
     var images : [String] = []
+    var imgg : [String] = []
     
     //var list:[Country] = []
     
     let fireref = Firestore.firestore()
-    var wList = [Country]()
+    let storage = Storage.storage()
+    //var wList = [Country]()
     var string = ""
     var filtered : [String] = []
     var searchActive : Bool = false
@@ -62,8 +64,8 @@ class TravelController: UIViewController {
         TravelSearchbar.showsCancelButton = true
         
         //retrieveUserDataFromDB()
-        print(images)
-        print(wList)
+        //print(images)
+        //print(wList)
         
 //        test(){ value in
 //
@@ -151,21 +153,21 @@ class TravelController: UIViewController {
 
     func test() {
         
-        fireref.collection("test").document("aa").addSnapshotListener { (documentSnapshot, error) in
+        fireref.collection("travel").document("travel").addSnapshotListener { (documentSnapshot, error) in
             guard let document = documentSnapshot else {
                 print("error")
                 return
             }
             //var Ary : Array = []
             
-            let Ary = (document.get("DAY1") as! Array<Any>)
+            let Ary = (document.get("Country") as! Array<Any>)
             //self.images.append(document.get("cc") as! String)
-            print(self.images)
+            //print(self.images)
             for Arys in Ary {
                 self.images.append(Arys as! String)
-                print(Arys)
+                //print(Arys)
             }
-            print(Ary)
+            //print(Ary)
             self.TravelCollectionView.reloadData()
         }
         
@@ -315,7 +317,23 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
 
 
         if searchActive {
-            cell?.Travelimage.image = UIImage(named: filtered[indexPath.row])
+            fireref.collection(filtered[indexPath.row]).document(filtered[indexPath.row]).addSnapshotListener { (documentSnapshot, error) in
+                            guard let document = documentSnapshot else {
+                                print("error")
+                                return
+                            }
+                            let Ary = (document.get("DAY-1") as! Array<Any>)
+            //                for Arys in Ary {
+            //                    self.imgg.append(Arys as! String)
+            //                }
+                            //print(Ary)
+                            //let storage = Storage.storage()
+                self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
+                                    let data = NSData(contentsOf: url!)
+                                    let image = UIImage(data: data! as Data)
+                                cell?.Travelimage.image = image
+                                        }
+                        }
 //            if let index = filtered[indexPath.row].range(of: ".")?.lowerBound {
 //                let substring = filtered[indexPath.row][..<index]
 //                string = String(substring)
@@ -325,7 +343,23 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
             cell?.Travelimage.layer.cornerRadius = 30
             return cell!
         } else {
-            cell?.Travelimage.image = UIImage(named: images[indexPath.row])
+            fireref.collection(images[indexPath.row]).document(images[indexPath.row]).addSnapshotListener { (documentSnapshot, error) in
+                guard let document = documentSnapshot else {
+                    print("error")
+                    return
+                }
+                let Ary = (document.get("DAY-1") as! Array<Any>)
+//                for Arys in Ary {
+//                    self.imgg.append(Arys as! String)
+//                }
+                //print(Ary)
+                //let storage = Storage.storage()
+                self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
+                        let data = NSData(contentsOf: url!)
+                        let image = UIImage(data: data! as Data)
+                    cell?.Travelimage.image = image
+                            }
+            }
             cell?.Travellabel.text = images[indexPath.row]
             cell?.Travelimage.alpha = 0.5
             cell?.Travelimage.layer.cornerRadius = 30
