@@ -14,8 +14,8 @@ import FirebaseFirestoreSwift
 
 class GalleryController: UIViewController {
     
-    let images = [ "image1.jpg", "test.jpeg", "1.jpg" , "2.jpg", "3.jpg", "4.jpg", "5.jpg", "test2.jpeg" ]
-    //var images : [String] = []
+//    let images = [ "image1.jpg", "test.jpeg", "1.jpg" , "2.jpg", "3.jpg", "4.jpg", "5.jpg", "test2.jpeg" ]
+    var images : [String] = []
     let fireref = Firestore.firestore()
     let storage = Storage.storage()
     
@@ -29,31 +29,22 @@ class GalleryController: UIViewController {
         }
     }
     
+    func test() {
+        storage.reference().child("images").listAll { (result, error) in
+            if let error = error {
+                print(error)
+            }
+            for item in result.items {
+                self.images.append(item.name)
+                }
+            self.GalleryCollectionView.reloadData()
+            }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        storage.reference().child("images").listAll { (result, error) in
-//                    if let error = error {
-//                        print(error)
-//                    }
-//                    for item in result.items {
-//                        item.getData(maxSize: 1024 * 1024 * 1024) { data, error in
-//                        if error != nil {
-//                            print("Error: Image could not download!")
-//                        } else {
-//                        }
-//                        }
-//                        //self.images.append(item)
-//                        //print(self.images)
-//                        storage.reference(forURL: item).downloadURL { (url, error) in
-//                                    let data = NSData(contentsOf: url!)
-//                                    let image = UIImage(data: data! as Data)
-//                        cell?.GalleryImage.image = image
-//                        }
-//                    }
-//                }
-        
+        test()
     }
 }
 
@@ -77,17 +68,31 @@ extension GalleryController:UICollectionViewDelegate, UICollectionViewDataSource
                 print(error)
             }
             for item in result.items {
-                print(item)
-//                storage.reference(forURL: item as! String).downloadURL { (url, error) in
-//                            let data = NSData(contentsOf: url!)
-//                            let image = UIImage(data: data! as Data)
-//                cell?.GalleryImage.image = image
-//                            }
+                //self.images.append(item.name)
+                print(self.images)
+                self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + item.name).downloadURL { (url, error) in
+                            let data = NSData(contentsOf: url!)
+                            let image = UIImage(data: data! as Data)
+                cell?.GalleryImage.image = image
+                }
             }
         }
+//        storage.reference().child("images").listAll { (result, error) in
+//            if let error = error {
+//                print(error)
+//            }
+//            for item in result.items {
+//                print(item)
+////                storage.reference(forURL: item as! String).downloadURL { (url, error) in
+////                            let data = NSData(contentsOf: url!)
+////                            let image = UIImage(data: data! as Data)
+////                cell?.GalleryImage.image = image
+////                            }
+//            }
+//        }
                 
         
-        cell?.GalleryImage.image = UIImage(named: images[indexPath.row])
+        //cell?.GalleryImage.image = UIImage(named: images[indexPath.row])
         
         return cell!
     }
