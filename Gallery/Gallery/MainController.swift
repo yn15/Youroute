@@ -54,6 +54,7 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view.
         
         test()
+        print(images)
         
         //map
         locationManager.delegate = self
@@ -140,6 +141,12 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
                             cell?.MainImage.image = image
                                     }
                     }
+        
+//        self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + images[indexPath.row]).downloadURL { (url, error) in
+//            let data = NSData(contentsOf: url!)
+//            let image = UIImage(data: data! as Data)
+//        cell?.MainImage.image = image
+//                }
         
         //cell?.MainImage.image = UIImage(named: images[indexPath.row])
         

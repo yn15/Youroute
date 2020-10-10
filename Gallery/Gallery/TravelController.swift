@@ -159,7 +159,7 @@ class TravelController: UIViewController {
                 return
             }
             //var Ary : Array = []
-            
+            print(1)
             let Ary = (document.get("Country") as! Array<Any>)
             //self.images.append(document.get("cc") as! String)
             //print(self.images)
@@ -316,24 +316,29 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
 //        } // 확장자 제거
 
 
-        if searchActive {
-            fireref.collection(filtered[indexPath.row]).document(filtered[indexPath.row]).addSnapshotListener { (documentSnapshot, error) in
-                            guard let document = documentSnapshot else {
-                                print("error")
-                                return
-                            }
-                            let Ary = (document.get("DAY-1") as! Array<Any>)
-            //                for Arys in Ary {
-            //                    self.imgg.append(Arys as! String)
-            //                }
-                            //print(Ary)
-                            //let storage = Storage.storage()
-                self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
-                                    let data = NSData(contentsOf: url!)
-                                    let image = UIImage(data: data! as Data)
-                                cell?.Travelimage.image = image
-                                        }
-                        }
+        if searchActive == true {
+//            fireref.collection(filtered[indexPath.row]).document(filtered[indexPath.row]).addSnapshotListener { (documentSnapshot, error) in
+//                            guard let document = documentSnapshot else {
+//                                print("error")
+//                                return
+//                            }
+//                            let Ary = (document.get("DAY-1") as! Array<Any>)
+//            //                for Arys in Ary {
+//            //                    self.imgg.append(Arys as! String)
+//            //                }
+//                            //print(Ary)
+//                            //let storage = Storage.storage()
+//                self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
+//                                    let data = NSData(contentsOf: url!)
+//                                    let image = UIImage(data: data! as Data)
+//                                cell?.Travelimage.image = image
+//                                        }
+//                        }
+            self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + filtered[indexPath.row]).downloadURL { (url, error) in
+                let data = NSData(contentsOf: url!)
+                let image = UIImage(data: data! as Data)
+            cell?.Travelimage.image = image
+                    }
 //            if let index = filtered[indexPath.row].range(of: ".")?.lowerBound {
 //                let substring = filtered[indexPath.row][..<index]
 //                string = String(substring)
@@ -352,6 +357,7 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
 //                for Arys in Ary {
 //                    self.imgg.append(Arys as! String)
 //                }
+                print(2)
                 //print(Ary)
                 //let storage = Storage.storage()
                 self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
@@ -360,6 +366,11 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
                     cell?.Travelimage.image = image
                             }
             }
+//            self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + images[indexPath.row]).downloadURL { (url, error) in
+//                                    let data = NSData(contentsOf: url!)
+//                                    let image = UIImage(data: data! as Data)
+//                                cell?.Travelimage.image = image
+//            }
             cell?.Travellabel.text = images[indexPath.row]
             cell?.Travelimage.alpha = 0.5
             cell?.Travelimage.layer.cornerRadius = 30

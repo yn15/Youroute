@@ -63,20 +63,29 @@ extension GalleryController:UICollectionViewDelegate, UICollectionViewDataSource
         
         let cell = GalleryCollectionView.dequeueReusableCell(withReuseIdentifier: "Gallerycheck", for: indexPath) as? GallerySubCell
         
-        storage.reference().child("images").listAll { (result, error) in
-            if let error = error {
-                print(error)
-            }
-            for item in result.items {
-                //self.images.append(item.name)
-                print(self.images)
-                self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + item.name).downloadURL { (url, error) in
-                            let data = NSData(contentsOf: url!)
-                            let image = UIImage(data: data! as Data)
-                cell?.GalleryImage.image = image
-                }
-            }
+//        storage.reference().child("images").listAll { (result, error) in
+//            if let error = error {
+//                print(error)
+//            }
+//            for item in result.items {
+//                //self.images.append(item.name)
+//                print(self.images)
+//                self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + item.name).downloadURL { (url, error) in
+//                            let data = NSData(contentsOf: url!)
+//                            let image = UIImage(data: data! as Data)
+//                cell?.GalleryImage.image = image
+//                }
+//            }
+//        }
+        
+        self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + images[indexPath.row]).downloadURL { (url, error) in
+                    let data = NSData(contentsOf: url!)
+                    let image = UIImage(data: data! as Data)
+            print(self.images[indexPath.row])
+        cell?.GalleryImage.image = image
         }
+        
+        
 //        storage.reference().child("images").listAll { (result, error) in
 //            if let error = error {
 //                print(error)
