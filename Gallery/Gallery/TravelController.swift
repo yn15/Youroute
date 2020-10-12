@@ -217,17 +217,17 @@ class TravelController: UIViewController {
 extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let searchString = TravelSearchbar.text
-        filtered = images.filter({ (image) -> Bool in
-            let countryText: NSString = image as NSString
-            return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
-        })
-        if(filtered.count == 0){
-            searchActive = false;
-        } else {
-            searchActive = true;
-        }
-        self.TravelCollectionView.reloadData()
+//        let searchString = TravelSearchbar.text
+//        filtered = images.filter({ (image) -> Bool in
+//            let countryText: NSString = image as NSString
+//            return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+//        })
+//        if(filtered.count == 0){
+//            searchActive = false;
+//        } else {
+//            searchActive = true;
+//        }
+//        self.TravelCollectionView.reloadData()
     }
 
     
@@ -250,6 +250,9 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
                    
                    return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
                })
+        filtered = []
+        self.TravelSearchbar.text = ""
+        self.TravelSearchbar.resignFirstResponder()
                
         self.TravelCollectionView.reloadData()
 
@@ -265,6 +268,12 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
             
             return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
         })
+        if(filtered.count == 0){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        
         self.TravelCollectionView.reloadData()
 
     }
@@ -317,28 +326,28 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
 
 
         if searchActive == true {
-//            fireref.collection(filtered[indexPath.row]).document(filtered[indexPath.row]).addSnapshotListener { (documentSnapshot, error) in
-//                            guard let document = documentSnapshot else {
-//                                print("error")
-//                                return
-//                            }
-//                            let Ary = (document.get("DAY-1") as! Array<Any>)
-//            //                for Arys in Ary {
-//            //                    self.imgg.append(Arys as! String)
-//            //                }
-//                            //print(Ary)
-//                            //let storage = Storage.storage()
-//                self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
-//                                    let data = NSData(contentsOf: url!)
-//                                    let image = UIImage(data: data! as Data)
-//                                cell?.Travelimage.image = image
-//                                        }
-//                        }
-            self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + filtered[indexPath.row]).downloadURL { (url, error) in
-                let data = NSData(contentsOf: url!)
-                let image = UIImage(data: data! as Data)
-            cell?.Travelimage.image = image
-                    }
+            fireref.collection(filtered[indexPath.row]).document(filtered[indexPath.row]).addSnapshotListener { (documentSnapshot, error) in
+                            guard let document = documentSnapshot else {
+                                print("error")
+                                return
+                            }
+                            let Ary = (document.get("DAY-1") as! Array<Any>)
+            //                for Arys in Ary {
+            //                    self.imgg.append(Arys as! String)
+            //                }
+                            //print(Ary)
+                            //let storage = Storage.storage()
+                self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
+                                    let data = NSData(contentsOf: url!)
+                                    let image = UIImage(data: data! as Data)
+                                cell?.Travelimage.image = image
+                                        }
+                        }
+//            self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + filtered[indexPath.row]).downloadURL { (url, error) in
+//                let data = NSData(contentsOf: url!)
+//                let image = UIImage(data: data! as Data)
+//            cell?.Travelimage.image = image
+//                    }
 //            if let index = filtered[indexPath.row].range(of: ".")?.lowerBound {
 //                let substring = filtered[indexPath.row][..<index]
 //                string = String(substring)
@@ -347,7 +356,7 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
             cell?.Travelimage.alpha = 0.5
             cell?.Travelimage.layer.cornerRadius = 30
             return cell!
-        } else {
+        } else if searchActive == false {
             fireref.collection(images[indexPath.row]).document(images[indexPath.row]).addSnapshotListener { (documentSnapshot, error) in
                 guard let document = documentSnapshot else {
                     print("error")
@@ -357,7 +366,6 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
 //                for Arys in Ary {
 //                    self.imgg.append(Arys as! String)
 //                }
-                print(2)
                 //print(Ary)
                 //let storage = Storage.storage()
                 self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
@@ -405,6 +413,13 @@ extension TravelController:UICollectionViewDelegate, UICollectionViewDataSource,
 //                string = String(substring)
 //            }//확장자 제거
             move.rcvlabel = filtered[indexPath.row]
+            self.dismiss(animated: true, completion: nil)
+            let searchString = TravelSearchbar.text
+            filtered = images.filter({ (image) -> Bool in
+                let countryText: NSString = image as NSString
+                
+                return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+            })
             self.navigationController?.pushViewController(move, animated: true)
         } else {
             move.rcvlabel = images[indexPath.row]

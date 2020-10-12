@@ -19,6 +19,7 @@ class GalleryController: UIViewController {
     let fireref = Firestore.firestore()
     let storage = Storage.storage()
     
+    @IBOutlet weak var GallerySearchBar: UISearchBar!
     
     @IBOutlet weak var GalleryCollectionView: UICollectionView!
     
@@ -48,7 +49,15 @@ class GalleryController: UIViewController {
     }
 }
 
-extension GalleryController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension GalleryController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if let searchcontroller = self.storyboard?.instantiateViewController(identifier: "SearchController"){
+            self.navigationController?.pushViewController(searchcontroller, animated: true)
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         

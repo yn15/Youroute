@@ -54,7 +54,6 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view.
         
         test()
-        print(images)
         
         //map
         locationManager.delegate = self
@@ -62,8 +61,6 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         Mymap.showsUserLocation = true
-    
-        
     }
     
     func test() {
@@ -107,8 +104,7 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     
 }
 
-extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
 //        let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
