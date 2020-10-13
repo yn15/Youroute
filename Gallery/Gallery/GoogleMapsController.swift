@@ -58,9 +58,9 @@ class GoogleMapsController: UIViewController, CLLocationManagerDelegate {
 //                    let path = GMSMutablePath()
 //                    path.add(CLLocationCoordinate2D(latitude: 28.459497, longitude: 77.026634))
 //                    path.add(CLLocationCoordinate2D(latitude: 28.704060, longitude: 77.102493))
-                    let polyline = GMSPolyline(path: path)
-                    polyline.strokeColor = .systemBlue
-                    polyline.strokeWidth = 5.0
+                    let polyline = GMSPolyline.init(path: path)
+//                    polyline.strokeColor = .systemBlue
+//                    polyline.strokeWidth = 5.0
                     polyline.map = self.google_map
 
                 }
