@@ -12,16 +12,25 @@ import Foundation
 import AVFoundation
 import CoreMedia
 import VideoToolbox
+import Firebase
+import FirebaseUI
+import FirebaseStorage
+import FirebaseFirestoreSwift
 
 class StoryController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var label1: UILabel!
     
+    var images : [String] = []
+    let fireref = Firestore.firestore()
+    let storage = Storage.storage()
     
     let yolo = YOLO()
     var labelArray = Set<String>();
     var tag = ""
     var videoCapture: VideoCapture!
+    
+    var labeltext = ""
 
     var boundingBoxes = [BoundingBox]()
     var colors: [UIColor] = []
@@ -35,7 +44,7 @@ class StoryController: UIViewController {
     
     var rcvimage: UIImage?
     
-    var images = [ "image1.jpg", "image2.jpeg" , "image3.jpeg", "image4.jpeg" ]
+    //var images = [ "image1.jpg", "image2.jpeg" , "image3.jpeg", "image4.jpeg" ]
     
     //main images
     
@@ -55,7 +64,7 @@ class StoryController: UIViewController {
                predict(image: rcvimage!);
         
         Main_Images.image = rcvimage
-        
+        print(label.text)
     }
     
     func predict() {
@@ -200,6 +209,27 @@ class StoryController: UIViewController {
         label1.text = "\(tag)"
       }
     
+    func test() {
+        fireref.collection(labeltext).document(labeltext).addSnapshotListener { (documentSnapshot, error) in
+            guard let document = documentSnapshot else {
+                print("error")
+                return
+            }
+            //var Ary : Array = []
+            let Ary = (document.get("Picture") as! Array<Any>)
+            //self.images.append(document.get("cc") as! String)
+            //print(self.images)
+            for Arys in Ary {
+                self.images.append(Arys as! String)
+                //print(Arys)
+            }
+            //print(Ary)
+            print("11")
+            print(self.images)
+            self.checkCollectionView.reloadData()
+        }
+    }
+    
     
 }
 
@@ -207,7 +237,7 @@ extension StoryController:UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let images = [ "test.jpeg", "test2.jpeg" , "test3.jpeg", "test4.jpeg" ]
+        //let images = [ "test.jpeg", "test2.jpeg" , "test3.jpeg", "test4.jpeg" ]
         
         return images.count
     }
@@ -223,6 +253,13 @@ extension StoryController:UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = checkCollectionView.dequeueReusableCell(withReuseIdentifier: "check", for: indexPath) as? StorySubCell
+        
+//        self.storage.reference(forURL: images[indexPath.row]).downloadURL { (url, error) in
+//                                let data = NSData(contentsOf: url!)
+//                                let image = UIImage(data: data! as Data)
+//                                cell?.SubImage.image = image
+//                                }
+        //                    }
         
         cell?.SubImage.image = UIImage(named: images[indexPath.row])
         

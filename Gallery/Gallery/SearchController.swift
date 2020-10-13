@@ -78,11 +78,25 @@ extension SearchController:UICollectionViewDelegate, UICollectionViewDataSource,
 //
 //            return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
 //        })
+        //self.images.trimmingCharacters(in: ["\n"])
+        fireref.collection(images).document(images).addSnapshotListener { (documentSnapshot, error) in
+            guard let document = documentSnapshot else {
+                print("error")
+                return
+            }
+            //var Ary : Array = []
+            let Ary = (document.get("Picture") as! Array<Any>)
+            //self.images.append(document.get("cc") as! String)
+            //print(self.images)
+            for Arys in Ary {
+                self.filtered.append(Arys as! String)
+                //print(Arys)
+            }
+            //print(Ary)
+            print(self.filtered)
+            self.SearchCollectionView.reloadData()
+        }
         
-        
-        
-        self.SearchCollectionView.reloadData()
-
     }
     
 //    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -120,27 +134,27 @@ extension SearchController:UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 374, height: 128)
+        return CGSize(width: 180, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = SearchCollectionView.dequeueReusableCell(withReuseIdentifier: "Searchcheck", for: indexPath) as? SearchSubCell
         
-        fireref.collection(images).document(images).addSnapshotListener { (documentSnapshot, error) in
-                    guard let document = documentSnapshot else {
-                        print("error")
-                        return
-                    }
-                    let Ary = (document.get("picture") as! Array<Any>)
-                    self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
+//        fireref.collection(images).document(images).addSnapshotListener { (documentSnapshot, error) in
+//                    guard let document = documentSnapshot else {
+//                        print("error")
+//                        return
+//                    }
+//                    let Ary = (document.get("Picture") as! Array<Any>)
+        self.storage.reference(forURL: filtered[indexPath.row]).downloadURL { (url, error) in
                         let data = NSData(contentsOf: url!)
                         let image = UIImage(data: data! as Data)
                         cell?.SearchImage.image = image
                         }
-                    }
-            cell?.SearchImage.alpha = 0.5
-            cell?.SearchImage.layer.cornerRadius = 30
+//                    }
+            //cell?.SearchImage.alpha = 0.5
+            //cell?.SearchImage.layer.cornerRadius = 30
             return cell!
         
     }
