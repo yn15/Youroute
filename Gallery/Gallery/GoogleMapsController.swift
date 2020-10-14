@@ -28,64 +28,70 @@ class GoogleMapsController: UIViewController, CLLocationManagerDelegate {
 //        self.show_maker(position: google_map.camera.target)
 //        self.google_map.delegate = self
         //getCurrentLocation()
-        
-        let sourceLat = 28.704060
-        let sourceLng = 77.102493
-        
-        let destinationLat = 28.459497
-        let destinationLng = 77.026634
-        
-        let sourceLocation = "\(sourceLat),\(sourceLng)"
-        let destinationLocation = "\(destinationLat),\(destinationLng)"
-        
-        let url = "https://maps.googleapis.com/maps/api/directions/json?orgin=\(sourceLocation)&destination=\(destinationLocation)&mode=driving&key=AIzaSyB_nErUVkzvyiKPAJS4TMGQKjVdUNmmv0M"
-        
-        Alamofire.request(url).responseJSON { (response) in
-            guard let data = response.data else {
-                return
-            }
-            do {
-                let jsonData = try JSON(data: data)
-                let routes = jsonData["routes"].arrayValue
-                
-                for route in routes {
-                    
-                
-                    
-                    let overview_polyline = route["overview_polyline"].dictionary
-                    let points = overview_polyline?["points"]?.string
-                    let path = GMSPath.init(fromEncodedPath: points ?? "")
-//                    let path = GMSMutablePath()
-//                    path.add(CLLocationCoordinate2D(latitude: 28.459497, longitude: 77.026634))
-//                    path.add(CLLocationCoordinate2D(latitude: 28.704060, longitude: 77.102493))
-                    let polyline = GMSPolyline.init(path: path)
-//                    polyline.strokeColor = .systemBlue
-//                    polyline.strokeWidth = 5.0
-                    polyline.map = self.google_map
-
-                }
-            }
-            catch let error {
-                print(error.localizedDescription)
-            }
-        }
-        
-        let sourceMarker = GMSMarker()
-        sourceMarker.position = CLLocationCoordinate2D(latitude: sourceLat, longitude: sourceLng)
-        sourceMarker.title = "Delhi"
-        sourceMarker.snippet = "The capital of India"
-        sourceMarker.map = self.google_map
-        
-        let destinationMaker = GMSMarker()
-        destinationMaker.position = CLLocationCoordinate2D(latitude: destinationLat, longitude: destinationLng)
-        destinationMaker.title = "Gurugram"
-        destinationMaker.snippet = "The hub of industires"
-        destinationMaker.map = self.google_map
-        
-        let camera = GMSCameraPosition(target: sourceMarker.position, zoom: 10)
-        google_map.animate(to: camera)
-    }
-    
+        let path = GMSMutablePath()
+        path.add(CLLocationCoordinate2D(latitude: 37.778483, longitude: -122.513960))
+        path.add(CLLocationCoordinate2D(latitude: 37.706753, longitude: -122.418677))
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeColor = .black
+        polyline.strokeWidth = 10.0
+        polyline.map = google_map
+//        let sourceLat = 28.704060
+//        let sourceLng = 77.102493
+//
+//        let destinationLat = 28.459497
+//        let destinationLng = 77.026634
+//
+//        let sourceLocation = "\(sourceLat),\(sourceLng)"
+//        let destinationLocation = "\(destinationLat),\(destinationLng)"
+//
+//        let url = "https://maps.googleapis.com/maps/api/directions/json?orgin=\(sourceLocation)&destination=\(destinationLocation)&mode=driving&key=AIzaSyB_nErUVkzvyiKPAJS4TMGQKjVdUNmmv0M"
+//
+//        Alamofire.request(url).responseJSON { (response) in
+//            guard let data = response.data else {
+//                return
+//            }
+//            do {
+//                let jsonData = try JSON(data: data)
+//                let routes = jsonData["routes"].arrayValue
+//
+//                for route in routes {
+//
+//
+//
+//                    let overview_polyline = route["overview_polyline"].dictionary
+//                    let points = overview_polyline?["points"]?.string
+//                    let path = GMSPath.init(fromEncodedPath: points ?? "")
+////                    let path = GMSMutablePath()
+////                    path.add(CLLocationCoordinate2D(latitude: 28.459497, longitude: 77.026634))
+////                    path.add(CLLocationCoordinate2D(latitude: 28.704060, longitude: 77.102493))
+//                    let polyline = GMSPolyline.init(path: path)
+////                    polyline.strokeColor = .systemBlue
+////                    polyline.strokeWidth = 5.0
+//                    polyline.map = self.google_map
+//
+//                }
+//            }
+//            catch let error {
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        let sourceMarker = GMSMarker()
+//        sourceMarker.position = CLLocationCoordinate2D(latitude: sourceLat, longitude: sourceLng)
+//        sourceMarker.title = "Delhi"
+//        sourceMarker.snippet = "The capital of India"
+//        sourceMarker.map = self.google_map
+//
+//        let destinationMaker = GMSMarker()
+//        destinationMaker.position = CLLocationCoordinate2D(latitude: destinationLat, longitude: destinationLng)
+//        destinationMaker.title = "Gurugram"
+//        destinationMaker.snippet = "The hub of industires"
+//        destinationMaker.map = self.google_map
+//
+//        let camera = GMSCameraPosition(target: sourceMarker.position, zoom: 10)
+//        google_map.animate(to: camera)
+//    }
+//
     func getCurrentLocation() {
     // Ask for Authorisation from the User.
     self.locationManager.requestAlwaysAuthorization()
@@ -152,3 +158,4 @@ class GoogleMapsController: UIViewController, CLLocationManagerDelegate {
 //    }
 //
 
+}
