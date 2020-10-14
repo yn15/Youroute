@@ -11,30 +11,151 @@ import GoogleMaps
 import CoreLocation
 import Alamofire
 import SwiftyJSON
+import MapKit
 
 
-class GoogleMapsController: UIViewController, CLLocationManagerDelegate {
+class GoogleMapsController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    let locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
 
-    @IBOutlet weak var google_map: GMSMapView!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var swich: UISwitch!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+//        locationManager.requestWhenInUseAuthorization()
+        
+//        let locationManager = CLLocationManager()
+//        var currentLoc: CLLocation!
+//        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+//        CLLocationManager.authorizationStatus() == .authorizedAlways) {
+//           currentLoc = locationManager.location
+            
+//           let coordinateOne = CLLocationCoordinate2D(latitude: currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
+//
+//           let coordinateTwo = CLLocationCoordinate2D(latitude: currentLoc.coordinate.latitude,longitude:currentLoc.coordinate.longitude)
+//
+//            self.getDirections(loc1: coordinateOne, loc2: coordinateTwo)
+//        }
+        
+        let coordinateOne = CLLocationCoordinate2D(latitude: CLLocationDegrees(exactly: 40.586746)!, longitude: CLLocationDegrees(exactly: -108.610891)!)
+
+        let coordinateTwo = CLLocationCoordinate2D(latitude: CLLocationDegrees(exactly: 42.564874)!, longitude: CLLocationDegrees(exactly: -102.125547)!)
+        self.getDirections(loc1: coordinateOne, loc2: coordinateTwo)
+        
+    }
+    
+    func determineCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func getDirections(loc1: CLLocationCoordinate2D, loc2: CLLocationCoordinate2D) {
+       let source = MKMapItem(placemark: MKPlacemark(coordinate: loc1))
+       source.name = "Your Location"
+       let destination = MKMapItem(placemark: MKPlacemark(coordinate: loc2))
+       destination.name = "Destination"
+       MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving])
+}
+    
+//func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//     let renderer = MKPolylineRenderer(overlay: overlay)
+//    renderer.strokeColor = UIColor.red
+//    renderer.lineWidth = 4.0
+//    return renderer
+//}
+//
+//    func drawPlaceMark() {
+//
+//        for (x,y) in location! {
+//            sourceLocation = CLLocationCoordinate2D(latitude: x, longitude: y)
+//
+//            let destinationPlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+//
+//            let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+//
+//            let sourceAnnotation = MKPointAnnotation()
+//            sourceAnnotation.title = placeAnnotation?[indexPoint]
+//
+//            indexPoint = indexPoint + 1
+//
+//            if let location = destinationPlacemark.location {
+//                sourceAnnotation.coordinate = location.coordinate
+//            }
+//            self.mapView.showAnnotations([sourceAnnotation,sourceAnnotation], animated: true )
+//
+//
+//            // Calculate the direction and draw line
+//            let directionRequest = MKDirections.Request()
+//            directionRequest.source = destinationMapItem
+//
+//            directionRequest.destination = destinationMapItem
+//            directionRequest.transportType = .walking
+//
+//            let directions = MKDirections(request: directionRequest)
+//
+//            directions.calculate {
+//                (response, error) -> Void in
+//
+//                guard let response = response else {
+//                    if let error = error {
+//                        print("Error: \(error)")
+//                    }
+//                    return
+//                }
+//
+//                let route = response.routes[0]
+//                self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
+//
+//                let rect = route.polyline.boundingMapRect
+//                self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+//            }
+//        }
+//    }
+//
+//
+//}
+//
+//
+//
+//
+//
+//
+//
+        
+        
+        
+        
+// here from
+//        let path = GMSMutablePath()
+//        let sourceMarker = GMSMarker()
+//        path.add(CLLocationCoordinate2D(latitude: 37.778483, longitude: -122.513960))
+//        path.add(CLLocationCoordinate2D(latitude: 37.706753, longitude: -122.418677))
+//        let sourceLat = 37.778483
+//        let sourceLng = -122.513960
+//        sourceMarker.position = CLLocationCoordinate2D(latitude: sourceLat, longitude: sourceLng)
+//        let polyline = GMSPolyline(path: path)
+//        polyline.strokeColor = .black
+//        polyline.strokeWidth = 5
+//        polyline.map = google_map
+//        let camera = GMSCameraPosition(target: sourceMarker.position, zoom: 10)
+//        google_map.animate(to: camera)
+// here too
+        
+        
+        
         // Do any additional setup after loading the view.
 //        let camera = GMSCameraPosition.camera(withLatitude: 24.7041, longitude: 77.1025, zoom: 6.0)
 //        google_map.camera = camera
 //        self.show_maker(position: google_map.camera.target)
 //        self.google_map.delegate = self
         //getCurrentLocation()
-        let path = GMSMutablePath()
-        path.add(CLLocationCoordinate2D(latitude: 37.778483, longitude: -122.513960))
-        path.add(CLLocationCoordinate2D(latitude: 37.706753, longitude: -122.418677))
-        let polyline = GMSPolyline(path: path)
-        polyline.strokeColor = .black
-        polyline.strokeWidth = 10.0
-        polyline.map = google_map
 //        let sourceLat = 28.704060
 //        let sourceLng = 77.102493
 //
@@ -92,12 +213,12 @@ class GoogleMapsController: UIViewController, CLLocationManagerDelegate {
 //        google_map.animate(to: camera)
 //    }
 //
-    func getCurrentLocation() {
-    // Ask for Authorisation from the User.
-    self.locationManager.requestAlwaysAuthorization()
-        
-    // For use in foreground
-    self.locationManager.requestWhenInUseAuthorization()
+//    func getCurrentLocation() {
+//    // Ask for Authorisation from the User.
+//    self.locationManager.requestAlwaysAuthorization()
+//
+//    // For use in foreground
+//    self.locationManager.requestWhenInUseAuthorization()
 
 //    if CLLocationManager.locationServicesEnabled() {
 //        locationManager.delegate = self
@@ -114,8 +235,8 @@ class GoogleMapsController: UIViewController, CLLocationManagerDelegate {
 //        marker.map = google_map
 //
 //    }
-    }
-}
+//    }
+//}
 //extension GoogleMapsController : GMSMapViewDelegate {
 //
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -158,4 +279,5 @@ class GoogleMapsController: UIViewController, CLLocationManagerDelegate {
 //    }
 //
 
+//}
 }

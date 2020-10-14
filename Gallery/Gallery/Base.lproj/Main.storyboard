@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sFx-dI-wba">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sFx-dI-wba">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -189,6 +189,10 @@
                                     <segue destination="gqH-Bg-iYI" kind="show" id="mCi-KE-7Ef"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0kc-5T-70T">
+                                <rect key="frame" x="183" y="873" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -219,23 +223,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOU-wV-cnS" customClass="GMSMapView">
-                                <rect key="frame" x="20" y="88" width="374" height="878"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VjX-BQ-QKz">
+                                <rect key="frame" x="20" y="88" width="374" height="888"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="MlI-6V-43N" firstAttribute="top" secondItem="yOU-wV-cnS" secondAttribute="bottom" id="7M2-6F-dqf"/>
-                            <constraint firstItem="yOU-wV-cnS" firstAttribute="top" secondItem="SeL-V1-kvh" secondAttribute="bottom" id="g8V-BR-Z7d"/>
-                            <constraint firstItem="yOU-wV-cnS" firstAttribute="leading" secondItem="YQZ-y0-JTe" secondAttribute="leadingMargin" id="jpA-dB-uWt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yOU-wV-cnS" secondAttribute="trailing" id="tY8-WI-wD1"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jed-G4-XVA"/>
-                    <connections>
-                        <outlet property="google_map" destination="yOU-wV-cnS" id="jyF-fv-39v"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B3j-cL-BNl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
