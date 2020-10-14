@@ -148,6 +148,7 @@ extension SearchController:UICollectionViewDelegate, UICollectionViewDataSource,
 //                    }
 //                    let Ary = (document.get("Picture") as! Array<Any>)
         self.storage.reference(forURL: filtered[indexPath.row]).downloadURL { (url, error) in
+            print(self.filtered[indexPath.row])
                         let data = NSData(contentsOf: url!)
                         let image = UIImage(data: data! as Data)
                         cell?.SearchImage.image = image
