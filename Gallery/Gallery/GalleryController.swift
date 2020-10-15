@@ -57,6 +57,7 @@ extension GalleryController:UICollectionViewDelegate, UICollectionViewDataSource
         if let searchcontroller = self.storyboard?.instantiateViewController(identifier: "SearchController"){
             self.navigationController?.pushViewController(searchcontroller, animated: true)
         }
+        self.GallerySearchBar.resignFirstResponder()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -147,11 +147,11 @@ extension SearchController:UICollectionViewDelegate, UICollectionViewDataSource,
 //                        return
 //                    }
 //                    let Ary = (document.get("Picture") as! Array<Any>)
+        print(self.filtered[indexPath.row])
         self.storage.reference(forURL: filtered[indexPath.row]).downloadURL { (url, error) in
-            print(self.filtered[indexPath.row])
-                        let data = NSData(contentsOf: url!)
-                        let image = UIImage(data: data! as Data)
-                        cell?.SearchImage.image = image
+            let data = NSData(contentsOf: url!)
+            let image = UIImage(data: data! as Data)
+            cell?.SearchImage.image = image
                         }
 //                    }
             //cell?.SearchImage.alpha = 0.5
