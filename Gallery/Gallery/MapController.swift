@@ -63,8 +63,6 @@ class MapController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Day-1 경주"
-
-
         self.initControls()
         self.doLayout()
         self.loadAnnotations()

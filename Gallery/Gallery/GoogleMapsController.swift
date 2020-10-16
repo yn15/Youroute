@@ -18,6 +18,7 @@ class GoogleMapsController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     var locationManager = CLLocationManager()
 
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var swich: UISwitch!
     
@@ -63,6 +64,97 @@ class GoogleMapsController: UIViewController, MKMapViewDelegate, CLLocationManag
        destination.name = "Destination"
        MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving])
 }
+
+
+func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    // Don't want to show a custom image if the annotation is the user's location.
+    guard !(annotation is MKUserLocation) else {
+        return nil
+    }
+
+    // Better to make this class property
+    let annotationIdentifier = "AnnotationIdentifier"
+
+    var annotationView: MKAnnotationView?
+    if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+        annotationView = dequeuedAnnotationView
+        annotationView?.annotation = annotation
+    }
+    else {
+        let av = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+        av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        annotationView = av
+    }
+
+    if let annotationView = annotationView {
+        // Configure your annotation view here
+        annotationView.canShowCallout = true
+        annotationView.image = UIImage(named: "yourImage")
+    }
+
+    return annotationView
+}
+
+class ImageAnnotation : NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    var image: UIImage?
+    var colour: UIColor?
+
+    override init() {
+        self.coordinate = CLLocationCoordinate2D()
+        self.title = nil
+        self.subtitle = nil
+        self.image = nil
+        self.colour = UIColor.white
+    }
+}
+
+class ImageAnnotationView: MKAnnotationView {
+    private var imageView: UIImageView!
+
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+
+        self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        self.imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        self.addSubview(self.imageView)
+
+        self.imageView.layer.cornerRadius = 5.0
+        self.imageView.layer.masksToBounds = true
+    }
+
+    override var image: UIImage? {
+        get {
+            return self.imageView.image
+        }
+
+        set {
+            self.imageView.image = newValue
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 //func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 //     let renderer = MKPolylineRenderer(overlay: overlay)

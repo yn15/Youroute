@@ -170,6 +170,7 @@
 				0135197F251CC4B0000156B6 /* Country.swift */,
 				013BA3B3246C810D00E99C24 /* SceneDelegate.swift */,
 				0448F76D24ED600600A1BC0E /* ViewController.swift */,
+				01F92D6D24C683DA0048755D /* MapController.swift */,
 				04EBFDCF2537303000BB0861 /* MKMapViewDelegate.swift */,
 				013BA3B5246C810D00E99C24 /* GalleryController.swift */,
 				041A9DA42520AFB300EA64F2 /* GoogleMapsController.swift */,
@@ -191,7 +192,6 @@
 				013BA3EA246CAE6600E99C24 /* StoryController.swift */,
 				012DE2942473648D000C3BDE /* SearchController.swift */,
 				012DE29624736DF0000C3BDE /* MainController.swift */,
-				01F92D6D24C683DA0048755D /* MapController.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
