@@ -88,6 +88,7 @@ extension SearchController:UICollectionViewDelegate, UICollectionViewDataSource,
             let Ary = (document.get("Picture") as! Array<Any>)
             //self.images.append(document.get("cc") as! String)
             //print(self.images)
+            print(Ary)
             for Arys in Ary {
                 self.filtered.append(Arys as! String)
                 //print(Arys)

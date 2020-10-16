@@ -30,7 +30,7 @@ class StoryController: UIViewController {
     var tag = ""
     var videoCapture: VideoCapture!
     
-    var labeltext = ""
+    var labeltext : String = ""
 
     var boundingBoxes = [BoundingBox]()
     var colors: [UIColor] = []
@@ -64,7 +64,10 @@ class StoryController: UIViewController {
                predict(image: rcvimage!);
         
         Main_Images.image = rcvimage
-        print(label.text)
+        //print(label.text)
+
+        test()
+        
     }
     
     func predict() {
@@ -81,6 +84,7 @@ class StoryController: UIViewController {
             let confidence = result.classLabelProbs[result.classLabel] ?? 0.0
             label.text = "\(predictedLabel)"//" , 정확도 \(round(confidence*1000)/10)%"
         }
+        
     }
     
     func setUpBoundingBoxes() {
@@ -210,6 +214,9 @@ class StoryController: UIViewController {
       }
     
     func test() {
+        labeltext = label.text!
+        print(type(of: labeltext))
+        print(label.text!)
         fireref.collection(labeltext).document(labeltext).addSnapshotListener { (documentSnapshot, error) in
             guard let document = documentSnapshot else {
                 print("error")
@@ -219,13 +226,13 @@ class StoryController: UIViewController {
             let Ary = (document.get("Picture") as! Array<Any>)
             //self.images.append(document.get("cc") as! String)
             //print(self.images)
-            for Arys in Ary {
-                self.images.append(Arys as! String)
-                //print(Arys)
-            }
+            print(Ary)
+//            for Arys in Ary {
+//                self.images.append(Arys as! String)
+//                //print(Arys)
+//            }
             //print(Ary)
-            print("11")
-            print(self.images)
+            //print(self.images)
             self.checkCollectionView.reloadData()
         }
     }
@@ -243,7 +250,11 @@ extension StoryController:UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        Main_Images.image = UIImage(named: images[indexPath.row])
+            self.storage.reference(forURL: images[indexPath.row]).downloadURL { (url, error) in
+                    let data = NSData(contentsOf: url!)
+                    let image = UIImage(data: data! as Data)
+                self.Main_Images.image = image
+                }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -254,14 +265,13 @@ extension StoryController:UICollectionViewDelegate, UICollectionViewDataSource, 
         
         let cell = checkCollectionView.dequeueReusableCell(withReuseIdentifier: "check", for: indexPath) as? StorySubCell
         
-//        self.storage.reference(forURL: images[indexPath.row]).downloadURL { (url, error) in
-//                                let data = NSData(contentsOf: url!)
-//                                let image = UIImage(data: data! as Data)
-//                                cell?.SubImage.image = image
-//                                }
-        //                    }
+        self.storage.reference(forURL: images[indexPath.row]).downloadURL { (url, error) in
+                let data = NSData(contentsOf: url!)
+                let image = UIImage(data: data! as Data)
+                cell?.SubImage.image = image
+                }
         
-        cell?.SubImage.image = UIImage(named: images[indexPath.row])
+        //cell?.SubImage.image = UIImage(named: images[indexPath.row])
         
         return cell!
     }
