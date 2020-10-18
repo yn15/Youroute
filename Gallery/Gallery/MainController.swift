@@ -11,11 +11,6 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     let fireref = Firestore.firestore()
     let storage = Storage.storage()
     
-    @IBAction func GoLogin(_ sender: Any) {
-        if let Logincontroller = self.storyboard?.instantiateViewController(identifier: "LoginViewController"){
-            self.navigationController?.pushViewController(Logincontroller, animated: true)
-        }
-    }
     @IBOutlet weak var MainCollectionView: UICollectionView!
     @IBOutlet weak var Mymap: MKMapView!
     
