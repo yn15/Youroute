@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sFx-dI-wba">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -11,61 +11,33 @@
         <scene sceneID="eU8-2B-rop">
             <objects>
                 <navigationController id="sFx-dI-wba" sceneMemberID="viewController">
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MiK-rS-q7w">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JoI-XZ-Dyk" kind="relationship" relationship="rootViewController" id="7i5-rl-IjF"/>
+                        <segue destination="JoI-XZ-Dyk" kind="relationship" relationship="rootViewController" id="YaF-Kj-UHZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zE4-bp-nqZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1426" y="153"/>
+            <point key="canvasLocation" x="-1559" y="-32"/>
         </scene>
         <!--Main Controller-->
         <scene sceneID="jx3-1c-rha">
             <objects>
-                <viewController id="9u6-jv-C5G" customClass="MainController" customModule="Gallery" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainController" id="9u6-jv-C5G" customClass="MainController" customModule="Gallery" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ao7-bT-1Ni"/>
                         <viewControllerLayoutGuide type="bottom" id="dDf-b2-MbA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Z33-cC-MLH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9k8-Jp-b5J">
-                                <rect key="frame" x="29" y="770" width="94" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="photo.on.rectangle" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="43" scale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="GoGallery:" destination="9u6-jv-C5G" eventType="touchUpInside" id="4Kq-E0-XLl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoT-FU-rov">
-                                <rect key="frame" x="311" y="164" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="전체보기 &gt;&gt;">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="GoTravel:" destination="9u6-jv-C5G" eventType="touchUpInside" id="LRD-Lb-cF0"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="여행 기록 리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hN-xb-u3D">
-                                <rect key="frame" x="10" y="164" width="192" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AOb-cv-4pG">
-                                <rect key="frame" x="10" y="211" width="384" height="187"/>
+                                <rect key="frame" x="15" y="129" width="384" height="187"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lvc-we-uzc">
@@ -76,7 +48,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Maincheck" id="hr3-Pu-Fmx" customClass="MainSubCell" customModule="Gallery" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="6.5" width="164" height="174"/>
+                                        <rect key="frame" x="0.0" y="6.666666666666667" width="164" height="174"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dVq-8A-yUZ">
                                             <rect key="frame" x="0.0" y="0.0" width="164" height="174"/>
@@ -108,36 +80,43 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="기록시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yc-dc-K0H">
-                                <rect key="frame" x="20" y="444" width="103" height="33"/>
+                                <rect key="frame" x="15" y="324" width="103" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Zgf-Hc-e8Q">
-                                <rect key="frame" x="20" y="486" width="374" height="276"/>
+                                <rect key="frame" x="15" y="365" width="384" height="285"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dH5-jz-MCz">
-                                <rect key="frame" x="311" y="447" width="75" height="30"/>
+                                <rect key="frame" x="319" y="324" width="75" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="전체보기 &gt;&gt;">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1y-6U-hyW">
-                                <rect key="frame" x="131" y="447" width="49" height="31"/>
+                                <rect key="frame" x="126" y="325" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="여행 기록 리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hN-xb-u3D">
+                                <rect key="frame" x="15" y="82" width="192" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVp-Ch-Njf">
-                                <rect key="frame" x="172" y="783" width="70" height="75"/>
+                                <rect key="frame" x="172" y="652" width="70" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="camera.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="43" scale="large"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlu-T3-ePt">
-                                <rect key="frame" x="296" y="783" width="78" height="66"/>
+                                <rect key="frame" x="321" y="655" width="78" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Login"/>
@@ -145,10 +124,32 @@
                                     <action selector="GoLogin:" destination="9u6-jv-C5G" eventType="touchUpInside" id="ckt-Ry-mOb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9k8-Jp-b5J">
+                                <rect key="frame" x="22" y="657" width="78" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="photo.on.rectangle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="43" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="GoGallery:" destination="9u6-jv-C5G" eventType="touchUpInside" id="4Kq-E0-XLl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoT-FU-rov">
+                                <rect key="frame" x="311" y="86" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="전체보기 &gt;&gt;">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="GoTravel:" destination="9u6-jv-C5G" eventType="touchUpInside" id="LRD-Lb-cF0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="sw4-yW-Gg4"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="MainCollectionView" destination="AOb-cv-4pG" id="SaN-Kb-6GN"/>
                         <outlet property="Mymap" destination="Zgf-Hc-e8Q" id="2Xu-Po-tJb"/>
@@ -156,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7y8-fb-eqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-586.95652173913049" y="134.59821428571428"/>
+            <point key="canvasLocation" x="-768" y="-31"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ll1-zy-1jz">
@@ -175,7 +176,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAy-kf-0pd" customClass="GIDSignInButton">
-                                <rect key="frame" x="87" y="516" width="240" height="48"/>
+                                <rect key="frame" x="87" y="550" width="240" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="4n9-re-Q6u"/>
@@ -183,7 +184,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2Y-DO-LNg">
-                                <rect key="frame" x="184" y="835" width="46" height="30"/>
+                                <rect key="frame" x="184" y="869" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="gqH-Bg-iYI" kind="show" id="mCi-KE-7Ef"/>
@@ -209,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bC-wn-w7q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-584.05797101449275" y="855.80357142857144"/>
+            <point key="canvasLocation" x="-768" y="749"/>
         </scene>
         <!--Google Maps Controller-->
         <scene sceneID="DTl-WL-kqc">
@@ -220,7 +221,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MlI-6V-43N"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YQZ-y0-JTe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VjX-BQ-QKz">
@@ -234,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B3j-cL-BNl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="855.80357142857144"/>
+            <point key="canvasLocation" x="200" y="641"/>
         </scene>
         <!--Travel Controller-->
         <scene sceneID="tWS-Yr-0iy">
@@ -245,11 +246,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Jzc-Hm-Cyw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tS0-x1-dJL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vdJ-by-ket">
-                                <rect key="frame" x="20" y="240" width="374" height="593"/>
+                                <rect key="frame" x="20" y="188" width="374" height="528"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2Fs-Kp-M7x">
@@ -292,7 +293,7 @@
                                 </connections>
                             </collectionView>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOe-gw-1NU">
-                                <rect key="frame" x="0.0" y="183" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="131" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -300,7 +301,7 @@
                                 </connections>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="여행 기록 리스트" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJg-rn-RzU">
-                                <rect key="frame" x="90" y="124" width="234" height="41"/>
+                                <rect key="frame" x="90" y="72" width="234" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <nil key="textColor"/>
@@ -309,7 +310,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="TravelCollectionView" destination="vdJ-by-ket" id="GML-WD-XC9"/>
                         <outlet property="TravelSearchbar" destination="oOe-gw-1NU" id="Tpq-Zy-kiP"/>
@@ -317,7 +318,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pe0-q6-4VZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="-598.66071428571422"/>
+            <point key="canvasLocation" x="-129" y="-720"/>
         </scene>
         <!--Detail Controller-->
         <scene sceneID="eKD-2y-OwB">
@@ -328,18 +329,11 @@
                         <viewControllerLayoutGuide type="bottom" id="G5t-Vh-9w5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OFJ-Se-7Zz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="세부 기록 리스트 화면" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oue-dQ-ijS">
-                                <rect key="frame" x="45" y="109" width="324" height="78"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9fI-Md-kHS">
-                                <rect key="frame" x="20" y="240" width="374" height="593"/>
+                                <rect key="frame" x="20" y="196" width="374" height="476"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qba-CD-IkN">
@@ -380,10 +374,17 @@
                                     <outlet property="delegate" destination="Teu-HH-8jh" id="9eo-Kn-JAY"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="세부 기록 리스트 화면" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oue-dQ-ijS">
+                                <rect key="frame" x="45" y="79" width="324" height="78"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="DetailCollectionView" destination="9fI-Md-kHS" id="CM5-Vo-QrJ"/>
                         <outlet property="DetailMainLabel" destination="Oue-dQ-ijS" id="coj-lb-Lif"/>
@@ -391,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0a-w8-pgW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="847.82608695652175" y="-598.66071428571422"/>
+            <point key="canvasLocation" x="530" y="-720"/>
         </scene>
         <!--Map Controller-->
         <scene sceneID="POc-1Q-nxo">
@@ -402,25 +403,25 @@
                         <viewControllerLayoutGuide type="bottom" id="IdE-Y1-0nq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6pd-fn-GRX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="12c-QM-PeI">
-                                <rect key="frame" x="0.0" y="44" width="414" height="956"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="MKx-WP-6qZ"/>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="mapView" destination="12c-QM-PeI" id="z8H-I5-lR5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jo3-9e-xQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1550.7246376811595" y="-598.66071428571422"/>
+            <point key="canvasLocation" x="1194" y="-720"/>
         </scene>
         <!--Gallery Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -431,18 +432,17 @@
                         <viewControllerLayoutGuide type="bottom" id="3mD-Xp-8LW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOf-Da-IWS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOf-Da-IWS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="728"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qf-O6-hyL">
-                                        <rect key="frame" x="8" y="138" width="396" height="684"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qf-O6-hyL">
+                                        <rect key="frame" x="8" y="138" width="396" height="564"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="684" id="OeB-WB-u5K"/>
-                                        </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N7h-F7-3r5">
                                             <size key="itemSize" width="186" height="210"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -475,8 +475,9 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="AhL-uq-qk8"/>
                                         </connections>
                                     </collectionView>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Fjy-zR-TXF">
-                                        <rect key="frame" x="-1" y="85" width="414" height="56"/>
+                                    <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fjy-zR-TXF">
+                                        <rect key="frame" x="0.0" y="67" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="gdR-hn-QiE"/>
@@ -484,26 +485,12 @@
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstItem="Fjy-zR-TXF" firstAttribute="centerX" secondItem="3Qf-O6-hyL" secondAttribute="centerX" id="HYz-gm-Bdb"/>
-                                    <constraint firstItem="Fjy-zR-TXF" firstAttribute="top" secondItem="LOf-Da-IWS" secondAttribute="top" constant="85" id="OiQ-rm-2Y0"/>
-                                    <constraint firstAttribute="trailing" secondItem="3Qf-O6-hyL" secondAttribute="trailing" constant="10" id="Tu2-up-5Yy"/>
-                                    <constraint firstItem="Fjy-zR-TXF" firstAttribute="leading" secondItem="LOf-Da-IWS" secondAttribute="leading" constant="-1" id="dpL-6h-c25"/>
-                                    <constraint firstItem="3Qf-O6-hyL" firstAttribute="top" secondItem="LOf-Da-IWS" secondAttribute="topMargin" constant="70" id="fDz-Xx-IFI"/>
-                                    <constraint firstItem="3Qf-O6-hyL" firstAttribute="leading" secondItem="LOf-Da-IWS" secondAttribute="leadingMargin" id="fXO-FM-Te8"/>
-                                    <constraint firstAttribute="height" constant="1000" id="j2Z-PB-zLH"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="LOf-Da-IWS" secondAttribute="trailing" id="EPT-IW-aXI"/>
-                            <constraint firstItem="LOf-Da-IWS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RvW-YB-Vnb"/>
-                            <constraint firstItem="LOf-Da-IWS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Wro-3W-aGN"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kve-E5-YYX"/>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="GalleryCollectionView" destination="3Qf-O6-hyL" id="yMc-OK-OIZ"/>
                         <outlet property="GallerySearchBar" destination="Fjy-zR-TXF" id="Y0J-nH-OWM"/>
@@ -512,7 +499,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="136.60714285714286"/>
+            <point key="canvasLocation" x="-114" y="-32"/>
         </scene>
         <!--Story Controller-->
         <scene sceneID="2tF-56-yrs">
@@ -523,37 +510,29 @@
                         <viewControllerLayoutGuide type="bottom" id="Jnl-sl-LIb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bNQ-ph-x2a">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dha-HL-Xpd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="956"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mG-AF-XCu">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="1000"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cXK-dL-rjZ">
-                                                <rect key="frame" x="9" y="28" width="380" height="300"/>
+                                                <rect key="frame" x="9" y="28" width="380" height="270"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="GQl-uw-cG0"/>
+                                                    <constraint firstAttribute="height" constant="270" id="GQl-uw-cG0"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="스토리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXR-jw-51s">
-                                                <rect key="frame" x="8" y="525" width="65" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="스토리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXR-jw-51s">
+                                                <rect key="frame" x="8" y="495" width="65" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cpb-co-LJn">
-                                                <rect key="frame" x="10" y="563" width="380" height="369"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="m3s-yI-feQ">
-                                                <rect key="frame" x="10" y="348" width="380" height="128"/>
+                                                <rect key="frame" x="10" y="306" width="380" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G3v-7I-xw7">
@@ -589,24 +568,32 @@
                                                 </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xq-B5-pgX">
-                                                <rect key="frame" x="10" y="484" width="138" height="45"/>
+                                                <rect key="frame" x="10" y="454" width="138" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8c-fQ-jJT">
-                                                <rect key="frame" x="179" y="484" width="193" height="45"/>
+                                                <rect key="frame" x="179" y="454" width="193" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cpb-co-LJn">
+                                                <rect key="frame" x="10" y="533" width="380" height="194"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="cXK-dL-rjZ" firstAttribute="leading" secondItem="7mG-AF-XCu" secondAttribute="leading" constant="9" id="GH8-QI-mG4"/>
-                                            <constraint firstAttribute="bottom" secondItem="cpb-co-LJn" secondAttribute="bottom" constant="68" id="IDy-dp-j8B"/>
+                                            <constraint firstAttribute="bottom" secondItem="cpb-co-LJn" secondAttribute="bottom" constant="214" id="IDy-dp-j8B"/>
                                             <constraint firstItem="cXK-dL-rjZ" firstAttribute="trailing" secondItem="cpb-co-LJn" secondAttribute="trailing" constant="-1" id="L86-vc-blC"/>
                                             <constraint firstAttribute="height" constant="1000" id="LNf-Pn-Mlw"/>
                                             <constraint firstItem="cXK-dL-rjZ" firstAttribute="leading" secondItem="eXR-jw-51s" secondAttribute="leading" constant="1" id="Okj-kQ-iye"/>
@@ -636,7 +623,7 @@
                             <constraint firstItem="Dha-HL-Xpd" firstAttribute="trailing" secondItem="bNQ-ph-x2a" secondAttribute="trailing" id="djI-fn-bop"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="Main_Images" destination="cXK-dL-rjZ" id="hYN-be-MM3"/>
                         <outlet property="Text_View" destination="cpb-co-LJn" id="yLB-Co-lkg"/>
@@ -647,7 +634,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lf3-ai-oC0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850.72463768115949" y="136.60714285714286"/>
+            <point key="canvasLocation" x="548" y="-33"/>
         </scene>
         <!--Search Controller-->
         <scene sceneID="El0-6k-K0W">
@@ -658,14 +645,14 @@
                         <viewControllerLayoutGuide type="bottom" id="sL9-dC-j6e"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="amg-xr-yMH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqT-RL-ATQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                                <rect key="frame" x="0.0" y="-44" width="414" height="824"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6IX-s0-bTR">
-                                        <rect key="frame" x="8" y="141" width="398" height="767"/>
+                                        <rect key="frame" x="8" y="141" width="398" height="615"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bon-JZ-FiD">
@@ -720,7 +707,7 @@
                             <constraint firstItem="jqT-RL-ATQ" firstAttribute="centerX" secondItem="amg-xr-yMH" secondAttribute="centerX" id="UlB-yo-6eJ"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="SearchCollectionView" destination="6IX-s0-bTR" id="X1K-lu-AbO"/>
                         <outlet property="Searchbar" destination="uMM-Gh-Tge" id="yPi-t0-OHa"/>
@@ -728,7 +715,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNB-mV-Ecz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1571.0144927536232" y="135.9375"/>
+            <point key="canvasLocation" x="1194.2028985507247" y="-31.793478260869566"/>
         </scene>
     </scenes>
     <resources>

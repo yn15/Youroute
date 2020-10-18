@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Maps
-//
-//  Created by Brandon T on 2017-02-20.
-//  Copyright © 2017 XIO. All rights reserved.
-//
-
 import UIKit
 import MapKit
 
@@ -86,27 +78,22 @@ class MapController: UIViewController, MKMapViewDelegate {
 
     func doLayout() {
         self.view.addSubview(self.mapView)
-//        self.mapView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-//        self.mapView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-//        self.mapView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//        self.mapView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         self.mapView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation.isKind(of: MKUserLocation.self) {  //Handle user location annotation..
-            return nil  //Default is to let the system handle it.
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
         }
 
-        if !annotation.isKind(of: ImageAnnotation.self) {  //Handle non-ImageAnnotations..
+        if !annotation.isKind(of: ImageAnnotation.self) {
             var pinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "DefaultPinView")
             if pinAnnotationView == nil {
                 pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "DefaultPinView")
             }
             return pinAnnotationView
         }
-
-        //Handle ImageAnnotations..
+        
         var view: ImageAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: "imageAnnotation") as? ImageAnnotationView
         if view == nil {
             view = ImageAnnotationView(annotation: annotation, reuseIdentifier: "imageAnnotation")
@@ -126,13 +113,11 @@ class MapController: UIViewController, MKMapViewDelegate {
             self.navigationController?.pushViewController(gallerycontroller, animated: true)
             
         }
-        //print((view.annotation?.coordinate)!)
         if let optionalTitle = view.annotation?.title, let title = optionalTitle {
             imagetitle = title
         }
         print(imagetitle)
     }
-
 
     func loadAnnotations() {
         let locations = [
@@ -143,14 +128,16 @@ class MapController: UIViewController, MKMapViewDelegate {
             ["title": "Los Angeles, CA", "latitude": 35.809393, "longitude": 129.213035]
         ]
 
+        var myCoordinate : [CLLocationCoordinate2D] = []
+        var source1:MKMapItem?
+        var source2:MKMapItem?
+        var source3:MKMapItem?
+        var source4:MKMapItem?
+        var destination1:MKMapItem?
+        var destination2:MKMapItem?
+        var destination3:MKMapItem?
+        var destination4:MKMapItem?
         
-//        let request = NSMutableURLRequest(url: URL(string: "https://www.hknu.ac.kr/sites/kor/images/ci_1.png")!)
-//        request.httpMethod = "GET"
-//
-//        let session = URLSession(configuration: URLSessionConfiguration.default)
-//        let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
-//            if error == nil {
-                
         for location in locations {
                     let annotation = ImageAnnotation()
                     annotation.title = "\(count).jpg"
@@ -158,123 +145,118 @@ class MapController: UIViewController, MKMapViewDelegate {
                     annotation.image = UIImage(named: "\(count).jpg")
                     self.mapView.addAnnotation(annotation)
                     count = count+1
+                    myCoordinate.append(annotation.coordinate)
                 }
         
-                
-//                let annotation = ImageAnnotation()
-//                annotation.coordinate = CLLocationCoordinate2DMake(37.011901, 127.264280)
-//                annotation.image = UIImage(data: data!, scale: UIScreen.main.scale)
-//                annotation.title = "Toronto"
-//                annotation.subtitle = "Yonge & Bloor"
-
-
-//                DispatchQueue.main.async {
-//                    self.mapView.addAnnotation(annotation)
-//                }
+        source1 = MKMapItem( placemark: MKPlacemark(coordinate: myCoordinate[0], addressDictionary: nil))
+        source2 = MKMapItem( placemark: MKPlacemark(coordinate: myCoordinate[1], addressDictionary: nil))
+        source3 = MKMapItem( placemark: MKPlacemark(coordinate: myCoordinate[2], addressDictionary: nil))
+        source4 = MKMapItem( placemark: MKPlacemark(coordinate: myCoordinate[3], addressDictionary: nil))
+        destination1 = MKMapItem( placemark: MKPlacemark(coordinate: myCoordinate[1], addressDictionary: nil))
+        destination2 = MKMapItem( placemark: MKPlacemark(coordinate: myCoordinate[2], addressDictionary: nil))
+        destination3 = MKMapItem( placemark: MKPlacemark(coordinate: myCoordinate[3], addressDictionary: nil))
+        destination4 = MKMapItem( placemark: MKPlacemark(coordinate: myCoordinate[4], addressDictionary: nil))
+        
+        let directionRequest1 = MKDirections.Request()
+        directionRequest1.requestsAlternateRoutes = true
+        directionRequest1.source = source1
+        directionRequest1.destination = destination1
+        directionRequest1.transportType = .automobile
+        
+        let directionRequest2 = MKDirections.Request()
+        directionRequest2.requestsAlternateRoutes = true
+        directionRequest2.source = source2
+        directionRequest2.destination = destination2
+        directionRequest2.transportType = .automobile
+        
+        let directionRequest3 = MKDirections.Request()
+        directionRequest3.requestsAlternateRoutes = true
+        directionRequest3.source = source3
+        directionRequest3.destination = destination3
+        directionRequest3.transportType = .automobile
+        
+        let directionRequest4 = MKDirections.Request()
+        directionRequest4.requestsAlternateRoutes = true
+        directionRequest4.source = source4
+        directionRequest4.destination = destination4
+        directionRequest4.transportType = .automobile
+        
+        
+         let directions1 = MKDirections(request: directionRequest1)
+         directions1.calculate { (response, error) in
+             guard let directionResonse = response else {
+                 if let error = error {
+                     print("we have error getting directions==\(error.localizedDescription)")
+                 }
+                 return
+             }
+             
+             let route = directionResonse.routes[0]
+            self.mapView.addOverlay(route.polyline, level: .aboveRoads)
+             
+             let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+         }
+        
+        let directions2 = MKDirections(request: directionRequest2)
+        directions2.calculate { (response, error) in
+            guard let directionResonse = response else {
+                if let error = error {
+                    print("we have error getting directions==\(error.localizedDescription)")
+                }
+                return
+            }
+            
+            let route = directionResonse.routes[0]
+           self.mapView.addOverlay(route.polyline, level: .aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+           self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
+        
+        let directions3 = MKDirections(request: directionRequest3)
+        directions3.calculate { (response, error) in
+            guard let directionResonse = response else {
+                if let error = error {
+                    print("we have error getting directions==\(error.localizedDescription)")
+                }
+                return
+            }
+            
+            let route = directionResonse.routes[0]
+           self.mapView.addOverlay(route.polyline, level: .aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+           self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
+        
+        let directions4 = MKDirections(request: directionRequest4)
+        directions4.calculate { (response, error) in
+            guard let directionResonse = response else {
+                if let error = error {
+                    print("we have error getting directions==\(error.localizedDescription)")
+                }
+                return
+            }
+            
+            let route = directionResonse.routes[0]
+           self.mapView.addOverlay(route.polyline, level: .aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+           self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
+        
             }
     
-        //}
-    
-        //dataTask.resume()
-    //}
-}
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+        
+        if overlay is MKPolyline {
+            polylineRenderer.strokeColor = UIColor.blue
+            polylineRenderer.lineWidth = 4.0
 
-class Islands: NSObject, MKAnnotation {
-
-    var title: String?
-    var coordinate: CLLocationCoordinate2D
-
-    init(title: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.coordinate = coordinate
-
-
+        }
+        return polylineRenderer
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////
-////  MapViewController.swift
-////  Gallery
-////
-////  Created by CY on 2020/07/21.
-////  Copyright © 2020 CY. All rights reserved.
-////
-//
-//import UIKit
-//import Firebase
-//import FirebaseUI
-//import FirebaseStorage
-//import FirebaseFirestoreSwift
-//
-//class MapController: UIViewController {
-//
-//    @IBOutlet weak var imageview: UIImageView!
-//
-//    func downloadimage(imageview:UIImageView){
-//
-////        let storage = Storage.storage()
-////
-////        storage.reference(forURL: "gs://youroutehknu.appspot.com/images/test3.jpeg").downloadURL { (url, error) in
-////                           let data = NSData(contentsOf: url!)
-////                           let image = UIImage(data: data! as Data)
-////                            imageview.image = image
-////            }
-//    }
-//
-//    func outputroute(imageview:UIImageView){
-//
-//        let testref = Firestore.firestore().collection("test").document("aa")
-//
-//        testref.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                let dataDescription = document.data()?["bb"] as! String
-//                let storage = Storage.storage()
-//                storage.reference(forURL: dataDescription).downloadURL { (url, error) in
-//                        let data = NSData(contentsOf: url!)
-//                        let image = UIImage(data: data! as Data)
-//                        imageview.image = image
-//                            }
-//            } else {
-//                print("Document does not exist")
-//            }
-//        }
-//    }
-//
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        outputroute(imageview: imageview)
-//
-//        // Do any additional setup after loading the view.
-//    }
-//
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//}

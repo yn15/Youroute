@@ -1,18 +1,8 @@
-//
-//  UIImage+CVPixelBuffer.swift
-//  LandMarkApp
-//
-//  Created by CY on 2020/05/28.
-//  Copyright © 2020 CY. All rights reserved.
-//
-
 import UIKit
 import VideoToolbox
 
 extension UIImage {
-    /**
-     Resizes the image to width x height and converts it to an RGB CVPixelBuffer.
-     */
+    
     public func pixelBuffer(width: Int, height: Int) -> CVPixelBuffer? {
         return pixelBuffer(width: width, height: height,
                            pixelFormatType: kCVPixelFormatType_32ARGB,
@@ -20,9 +10,6 @@ extension UIImage {
                            alphaInfo: .noneSkipFirst)
     }
     
-    /**
-     Resizes the image to width x height and converts it to a grayscale CVPixelBuffer.
-     */
     public func pixelBufferGray(width: Int, height: Int) -> CVPixelBuffer? {
         return pixelBuffer(width: width, height: height,
                            pixelFormatType: kCVPixelFormatType_OneComponent8,
@@ -72,10 +59,7 @@ extension UIImage {
 }
 
 extension UIImage {
-    /**
-     Creates a new UIImage from a CVPixelBuffer.
-     NOTE: This only works for RGB pixel buffers, not for grayscale.
-     */
+    
     public convenience init?(pixelBuffer: CVPixelBuffer) {
         var cgImage: CGImage?
         VTCreateCGImageFromCVPixelBuffer(pixelBuffer, options: nil, imageOut: &cgImage)
@@ -87,9 +71,6 @@ extension UIImage {
         }
     }
     
-    /**
-     Creates a new UIImage from a CVPixelBuffer, using Core Image.
-     */
     public convenience init?(pixelBuffer: CVPixelBuffer, context: CIContext) {
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         let rect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelBuffer),

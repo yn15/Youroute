@@ -1,11 +1,3 @@
-//
-//  StoryController.swift
-//  Gallery
-//
-//  Created by CY on 2020/05/14.
-//  Copyright © 2020 CY. All rights reserved.
-//
-
 import UIKit
 import Vision
 import Foundation
@@ -44,10 +36,6 @@ class StoryController: UIViewController {
     
     var rcvimage: UIImage?
     
-    //var images = [ "image1.jpg", "image2.jpeg" , "image3.jpeg", "image4.jpeg" ]
-    
-    //main images
-    
     @IBOutlet weak var Main_Images: UIImageView!
     @IBOutlet weak var Text_View: UITextView!
     
@@ -56,7 +44,6 @@ class StoryController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         predict()
                super.viewDidLoad()
                setUpBoundingBoxes()
@@ -64,9 +51,6 @@ class StoryController: UIViewController {
                predict(image: rcvimage!);
         
         Main_Images.image = rcvimage
-        //print(label.text)
-
-        test()
         
     }
     
@@ -75,15 +59,14 @@ class StoryController: UIViewController {
             let pixelBuffer: CVPixelBuffer = image.pixelBuffer(width: Int(image.size.width),height: Int(image.size.height))
             else { return }
         
-        // create model
         let model = ImageClassifier()
         
-        // predict
         if let result = try? model.prediction(image: pixelBuffer) {
             let predictedLabel = result.classLabel
-            let confidence = result.classLabelProbs[result.classLabel] ?? 0.0
-            label.text = "\(predictedLabel)"//" , 정확도 \(round(confidence*1000)/10)%"
+            label.text = "\(predictedLabel)"
+            test(labeltexta: predictedLabel)
         }
+        
         
     }
     
@@ -92,8 +75,6 @@ class StoryController: UIViewController {
           boundingBoxes.append(BoundingBox())
         }
 
-        // Make colors for the bounding boxes. There is one color for each class,
-        // 80 classes in total.
         for r: CGFloat in [0.2, 0.4, 0.6, 0.8, 1.0] {
           for g: CGFloat in [0.3, 0.7, 0.6, 0.8] {
             for b: CGFloat in [0.4, 0.8, 0.6, 1.0] {
@@ -113,15 +94,10 @@ class StoryController: UIViewController {
         }
       }
 
-
-      //  UI stuff
-
       override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
       }
 
-
-      // MARK: - Doing inference
       func predict(image: UIImage) {
         if let pixelBuffer = image.pixelBuffer(width: YOLO.inputWidth, height: YOLO.inputHeight) {
           predict(pixelBuffer: pixelBuffer)
@@ -130,10 +106,7 @@ class StoryController: UIViewController {
       }
 
       func predict(pixelBuffer: CVPixelBuffer) {
-        // Measure how long it takes to predict a single video frame.
-    //    let startTime = CACurrentMediaTime()
-
-        // Resize the input with Core Image to 416x416.
+        
         guard let resizedPixelBuffer = resizedPixelBuffer else { return }
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         let sx = CGFloat(YOLO.inputWidth) / CGFloat(CVPixelBufferGetWidth(pixelBuffer))
@@ -142,12 +115,6 @@ class StoryController: UIViewController {
         let scaledImage = ciImage.transformed(by: scaleTransform)
         ciContext.render(scaledImage, to: resizedPixelBuffer)
 
-        // This is an alternative way to resize the image (using vImage):
-        //if let resizedPixelBuffer = resizePixelBuffer(pixelBuffer,
-        //                                              width: YOLO.inputWidth,
-        //                                              height: YOLO.inputHeight)
-
-        // Resize the input to 416x416 and give it to our model.
         if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
 
           showOnMainThread(boundingBoxes) //, elapsed)
@@ -157,11 +124,7 @@ class StoryController: UIViewController {
 
         func showOnMainThread(_ boundingBoxes: [YOLO.Prediction]) {
         DispatchQueue.main.async {
-          // For debugging, to make sure the resized CVPixelBuffer is correct.
-          //var debugImage: CGImage?
-          //VTCreateCGImageFromCVPixelBuffer(resizedPixelBuffer, nil, &debugImage)
-          //self.debugImageView.image = UIImage(cgImage: debugImage!)
-
+            
           self.show(predictions: boundingBoxes)
 
           self.semaphore.signal()
@@ -169,24 +132,17 @@ class StoryController: UIViewController {
       }
 
       func show(predictions: [YOLO.Prediction]) {
-        // --SGH close if there is detection shut the frame buffer
 
         for i in 0..<boundingBoxes.count {
           if i < predictions.count {
             let prediction = predictions[i]
 
-            // The predicted bounding box is in the coordinate space of the input
-            // image, which is a square image of 416x416 pixels. We want to show it
-            // on the video preview, which is as wide as the screen and has a 4:3
-            // aspect ratio. The video preview also may be letterboxed at the top
-            // and bottom.
             let width = view.bounds.width
             let height = width * 4 / 3
             let scaleX = width / CGFloat(YOLO.inputWidth)
             let scaleY = height / CGFloat(YOLO.inputHeight)
             let top = (view.bounds.height - height) / 2
 
-            // Translate and scale the rectangle to our own coordinate system.
             var rect = prediction.rect
             rect.origin.x *= scaleX
             rect.origin.y *= scaleY
@@ -194,14 +150,10 @@ class StoryController: UIViewController {
             rect.size.width *= scaleX
             rect.size.height *= scaleY
 
-            // Show the bounding box.
-            //let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
             let label = String(format:labels[prediction.classIndex])
-            //tag = tag + " #" + label
+
             labelArray.insert(label)
-            //let color = colors[prediction.classIndex]
-            
-            //boundingBoxes[i].show(frame: rect, label: label, color: color)
+
           } else {
             boundingBoxes[i].hide()
           }
@@ -209,42 +161,31 @@ class StoryController: UIViewController {
         for t in labelArray {
             tag = tag + "#" + t + " "
         }
-        //print(labelArray)
         label1.text = "\(tag)"
       }
     
-    func test() {
-        labeltext = label.text!
-        print(type(of: labeltext))
-        print(label.text!)
-        fireref.collection(labeltext).document(labeltext).addSnapshotListener { (documentSnapshot, error) in
+    func test(labeltexta: String) {
+        print(labeltexta)
+        let a = "감은사지"
+        fireref.collection(a).document(a).addSnapshotListener { (documentSnapshot, error) in
             guard let document = documentSnapshot else {
                 print("error")
                 return
             }
-            //var Ary : Array = []
+            
             let Ary = (document.get("Picture") as! Array<Any>)
-            //self.images.append(document.get("cc") as! String)
-            //print(self.images)
-            print(Ary)
-//            for Arys in Ary {
-//                self.images.append(Arys as! String)
-//                //print(Arys)
-//            }
-            //print(Ary)
-            //print(self.images)
+            for Arys in Ary {
+                self.images.append(Arys as! String)
+            }
             self.checkCollectionView.reloadData()
         }
     }
-    
     
 }
 
 extension StoryController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        //let images = [ "test.jpeg", "test2.jpeg" , "test3.jpeg", "test4.jpeg" ]
         
         return images.count
     }
@@ -264,19 +205,15 @@ extension StoryController:UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = checkCollectionView.dequeueReusableCell(withReuseIdentifier: "check", for: indexPath) as? StorySubCell
-        
+        print(images[indexPath.row])
         self.storage.reference(forURL: images[indexPath.row]).downloadURL { (url, error) in
                 let data = NSData(contentsOf: url!)
                 let image = UIImage(data: data! as Data)
                 cell?.SubImage.image = image
                 }
         
-        //cell?.SubImage.image = UIImage(named: images[indexPath.row])
-        
         return cell!
     }
-    
-    
     
 }
 

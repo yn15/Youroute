@@ -1,11 +1,3 @@
-//
-//  MKMapViewDelegate.swift
-//  Gallery
-//
-//  Created by mac on 2020/10/14.
-//  Copyright © 2020 CY. All rights reserved.
-//
-
 import UIKit
 import MapKit
 

@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  TEST_FIREBASE
-//
-//  Created by mac on 2020/06/10.
-//  Copyright © 2020 mac. All rights reserved.
-//
-
 import UIKit
 import GoogleSignIn
 import FirebaseAuth
@@ -16,7 +8,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var backimage: UIImageView!
     @IBOutlet var signInButton : GIDSignInButton!
-// email sign in1
     
     private let label: UILabel = {
         let label = UILabel()
@@ -50,7 +41,7 @@ class ViewController: UIViewController {
         button.setTitle("Continue", for : .normal)
            return button
        }()
-// email sign in 1 end
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +55,6 @@ class ViewController: UIViewController {
         view.addSubview(emailField)
         view.addSubview(passField)
         view.addSubview(button)
-        //view.backgroundColor = .systemGray2
         let naviBgImage = UIImage(named: "airplane-2588225_1280@3x.png")
         backimage.image = naviBgImage
         
@@ -116,6 +106,9 @@ class ViewController: UIViewController {
             strongSelf.passField.isHighlighted = true
             strongSelf.button.isHighlighted = true
             
+            if let maincontroller = self?.storyboard?.instantiateViewController(identifier: "MainController") {
+                self?.navigationController?.pushViewController(maincontroller, animated: true)
+            }
         })
     }
     

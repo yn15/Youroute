@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Gallery
-//
-//  Created by CY on 2020/05/14.
-//  Copyright © 2020 CY. All rights reserved.
-//
-
 import UIKit
 import Firebase
 import FirebaseUI
@@ -13,8 +5,7 @@ import FirebaseStorage
 import FirebaseFirestoreSwift
 
 class GalleryController: UIViewController {
-    
-//    let images = [ "image1.jpg", "test.jpeg", "1.jpg" , "2.jpg", "3.jpg", "4.jpg", "5.jpg", "test2.jpeg" ]
+
     var images : [String] = []
     let fireref = Firestore.firestore()
     let storage = Storage.storage()
@@ -44,7 +35,6 @@ class GalleryController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         test()
     }
 }
@@ -73,45 +63,12 @@ extension GalleryController:UICollectionViewDelegate, UICollectionViewDataSource
         
         let cell = GalleryCollectionView.dequeueReusableCell(withReuseIdentifier: "Gallerycheck", for: indexPath) as? GallerySubCell
         
-//        storage.reference().child("images").listAll { (result, error) in
-//            if let error = error {
-//                print(error)
-//            }
-//            for item in result.items {
-//                //self.images.append(item.name)
-//                print(self.images)
-//                self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + item.name).downloadURL { (url, error) in
-//                            let data = NSData(contentsOf: url!)
-//                            let image = UIImage(data: data! as Data)
-//                cell?.GalleryImage.image = image
-//                }
-//            }
-//        }
-        
         self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + images[indexPath.row]).downloadURL { (url, error) in
                     let data = NSData(contentsOf: url!)
                     let image = UIImage(data: data! as Data)
             print(self.images[indexPath.row])
         cell?.GalleryImage.image = image
         }
-        
-        
-//        storage.reference().child("images").listAll { (result, error) in
-//            if let error = error {
-//                print(error)
-//            }
-//            for item in result.items {
-//                print(item)
-////                storage.reference(forURL: item as! String).downloadURL { (url, error) in
-////                            let data = NSData(contentsOf: url!)
-////                            let image = UIImage(data: data! as Data)
-////                cell?.GalleryImage.image = image
-////                            }
-//            }
-//        }
-                
-        
-        //cell?.GalleryImage.image = UIImage(named: images[indexPath.row])
         
         return cell!
     }

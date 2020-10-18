@@ -1,11 +1,3 @@
-//
-//  MainController.swift
-//  Gallery
-//
-//  Created by CY on 2020/05/19.
-//  Copyright © 2020 CY. All rights reserved.
-//
-
 import UIKit
 import MapKit
 import Firebase
@@ -14,8 +6,6 @@ import FirebaseStorage
 import FirebaseFirestoreSwift
 
 class MainController: UIViewController, CLLocationManagerDelegate {
-    
-//    let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
     
     var images : [String] = []
     let fireref = Firestore.firestore()
@@ -27,11 +17,11 @@ class MainController: UIViewController, CLLocationManagerDelegate {
         }
     }
     @IBOutlet weak var MainCollectionView: UICollectionView!
-    @IBOutlet weak var Mymap: MKMapView! //map
+    @IBOutlet weak var Mymap: MKMapView!
     
     var string = ""
     
-    let locationManager = CLLocationManager() // map
+    let locationManager = CLLocationManager()
     
     @IBAction func GoTravel(_ sender: UIButton) {
         
@@ -51,11 +41,10 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
         test()
         
-        //map
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -70,25 +59,19 @@ class MainController: UIViewController, CLLocationManagerDelegate {
                 print("error")
                 return
             }
-            //var Ary : Array = []
             
             let Ary = (document.get("Country") as! Array<Any>)
-            //self.images.append(document.get("cc") as! String)
-            //print(self.images)
             for Arys in Ary {
                 self.images.append(Arys as! String)
-                //print(Arys)
             }
-            //print(Ary)
             self.MainCollectionView.reloadData()
         }
         
     }
     
-    //업데이트 되는 위치정보 표시
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let lastLocation = locations.last //가장 최근의 위치정보 저장
-      myLocation(latitude: (lastLocation?.coordinate.latitude)!, longitude: (lastLocation?.coordinate.longitude)!, delta: 0.01) //delat값이 1보다 작을수록 확대됨. 0.01은 100배확대
+        let lastLocation = locations.last
+      myLocation(latitude: (lastLocation?.coordinate.latitude)!, longitude: (lastLocation?.coordinate.longitude)!, delta: 0.01)
         
     }
     
@@ -107,8 +90,6 @@ class MainController: UIViewController, CLLocationManagerDelegate {
 extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-//        let images = [ "test.jpeg", "괌.jpeg" , "독일.jpeg", "부산.jpeg", "제주도.jpeg", "test2.jpeg" ]
-        
         return images.count
     }
     
@@ -126,35 +107,15 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
                             return
                         }
                         let Ary = (document.get("DAY-1") as! Array<Any>)
-        //                for Arys in Ary {
-        //                    self.imgg.append(Arys as! String)
-        //                }
-                        //print(Ary)
-                        //let storage = Storage.storage()
+
                         self.storage.reference(forURL: Ary[0] as! String).downloadURL { (url, error) in
                                 let data = NSData(contentsOf: url!)
                                 let image = UIImage(data: data! as Data)
                             cell?.MainImage.image = image
                                     }
                     }
-        
-//        self.storage.reference(forURL: "gs://youroutehknu.appspot.com/images/" + images[indexPath.row]).downloadURL { (url, error) in
-//            let data = NSData(contentsOf: url!)
-//            let image = UIImage(data: data! as Data)
-//        cell?.MainImage.image = image
-//                }
-        
-        //cell?.MainImage.image = UIImage(named: images[indexPath.row])
-        
-//        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
-//            let substring = images[indexPath.row][..<index]
-//            string = String(substring)
-//        }//확장자 제거
-        
+    
         cell?.MainLabel.text = images[indexPath.row]
-        
-        
-        
         cell?.MainImage.layer.cornerRadius = 70
         
         return cell!
@@ -164,11 +125,6 @@ extension MainController:UICollectionViewDelegate, UICollectionViewDataSource, U
         
         let storyBoard = self.storyboard!
         let move = storyBoard.instantiateViewController(withIdentifier: "DetailController") as! DetailController
-        
-//        if let index = images[indexPath.row].range(of: ".")?.lowerBound {
-//            let substring = images[indexPath.row][..<index]
-//            string = String(substring)
-//        }//확장자 제거
         
         move.rcvlabel = images[indexPath.row]
         self.navigationController?.pushViewController(move, animated: true)
