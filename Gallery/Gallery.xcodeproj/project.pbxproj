@@ -39,7 +39,6 @@
 		01F92D6C24C6821A0048755D /* DetailSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6B24C6821A0048755D /* DetailSubCell.swift */; };
 		01F92D6E24C683DA0048755D /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F92D6D24C683DA0048755D /* MapController.swift */; };
 		041A9D34251E47F100EA64F2 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 041A9D33251E47F000EA64F2 /* YOLOv3.mlmodel */; };
-		041A9DA52520AFB300EA64F2 /* GoogleMapsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041A9DA42520AFB300EA64F2 /* GoogleMapsController.swift */; };
 		0448F76E24ED600600A1BC0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0448F76D24ED600600A1BC0E /* ViewController.swift */; };
 		044AF70A24ED50D80055FA8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044AF70924ED50D80055FA8A /* GoogleService-Info.plist */; };
 		04EBFDD02537303000BB0861 /* MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBFDCF2537303000BB0861 /* MKMapViewDelegate.swift */; };
@@ -107,7 +106,6 @@
 		01F92D6B24C6821A0048755D /* DetailSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSubCell.swift; sourceTree = "<group>"; };
 		01F92D6D24C683DA0048755D /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		041A9D33251E47F000EA64F2 /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
-		041A9DA42520AFB300EA64F2 /* GoogleMapsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsController.swift; sourceTree = "<group>"; };
 		0448F76D24ED600600A1BC0E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		044AF70924ED50D80055FA8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04EBFDCF2537303000BB0861 /* MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewDelegate.swift; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 				01F92D6D24C683DA0048755D /* MapController.swift */,
 				04EBFDCF2537303000BB0861 /* MKMapViewDelegate.swift */,
 				013BA3B5246C810D00E99C24 /* GalleryController.swift */,
-				041A9DA42520AFB300EA64F2 /* GoogleMapsController.swift */,
 				013BA3B7246C810D00E99C24 /* Main.storyboard */,
 				353155FB24DAD1D000D7B659 /* BoundingBox.swift */,
 				3531560324DAD1EC00D7B659 /* UIImage+CVPixelBuffer.swift */,
@@ -414,7 +411,6 @@
 				041A9D34251E47F100EA64F2 /* YOLOv3.mlmodel in Sources */,
 				0177B3C924B5770F00BD614F /* MainSubCell.swift in Sources */,
 				353155FE24DAD1D700D7B659 /* CVPixelBuffer+Helpers.swift in Sources */,
-				041A9DA52520AFB300EA64F2 /* GoogleMapsController.swift in Sources */,
 				3531560024DAD1DB00D7B659 /* Helpers.swift in Sources */,
 				013BA3B2246C810D00E99C24 /* AppDelegate.swift in Sources */,
 				3531560A24DAD1F500D7B659 /* VideoCapture.swift in Sources */,

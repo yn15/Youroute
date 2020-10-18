@@ -32,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
 
             return GIDSignIn.sharedInstance().handle(url)
     }
-    // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 

@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        label.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: 80)
+        label.frame = CGRect(x: 0, y: 60, width: view.frame.size.width, height: 80)
         emailField.frame = CGRect(x: 20,
                                   y: label.frame.origin.y+label.frame.size.height+10,
                                   width: view.frame.size.width - 40,
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
                                  width: view.frame.size.width - 40,
                                  height: 50)
         button.frame = CGRect(x: 20,
-                              y: passField.frame.origin.y+passField.frame.size.height+10,
+                              y: passField.frame.origin.y+passField.frame.size.height+100,
                               width: view.frame.size.width - 40 ,
                               height: 80)
         
@@ -96,7 +96,6 @@ class ViewController: UIViewController {
             }
             
             guard error == nil else {
-                //show account creation
                 strongSelf.showCreateAccount(email: email, password: password)
                 return
             }

@@ -22,7 +22,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zE4-bp-nqZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1559" y="-32"/>
+            <point key="canvasLocation" x="-2149" y="-32"/>
         </scene>
         <!--Main Controller-->
         <scene sceneID="jx3-1c-rha">
@@ -168,7 +168,7 @@
                         <viewControllerLayoutGuide type="bottom" id="UV0-YX-zxJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Q5F-Ly-Zi6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zLj-se-AGZ">
@@ -176,33 +176,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAy-kf-0pd" customClass="GIDSignInButton">
-                                <rect key="frame" x="87" y="550" width="240" height="48"/>
+                                <rect key="frame" x="87" y="286" width="240" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="4n9-re-Q6u"/>
                                     <constraint firstAttribute="width" constant="230" id="Hy5-gH-Egc"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2Y-DO-LNg">
-                                <rect key="frame" x="184" y="869" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="gqH-Bg-iYI" kind="show" id="mCi-KE-7Ef"/>
-                                </connections>
-                            </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0kc-5T-70T">
-                                <rect key="frame" x="183" y="873" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </switch>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="UV0-YX-zxJ" firstAttribute="top" secondItem="hAy-kf-0pd" secondAttribute="bottom" constant="402" id="Vee-LN-09m"/>
-                            <constraint firstItem="UV0-YX-zxJ" firstAttribute="top" secondItem="f2Y-DO-LNg" secondAttribute="bottom" constant="101" id="sIt-Mq-bdD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HhT-YV-gDJ"/>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="backimage" destination="zLj-se-AGZ" id="YAn-zQ-e8B"/>
                         <outlet property="signInButton" destination="hAy-kf-0pd" id="zCB-aL-cAh"/>
@@ -210,32 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bC-wn-w7q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-768" y="749"/>
-        </scene>
-        <!--Google Maps Controller-->
-        <scene sceneID="DTl-WL-kqc">
-            <objects>
-                <viewController id="gqH-Bg-iYI" customClass="GoogleMapsController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SeL-V1-kvh"/>
-                        <viewControllerLayoutGuide type="bottom" id="MlI-6V-43N"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YQZ-y0-JTe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VjX-BQ-QKz">
-                                <rect key="frame" x="20" y="88" width="374" height="888"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="jed-G4-XVA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B3j-cL-BNl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="200" y="641"/>
+            <point key="canvasLocation" x="-1428" y="-33"/>
         </scene>
         <!--Travel Controller-->
         <scene sceneID="tWS-Yr-0iy">
@@ -462,7 +425,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="186" height="210"/>
                                                 <connections>
@@ -554,7 +517,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="126" height="152"/>
                                                         <connections>

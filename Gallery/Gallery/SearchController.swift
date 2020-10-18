@@ -89,7 +89,6 @@ extension SearchController:UICollectionViewDelegate, UICollectionViewDataSource,
 
         let cell = SearchCollectionView.dequeueReusableCell(withReuseIdentifier: "Searchcheck", for: indexPath) as? SearchSubCell
         
-        print(self.filtered[indexPath.row])
         self.storage.reference(forURL: filtered[indexPath.row]).downloadURL { (url, error) in
             let data = NSData(contentsOf: url!)
             let image = UIImage(data: data! as Data)
