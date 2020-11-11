@@ -64,11 +64,54 @@ class StoryController: UIViewController {
         if let result = try? model.prediction(image: pixelBuffer) {
             let predictedLabel = result.classLabel
             label.text = "\(predictedLabel)"
-            test(labeltexta: predictedLabel)
+            //test(labeltexta: predictedLabel)
+            var ttag = ""
+            
+            switch predictedLabel {
+                case "감은사지":
+                    ttag = "감은사지"
+                case "경주타워":
+                    ttag = "경주타워"
+                case "불국사":
+                    ttag = "불국사"
+                default:
+                    ttag = ""
+            }
+
+            
+            fireref.collection(ttag).document(ttag).addSnapshotListener { (documentSnapshot, error) in
+                guard let document = documentSnapshot else {
+                    print("error")
+                    return
+                }
+                print(document.documentID)
+                let Ary = (document.get("Picture") as! Array<Any>)
+                for Arys in Ary {
+                    self.images.append(Arys as! String)
+                }
+                self.checkCollectionView.reloadData()
+            }
         }
         
         
     }
+    
+//    func test(labeltexta: String) {
+//        print(labeltexta)
+//        let a = labeltexta
+//        fireref.collection(a).document(a).addSnapshotListener { (documentSnapshot, error) in
+//            guard let document = documentSnapshot else {
+//                print("error")
+//                return
+//            }
+//
+//            let Ary = (document.get("Picture") as! Array<Any>)
+//            for Arys in Ary {
+//                self.images.append(Arys as! String)
+//            }
+//            self.checkCollectionView.reloadData()
+//        }
+  // }
     
     func setUpBoundingBoxes() {
         for _ in 0..<YOLO.maxBoundingBoxes {
@@ -164,22 +207,7 @@ class StoryController: UIViewController {
         label1.text = "\(tag)"
       }
     
-    func test(labeltexta: String) {
-        print(labeltexta)
-        let a = "감은사지"
-        fireref.collection(a).document(a).addSnapshotListener { (documentSnapshot, error) in
-            guard let document = documentSnapshot else {
-                print("error")
-                return
-            }
-            
-            let Ary = (document.get("Picture") as! Array<Any>)
-            for Arys in Ary {
-                self.images.append(Arys as! String)
-            }
-            self.checkCollectionView.reloadData()
-        }
-    }
+
     
 }
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011587A9255C7832002BA6CE /* 불국사3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 011587A5255C7832002BA6CE /* 불국사3.jpeg */; };
+		011587AA255C7832002BA6CE /* 불국사1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 011587A6255C7832002BA6CE /* 불국사1.jpeg */; };
+		011587AB255C7832002BA6CE /* 불국사2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 011587A7255C7832002BA6CE /* 불국사2.jpeg */; };
+		011587AC255C7832002BA6CE /* 불국사4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 011587A8255C7832002BA6CE /* 불국사4.jpeg */; };
+		011587AE255C78D9002BA6CE /* 불국사5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 011587AD255C78D9002BA6CE /* 불국사5.jpeg */; };
 		012DE2952473648D000C3BDE /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012DE2942473648D000C3BDE /* SearchController.swift */; };
 		012DE29724736DF0000C3BDE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012DE29624736DF0000C3BDE /* MainController.swift */; };
 		013BA3B2246C810D00E99C24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BA3B1246C810D00E99C24 /* AppDelegate.swift */; };
@@ -72,6 +77,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		011587A5255C7832002BA6CE /* 불국사3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "불국사3.jpeg"; sourceTree = "<group>"; };
+		011587A6255C7832002BA6CE /* 불국사1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "불국사1.jpeg"; sourceTree = "<group>"; };
+		011587A7255C7832002BA6CE /* 불국사2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "불국사2.jpeg"; sourceTree = "<group>"; };
+		011587A8255C7832002BA6CE /* 불국사4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "불국사4.jpeg"; sourceTree = "<group>"; };
+		011587AD255C78D9002BA6CE /* 불국사5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "불국사5.jpeg"; sourceTree = "<group>"; };
 		012DE2942473648D000C3BDE /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		012DE29624736DF0000C3BDE /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		013BA3AE246C810D00E99C24 /* Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,11 +222,16 @@
 				01CC83A0251A957B006C3F0A /* 독일.jpeg */,
 				01CC839E251A957A006C3F0A /* 부산.jpeg */,
 				01CC83A1251A957B006C3F0A /* 제주도.jpeg */,
+				011587A6255C7832002BA6CE /* 불국사1.jpeg */,
+				011587A7255C7832002BA6CE /* 불국사2.jpeg */,
+				011587A5255C7832002BA6CE /* 불국사3.jpeg */,
+				011587A8255C7832002BA6CE /* 불국사4.jpeg */,
 				013BA3C7246C8DAF00E99C24 /* test4.jpeg */,
 				3531560B24DAD9ED00D7B659 /* image1.jpg */,
 				3531560C24DAD9ED00D7B659 /* image2.jpeg */,
 				3531560D24DAD9ED00D7B659 /* image3.jpeg */,
 				3531560E24DAD9ED00D7B659 /* image4.jpeg */,
+				011587AD255C78D9002BA6CE /* 불국사5.jpeg */,
 				013BA3EC246CBAE700E99C24 /* 2.jpg */,
 				013BA3EE246CBAE800E99C24 /* 3.jpg */,
 				013BA3F0246CBAE800E99C24 /* 4.jpg */,
@@ -307,11 +322,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				011587AE255C78D9002BA6CE /* 불국사5.jpeg in Resources */,
 				013BA3F5246CBAE800E99C24 /* 4.jpg in Resources */,
 				015AC5EA2522603800D7850C /* airplane-2588225_1280@3x.png in Resources */,
 				013BA3F3246CBAE800E99C24 /* 3.jpg in Resources */,
 				3531561224DAD9ED00D7B659 /* image4.jpeg in Resources */,
 				013BA3F4246CBAE800E99C24 /* 5.jpg in Resources */,
+				011587A9255C7832002BA6CE /* 불국사3.jpeg in Resources */,
 				013BA3CA246C8DAF00E99C24 /* test.jpeg in Resources */,
 				013BA3CB246C8DAF00E99C24 /* test4.jpeg in Resources */,
 				3531560F24DAD9ED00D7B659 /* image1.jpg in Resources */,
@@ -321,12 +338,15 @@
 				013BA3C9246C8DAF00E99C24 /* test3.jpeg in Resources */,
 				044AF70A24ED50D80055FA8A /* GoogleService-Info.plist in Resources */,
 				01CC83A5251A957B006C3F0A /* 제주도.jpeg in Resources */,
+				011587AB255C7832002BA6CE /* 불국사2.jpeg in Resources */,
 				3531561024DAD9ED00D7B659 /* image2.jpeg in Resources */,
 				3531561124DAD9ED00D7B659 /* image3.jpeg in Resources */,
+				011587AC255C7832002BA6CE /* 불국사4.jpeg in Resources */,
 				01CC83A3251A957B006C3F0A /* 괌.jpeg in Resources */,
 				013BA3CC246C8DAF00E99C24 /* test2.jpeg in Resources */,
 				01CC83A4251A957B006C3F0A /* 독일.jpeg in Resources */,
 				013BA3B9246C810D00E99C24 /* Main.storyboard in Resources */,
+				011587AA255C7832002BA6CE /* 불국사1.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,13 +579,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SKQJKDYRA7;
+				DEVELOPMENT_TEAM = PU6U56785A;
 				INFOPLIST_FILE = Gallery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = .Gallery;
+				PRODUCT_BUNDLE_IDENTIFIER = ".Gallery-Youroute";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -578,13 +598,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SKQJKDYRA7;
+				DEVELOPMENT_TEAM = PU6U56785A;
 				INFOPLIST_FILE = Gallery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = .Gallery;
+				PRODUCT_BUNDLE_IDENTIFIER = ".Gallery-Youroute";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

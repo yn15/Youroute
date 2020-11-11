@@ -74,10 +74,16 @@ extension SearchController:UICollectionViewDelegate, UICollectionViewDataSource,
         
         let storyBoard = self.storyboard!
         let move = storyBoard.instantiateViewController(withIdentifier: "StoryController") as! StoryController
-            
-            move.rcvimage = UIImage(named: filtered[indexPath.row])
+        
+        self.storage.reference(forURL: filtered[indexPath.row]).downloadURL { (url, error) in
+        let data = NSData(contentsOf: url!)
+        let image = UIImage(data: data! as Data)
+            move.rcvimage = image
             self.dismiss(animated: true, completion: nil)
             self.navigationController?.pushViewController(move, animated: true)
+                    }
+        
+            
                 
     }
     

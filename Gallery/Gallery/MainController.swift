@@ -14,9 +14,45 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var MainCollectionView: UICollectionView!
     @IBOutlet weak var Mymap: MKMapView!
     
+    @IBOutlet weak var MapSwitch: UISwitch!
     var string = ""
     
     let locationManager = CLLocationManager()
+    
+    @IBAction func switchValueChanged(_ sender: Any) {
+        
+    if self.MapSwitch.isOn {
+        self.MapSwitch.setOn(false, animated: true)
+            
+        let alert = UIAlertController(title: "여행을 시작하시겠습니까?", message: "", preferredStyle: .alert)
+            
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        // self.mySwitch.setOn(true, animated: true)
+        }))
+            
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+        self.MapSwitch.setOn(true, animated: true)
+        }))
+            
+        self.present(alert, animated: true, completion: nil)
+    } else {
+        self.MapSwitch.setOn(true, animated: true)
+            
+        let alert = UIAlertController(title: "여행을 종료하시겠습니까?", message: "", preferredStyle: .alert)
+            
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        // self.mySwitch.setOn(true, animated: true)
+        }))
+            
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+        self.MapSwitch.setOn(false, animated: true)
+        }))
+            
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    }
+
     
     @IBAction func GoTravel(_ sender: UIButton) {
         
@@ -36,6 +72,8 @@ class MainController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.MapSwitch.setOn(false, animated: true)
+        self.navigationItem.title = "YouRoute"
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         test()

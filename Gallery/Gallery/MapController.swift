@@ -54,7 +54,7 @@ class MapController: UIViewController, MKMapViewDelegate {
     var count = 1
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Day-1 경주"
+        //self.navigationItem.title = "Day-1 경주"
         self.initControls()
         self.doLayout()
         self.loadAnnotations()
@@ -142,7 +142,7 @@ class MapController: UIViewController, MKMapViewDelegate {
                     let annotation = ImageAnnotation()
                     annotation.title = "\(count).jpg"
                     annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! Double, longitude: location["longitude"] as! Double)
-                    annotation.image = UIImage(named: "\(count).jpg")
+                    annotation.image = UIImage(named: "불국사\(count).jpeg")
                     self.mapView.addAnnotation(annotation)
                     count = count+1
                     myCoordinate.append(annotation.coordinate)
